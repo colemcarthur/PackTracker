@@ -11,6 +11,9 @@
 /Users/robertmcarthur/Projects/PackTracker/PackTracker/bin/Debug/net7.0-ios/iossimulator-x64/Microsoft.Extensions.Options.dll
 /Users/robertmcarthur/Projects/PackTracker/PackTracker/bin/Debug/net7.0-ios/iossimulator-x64/Microsoft.Extensions.Primitives.dll
 /Users/robertmcarthur/Projects/PackTracker/PackTracker/bin/Debug/net7.0-ios/iossimulator-x64/Microsoft.Maui.Graphics.dll
+/Users/robertmcarthur/Projects/PackTracker/PackTracker/bin/Debug/net7.0-ios/iossimulator-x64/zxing.dll
+/Users/robertmcarthur/Projects/PackTracker/PackTracker/bin/Debug/net7.0-ios/iossimulator-x64/ZXing.Net.MAUI.dll
+/Users/robertmcarthur/Projects/PackTracker/PackTracker/bin/Debug/net7.0-ios/iossimulator-x64/ZXing.Net.MAUI.Controls.dll
 /Users/robertmcarthur/Projects/PackTracker/PackTracker/bin/Debug/net7.0-ios/iossimulator-x64/Microsoft.CSharp.dll
 /Users/robertmcarthur/Projects/PackTracker/PackTracker/bin/Debug/net7.0-ios/iossimulator-x64/Microsoft.VisualBasic.Core.dll
 /Users/robertmcarthur/Projects/PackTracker/PackTracker/bin/Debug/net7.0-ios/iossimulator-x64/Microsoft.VisualBasic.dll
