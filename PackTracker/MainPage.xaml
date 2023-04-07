@@ -8,18 +8,102 @@
         BackgroundColor="White"
         RowSpacing="12"
         Padding="12">
+
         <Frame
-            BackgroundColor="Green"
+            BackgroundColor="LightGrey"
             CornerRadius="12">
+            <Grid
+                ColumnDefinitions="*,.3*,*"
+                RowDefinitions=".15*,.1*,.75*">
+
+                <Label
+                    Text="Package Collection Summary"
+                    Grid.ColumnSpan="3"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    FontSize="25"/>
+
+                <Label
+                    Grid.Row="2"
+                    Text="Packages"
+                    FontSize="Medium"
+                    HorizontalTextAlignment="Center"/>
+
+                <Label
+                    Grid.Row="3"
+                    Text="23"
+                    FontSize="30"
+                    FontAutoScalingEnabled="True"
+                    HorizontalTextAlignment="Center"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"/>
+
+                <Rectangle
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    WidthRequest="2"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="Black"
+                    Margin="0,18,0,12"/>
+
+                <Label
+                    Grid.Column="3"
+                    Grid.Row="2"
+                    Text="Value"
+                    FontSize="Medium"
+                    HorizontalTextAlignment="Center"/>
+
+                <Label
+                    Grid.Column="3"
+                    Grid.Row="3"
+                    Text="$230"
+                    FontSize="30"
+                    FontAutoScalingEnabled="True"
+                    HorizontalTextAlignment="Center"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"/>
 
 
+            </Grid>
         </Frame>
+
         <Frame
             Grid.Row="2"
             CornerRadius="12"
-            BackgroundColor="Red">
-
-
+            BackgroundColor="LightGray">
+            <FlexLayout
+                Direction="Column"
+                JustifyContent="SpaceAround">
+                <Button
+                    Text="Scan A Package"
+                    TextTransform="Uppercase"
+                    BorderColor="Gray"
+                    BorderWidth="2"
+                    BackgroundColor="Transparent"
+                    TextColor="Gray"/>
+                <Button
+                    Text="Manage Packages"
+                    TextTransform="Uppercase"
+                    BorderColor="Gray"
+                    BorderWidth="2"
+                    BackgroundColor="Transparent"
+                    TextColor="Gray"/>
+                <Button
+                    Text="Create Packages"
+                    TextTransform="Uppercase"
+                    BorderColor="Gray"
+                    BorderWidth="2"
+                    BackgroundColor="Transparent"
+                    TextColor="Gray"/>
+                <Button
+                    Text="Print Package Label"
+                    TextTransform="Uppercase"
+                    BorderColor="Gray"
+                    BorderWidth="2"
+                    BackgroundColor="Transparent"
+                    TextColor="Gray"/>
+            </FlexLayout>
         </Frame>
 
     </Grid>
