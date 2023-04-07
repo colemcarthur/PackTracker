@@ -97,7 +97,7 @@
                     BackgroundColor="Transparent"
                     TextColor="Gray"/>
                 <Button
-                    Text="Print Package Label"
+                    Text="Create Package Label"
                     TextTransform="Uppercase"
                     BorderColor="Gray"
                     BorderWidth="2"
