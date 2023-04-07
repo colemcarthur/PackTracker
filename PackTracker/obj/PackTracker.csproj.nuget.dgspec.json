@@ -1,21 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "/Users/colemcarthur/Documents/GitHub/PackTracker/PackTracker/PackTracker.csproj": {}
+    "/Users/robertmcarthur/Projects/PackTracker/PackTracker/PackTracker.csproj": {}
   },
   "projects": {
-    "/Users/colemcarthur/Documents/GitHub/PackTracker/PackTracker/PackTracker.csproj": {
+    "/Users/robertmcarthur/Projects/PackTracker/PackTracker/PackTracker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/colemcarthur/Documents/GitHub/PackTracker/PackTracker/PackTracker.csproj",
+        "projectUniqueName": "/Users/robertmcarthur/Projects/PackTracker/PackTracker/PackTracker.csproj",
         "projectName": "PackTracker",
-        "projectPath": "/Users/colemcarthur/Documents/GitHub/PackTracker/PackTracker/PackTracker.csproj",
-        "packagesPath": "/Users/colemcarthur/.nuget/packages/",
-        "outputPath": "/Users/colemcarthur/Documents/GitHub/PackTracker/PackTracker/obj/",
+        "projectPath": "/Users/robertmcarthur/Projects/PackTracker/PackTracker/PackTracker.csproj",
+        "packagesPath": "/Users/robertmcarthur/.nuget/packages/",
+        "outputPath": "/Users/robertmcarthur/Projects/PackTracker/PackTracker/obj/",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "configFilePaths": [
-          "/Users/colemcarthur/.nuget/NuGet/NuGet.Config"
+          "/Users/robertmcarthur/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0-android",
@@ -133,6 +133,14 @@
               "target": "Package",
               "version": "[1.7.0.1, )",
               "autoReferenced": true
+            },
+            "ZXing.Net.Maui": {
+              "target": "Package",
+              "version": "[0.3.0-preview.1, )"
+            },
+            "ZXing.Net.Maui.Controls": {
+              "target": "Package",
+              "version": "[0.3.0-preview.1, )"
             }
           },
           "imports": [
@@ -196,6 +204,14 @@
               "target": "Package",
               "version": "[7.0.59, )",
               "autoReferenced": true
+            },
+            "ZXing.Net.Maui": {
+              "target": "Package",
+              "version": "[0.3.0-preview.1, )"
+            },
+            "ZXing.Net.Maui.Controls": {
+              "target": "Package",
+              "version": "[0.3.0-preview.1, )"
             }
           },
           "imports": [
@@ -259,6 +275,14 @@
               "target": "Package",
               "version": "[7.0.59, )",
               "autoReferenced": true
+            },
+            "ZXing.Net.Maui": {
+              "target": "Package",
+              "version": "[0.3.0-preview.1, )"
+            },
+            "ZXing.Net.Maui.Controls": {
+              "target": "Package",
+              "version": "[0.3.0-preview.1, )"
             }
           },
           "imports": [

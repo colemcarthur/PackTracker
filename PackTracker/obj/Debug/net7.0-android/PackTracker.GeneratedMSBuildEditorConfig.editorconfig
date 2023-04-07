@@ -12,33 +12,33 @@ build_property.EnableSingleFileAnalyzer = true
 build_property.EnableTrimAnalyzer = false
 build_property.IncludeAllContentForSelfExtract = 
 build_property.RootNamespace = PackTracker
-build_property.ProjectDir = /Users/colemcarthur/Documents/GitHub/PackTracker/PackTracker/
+build_property.ProjectDir = /Users/robertmcarthur/Projects/PackTracker/PackTracker/
 
-[/Users/colemcarthur/Documents/GitHub/PackTracker/PackTracker/App.xaml]
+[/Users/robertmcarthur/Projects/PackTracker/PackTracker/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = PackTracker.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
 build_metadata.AdditionalFiles.RelativePath = App.xaml
 
-[/Users/colemcarthur/Documents/GitHub/PackTracker/PackTracker/AppShell.xaml]
+[/Users/robertmcarthur/Projects/PackTracker/PackTracker/AppShell.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = PackTracker.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[/Users/colemcarthur/Documents/GitHub/PackTracker/PackTracker/MainPage.xaml]
+[/Users/robertmcarthur/Projects/PackTracker/PackTracker/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = PackTracker.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
 
-[/Users/colemcarthur/Documents/GitHub/PackTracker/PackTracker/Resources/Styles/Colors.xaml]
+[/Users/robertmcarthur/Projects/PackTracker/PackTracker/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = PackTracker.Resources.Styles.Colors.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Colors.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Colors.xaml
 
-[/Users/colemcarthur/Documents/GitHub/PackTracker/PackTracker/Resources/Styles/Styles.xaml]
+[/Users/robertmcarthur/Projects/PackTracker/PackTracker/Resources/Styles/Styles.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = PackTracker.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Styles.xaml

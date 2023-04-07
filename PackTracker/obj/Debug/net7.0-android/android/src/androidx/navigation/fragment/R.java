@@ -14,9 +14,9 @@ public final class R {
 		public static final int sliding_pane_detail_pane_width = 0x7f060265;
 	}
 	public static final class id {
-		public static final int nav_host_fragment_container = 0x7f080138;
-		public static final int sliding_pane_detail_container = 0x7f080194;
-		public static final int sliding_pane_layout = 0x7f080195;
+		public static final int nav_host_fragment_container = 0x7f08013c;
+		public static final int sliding_pane_detail_container = 0x7f080199;
+		public static final int sliding_pane_layout = 0x7f08019a;
 	}
 	public static final class styleable {
 		public static final int[] DialogFragmentNavigator = new int[] { 0x01010003 };

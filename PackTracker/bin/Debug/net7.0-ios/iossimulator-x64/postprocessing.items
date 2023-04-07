@@ -7,9 +7,9 @@
       <dSYMSourcePathExists>false</dSYMSourcePathExists>
       <NoSymbolStrip>true</NoSymbolStrip>
       <dSYMInfoPlistRelativePath>PackTracker.app.dSYM\Contents\Info.plist</dSYMInfoPlistRelativePath>
-      <SymbolFile>/Users/colemcarthur/Documents/GitHub/PackTracker/PackTracker/obj/Debug/net7.0-ios/iossimulator-x64/mtouch-symbols.list</SymbolFile>
+      <SymbolFile>/Users/robertmcarthur/Projects/PackTracker/PackTracker/obj/Debug/net7.0-ios/iossimulator-x64/mtouch-symbols.list</SymbolFile>
       <DSymName>PackTracker.app.dSYM</DSymName>
-      <SourceProjectPath>/Users/colemcarthur/Documents/GitHub/PackTracker/PackTracker</SourceProjectPath>
+      <SourceProjectPath>/Users/robertmcarthur/Projects/PackTracker/PackTracker</SourceProjectPath>
     </_PostProcessingItem>
   </ItemGroup>
 </Project>

@@ -4,7 +4,7 @@ AreAnyAssembliesTrimmed=false
 				AOTCompiler=/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Runtime.AOT.osx-x64.Cross.iossimulator-x64/7.0.4/Sdk/../tools/mono-aot-cross
 				AOTOutputDirectory=obj/Debug/net7.0-ios/iossimulator-x64/nativelibraries/aot-output/
 				AppBundleManifestPath=bin/Debug/net7.0-ios/iossimulator-x64/PackTracker.app/Info.plist
-				CacheDirectory=/Users/colemcarthur/Documents/GitHub/PackTracker/PackTracker/obj/Debug/net7.0-ios/iossimulator-x64/linker-cache
+				CacheDirectory=/Users/robertmcarthur/Projects/PackTracker/PackTracker/obj/Debug/net7.0-ios/iossimulator-x64/linker-cache
 				
 				Debug=true
 				DeploymentTarget=11.0
@@ -183,7 +183,7 @@ FrameworkAssembly=System.Private.CoreLib
 				Interpreter=all
 				IntermediateLinkDir=obj/Debug/net7.0-ios/iossimulator-x64/linked/
 				InvariantGlobalization=false
-				ItemsDirectory=/Users/colemcarthur/Documents/GitHub/PackTracker/PackTracker/obj/Debug/net7.0-ios/iossimulator-x64/linker-items
+				ItemsDirectory=/Users/robertmcarthur/Projects/PackTracker/PackTracker/obj/Debug/net7.0-ios/iossimulator-x64/linker-items
 				IsAppExtension=false
 				IsSimulatorBuild=True
 				LibMonoLinkMode=dylib
@@ -209,7 +209,7 @@ MonoLibrary=/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Runtime.Mono.ios
 				RuntimeConfigurationFile=runtimeconfig.bin
 				SdkDevPath=/Applications/Xcode.app/Contents/Developer
 				SdkRootDirectory=/usr/local/share/dotnet/packs/Microsoft.iOS.Sdk/16.2.1040/
-				SdkVersion=16.4
+				SdkVersion=16.2
 				TargetArchitectures=x86_64
 				TargetFramework=.NETCoreApp,Version=v7.0,Profile=ios
 				UseLlvm=False

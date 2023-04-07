@@ -1,30 +1,27 @@
-﻿<Properties StartupConfiguration="{31CF91BC-AC78-4976-AE04-D15BE20706FC}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="MainPage.xaml.cs">
+﻿<Properties StartupConfiguration="{31CF91BC-AC78-4976-AE04-D15BE20706FC}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
+  <MonoDevelop.Ide.Workbench ActiveDocument="App.xaml">
     <Files>
-      <File FileName="MainPage.xaml.cs" Line="7" Column="25" />
-      <File FileName="MainPage.xaml" Line="19" Column="29" />
+      <File FileName="App.xaml" Line="16" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="PackTracker" expanded="True">
             <Node name="PackTracker" expanded="True">
-              <Node name="MVVM" expanded="True" />
-              <Node name="MainPage.xaml" expanded="True">
-                <Node name="MainPage.xaml.cs" selected="True" />
-              </Node>
+              <Node name="Dependencies" expanded="True" />
+              <Node name="MauiProgram.cs" selected="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.PackTracker PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.75E87146-02F9-457F-A809-06882D08B1E5" />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.75E87146-02F9-457F-A809-06882D08B1E5" />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
-  <MonoDevelop.Ide.ItemProperties.PackTracker PreferredExecutionTarget="MyAppleMacCatalystID" />
 </Properties>

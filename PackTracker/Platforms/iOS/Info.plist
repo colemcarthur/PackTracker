@@ -28,5 +28,7 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/appicon.appiconset</string>
+	<key>NSCameraUsageDescription</key>
+	<string>${PRODUCT_NAME} uses your devices camera to scan QRCodes</string>
 </dict>
 </plist>
