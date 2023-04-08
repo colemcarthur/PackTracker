@@ -1,4 +1,5 @@
-﻿namespace PackTracker;
+﻿
+namespace PackTracker;
 
 public partial class AppShell : Shell
 {
