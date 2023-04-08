@@ -1,26 +1,41 @@
-﻿<Properties NuGet.AddPackagesDialog.IncludePrerelease="True" StartupConfiguration="{31CF91BC-AC78-4976-AE04-D15BE20706FC}|Default">
-  <MonoDevelop.Ide.ItemProperties.PackTracker PreferredExecutionTarget="MyAppleMacCatalystID" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+﻿<Properties StartupConfiguration="{31CF91BC-AC78-4976-AE04-D15BE20706FC}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
   <MultiItemStartupConfigurations />
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
+  <MonoDevelop.Ide.ItemProperties.PackTracker PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.75E87146-02F9-457F-A809-06882D08B1E5" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="MainPage.xaml.cs">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MVVM/Views/MainPageView.xaml.cs">
     <Files>
-      <File FileName="App.xaml" Line="3" Column="25" />
-      <File FileName="MainPage.xaml.cs" Line="1" Column="1" />
+      <File FileName="MauiProgram.cs" />
+      <File FileName="MVVM/Views/ScanPage.xaml" Line="15" Column="42" />
+      <File FileName="MVVM/Views/MainPageView.xaml" Line="83" Column="40" />
+      <File FileName="MVVM/Views/ScanPage.xaml.cs" Line="1" Column="1" />
+      <File FileName="MVVM/Views/MainPageView.xaml.cs" Line="15" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Option id="ShowAllFiles" value="True" />
-          <Node name="PackTracker" expanded="True" selected="True">
-            <Node name="PackTracker" expanded="True" />
+          <Node name="PackTracker" expanded="True">
+            <Node name="PackTracker" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="MVVM" expanded="True">
+                <Node name="Views" expanded="True">
+                  <Node name="MainPageView.xaml" expanded="True">
+                    <Node name="MainPageView.xaml.cs" selected="True" />
+                  </Node>
+                  <Node name="ScanPage.xaml" expanded="True" />
+                </Node>
+              </Node>
+              <Node name="Platforms" expanded="True" />
+              <Node name="Properties" expanded="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.75E87146-02F9-457F-A809-06882D08B1E5" />
 </Properties>

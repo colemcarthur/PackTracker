@@ -1,7 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
              x:Class="PackTracker.MVVM.Views.ScanPage"
-             Title="ScanPage">
 
+             Title="ScanPage">
+    
+    <Grid RowDefinitions="*,*,*">
+
+        <zxing:CameraBarcodeReaderView
+			Grid.Row="0"
+            Grid.RowSpan="3"
+			x:Name="cameraBarcodeReaderView"
+			BarcodesDetected="BarcodesDetected" />
+
+        <Label Grid.Row="1"
+               x:Name="lblMessage"
+               Text="Scan Barcode..."
+               TextColor="White"
+               FontSize="Subtitle"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"/>
+        <Label Grid.Row="2"
+               Text=""
+               x:Name="lblData"
+               TextColor="White"
+               FontSize="Subtitle"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"/>
+
+        <VerticalStackLayout Grid.Row="3"
+                             VerticalOptions="End">
+            <HorizontalStackLayout>
+                <Button Text="Torch"
+                        Clicked="Button_Clicked"/>
+                <Button Text="Scan"
+                        Clicked="Button_Clicked_1" />
+                <Button Text="Camera"
+                        Clicked="Button_Clicked_2" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+
+    </Grid>
 </ContentPage>

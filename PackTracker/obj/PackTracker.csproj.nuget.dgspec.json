@@ -1,21 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "/Users/colemcarthur/Documents/GitHub/PackTracker/PackTracker/PackTracker.csproj": {}
+    "/Users/robertmcarthur/Projects/PackTracker/PackTracker/PackTracker.csproj": {}
   },
   "projects": {
-    "/Users/colemcarthur/Documents/GitHub/PackTracker/PackTracker/PackTracker.csproj": {
+    "/Users/robertmcarthur/Projects/PackTracker/PackTracker/PackTracker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/colemcarthur/Documents/GitHub/PackTracker/PackTracker/PackTracker.csproj",
+        "projectUniqueName": "/Users/robertmcarthur/Projects/PackTracker/PackTracker/PackTracker.csproj",
         "projectName": "PackTracker",
-        "projectPath": "/Users/colemcarthur/Documents/GitHub/PackTracker/PackTracker/PackTracker.csproj",
-        "packagesPath": "/Users/colemcarthur/.nuget/packages/",
-        "outputPath": "/Users/colemcarthur/Documents/GitHub/PackTracker/PackTracker/obj/",
+        "projectPath": "/Users/robertmcarthur/Projects/PackTracker/PackTracker/PackTracker.csproj",
+        "packagesPath": "/Users/robertmcarthur/.nuget/packages/",
+        "outputPath": "/Users/robertmcarthur/Projects/PackTracker/PackTracker/obj/",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "configFilePaths": [
-          "/Users/colemcarthur/.nuget/NuGet/NuGet.Config"
+          "/Users/robertmcarthur/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0-android",
