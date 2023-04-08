@@ -99,7 +99,8 @@
                     BorderWidth="2"
                     BackgroundColor="Transparent"
                     TextColor="Gray"
-                    Grid.Row="2"/>
+                    Grid.Row="2"
+                    Clicked="GenerateButton_Clicked"/>
 
             </Grid>
 
