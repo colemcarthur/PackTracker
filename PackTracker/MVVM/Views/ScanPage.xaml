@@ -3,9 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
              x:Class="PackTracker.MVVM.Views.ScanPage"
-
              Title="ScanPage">
-    
+
     <Grid RowDefinitions="*,*,*">
 
         <zxing:CameraBarcodeReaderView
@@ -42,4 +41,6 @@
         </VerticalStackLayout>
 
     </Grid>
+
+  
 </ContentPage>
