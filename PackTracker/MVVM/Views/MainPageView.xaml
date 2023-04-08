@@ -21,7 +21,7 @@
                     Grid.ColumnSpan="3"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
-                    FontSize="25"/>
+                    FontSize="20"/>
 
                 <Label
                     Grid.Row="2"
@@ -72,9 +72,10 @@
             Grid.Row="2"
             CornerRadius="12"
             BackgroundColor="LightGray">
-            <FlexLayout
-                Direction="Column"
-                JustifyContent="SpaceAround">
+
+            <Grid
+                RowDefinitions="*,*,*"
+                RowSpacing="12">
                 <Button
                     Text="Scan A Package"
                     TextTransform="Uppercase"
@@ -89,22 +90,19 @@
                     BorderColor="Gray"
                     BorderWidth="2"
                     BackgroundColor="Transparent"
-                    TextColor="Gray"/>
+                    TextColor="Gray"
+                    Grid.Row="1"/>
                 <Button
                     Text="Create Packages"
                     TextTransform="Uppercase"
                     BorderColor="Gray"
                     BorderWidth="2"
                     BackgroundColor="Transparent"
-                    TextColor="Gray"/>
-                <Button
-                    Text="Create Package Label"
-                    TextTransform="Uppercase"
-                    BorderColor="Gray"
-                    BorderWidth="2"
-                    BackgroundColor="Transparent"
-                    TextColor="Gray"/>
-            </FlexLayout>
+                    TextColor="Gray"
+                    Grid.Row="2"/>
+
+            </Grid>
+
         </Frame>
 
     </Grid>
