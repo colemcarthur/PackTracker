@@ -1,31 +1,26 @@
-﻿<Properties StartupConfiguration="{31CF91BC-AC78-4976-AE04-D15BE20706FC}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
-  <MonoDevelop.Ide.Workbench ActiveDocument="App.xaml">
+﻿<Properties NuGet.AddPackagesDialog.IncludePrerelease="True" StartupConfiguration="{31CF91BC-AC78-4976-AE04-D15BE20706FC}|Default">
+  <MonoDevelop.Ide.ItemProperties.PackTracker PreferredExecutionTarget="MyAppleMacCatalystID" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="MainPage.xaml.cs">
     <Files>
-      <File FileName="App.xaml" Line="16" Column="1" />
+      <File FileName="App.xaml" Line="3" Column="25" />
+      <File FileName="MainPage.xaml.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Option id="ShowAllFiles" value="True" />
-          <Node name="PackTracker" expanded="True">
-            <Node name="bin" expanded="True">
-              <Node name="Debug" expanded="True" />
-            </Node>
-            <Node name="PackTracker" expanded="True">
-              <Node name="Dependencies" expanded="True" />
-              <Node name="App.xaml" selected="True" />
-            </Node>
+          <Node name="PackTracker" expanded="True" selected="True">
+            <Node name="PackTracker" expanded="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.ItemProperties.PackTracker PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.75E87146-02F9-457F-A809-06882D08B1E5" />
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.75E87146-02F9-457F-A809-06882D08B1E5" />
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>
