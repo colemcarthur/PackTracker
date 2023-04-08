@@ -6,10 +6,14 @@
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
+          <Option id="ShowAllFiles" value="True" />
           <Node name="PackTracker" expanded="True">
+            <Node name="bin" expanded="True">
+              <Node name="Debug" expanded="True" />
+            </Node>
             <Node name="PackTracker" expanded="True">
               <Node name="Dependencies" expanded="True" />
-              <Node name="MauiProgram.cs" selected="True" />
+              <Node name="App.xaml" selected="True" />
             </Node>
           </Node>
         </State>
