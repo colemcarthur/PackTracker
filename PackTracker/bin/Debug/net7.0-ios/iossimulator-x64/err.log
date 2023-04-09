@@ -1,0 +1,8 @@
+2023-04-09 15:29:23.858131-0600 PackTracker[59946:1715721] SecTaskLoadEntitlements failed error=22 cs_flags=200, pid=59946
+2023-04-09 15:29:23.858716-0600 PackTracker[59946:1715721] SecTaskCopyDebugDescription: PackTracker[59946]/0#-1 LF=0
+2023-04-09 15:29:23.874233-0600 PackTracker[59946:1715721] SecTaskLoadEntitlements failed error=22 cs_flags=200, pid=59946
+2023-04-09 15:29:23.874811-0600 PackTracker[59946:1715721] SecTaskCopyDebugDescription: PackTracker[59946]/0#-1 LF=0
+2023-04-09 15:29:23.924339-0600 PackTracker[59946:1715721] [SceneConfiguration] Info.plist contained no UIScene configuration dictionary (looking for configuration named "(no name)")
+2023-04-09 15:29:23.924579-0600 PackTracker[59946:1715721] [SceneConfiguration] Info.plist contained no UIScene configuration dictionary (looking for configuration named "(no name)")
+2023-04-09 15:29:24.915871-0600 PackTracker[59946:1715918] SecTaskLoadEntitlements failed error=22 cs_flags=200, pid=59946
+2023-04-09 15:29:24.916368-0600 PackTracker[59946:1715918] SecTaskCopyDebugDescription: PackTracker[59946]/0#-1 LF=0

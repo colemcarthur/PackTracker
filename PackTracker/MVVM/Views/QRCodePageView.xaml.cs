@@ -1,28 +1,35 @@
 ﻿
 using ZXing.Net.Maui;
 using PackTracker.Platforms;
+using System.ComponentModel;
 
 namespace PackTracker.MVVM.Views;
 
-public partial class QRCodePageView : ContentPage
+public partial class QRCodePageView : ContentPage, INotifyPropertyChanged
 {
-	Image TestImage { get; set; }
+    private Image testImage;
 
-	public QRCodePageView()
-	{
-		InitializeComponent();
+    public Image TestImage
+    {
+        get => testImage;
+        set
+        {
+            testImage = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public QRCodePageView()
+    {
+        InitializeComponent();
 
         BindingContext = this;
 
-		Stream sr = App.BarcodeService.ConvertImageStream("Box 22", 350, 350);
 
-        Image image = new Image
-        {
-            Source = ImageSource.FromStream(() => sr),
-            BackgroundColor = Colors.AliceBlue
-        };
-        TestImage = image;
+
     }
+
+    
 
 }
 

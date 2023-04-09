@@ -1,4 +1,5 @@
 ﻿
+using System.Net.Quic;
 using Microsoft.Maui.ApplicationModel;
 
 namespace PackTracker.MVVM.Views;
@@ -52,8 +53,20 @@ public partial class MainPageView : ContentPage
 
     void GenerateButton_Clicked(System.Object sender, System.EventArgs e)
     {
+        QRCodePageView qrPage = new QRCodePageView();
 
         // Temporary to test display of QRCode
-        Navigation.PushAsync(new QRCodePageView());
+        Navigation.PushAsync(qrPage);
+
+        //Stream sr = App.BarcodeService.ConvertImageStream("Box 22", 60, 60);
+
+        Byte[] sr = App.BarcodeService.ConvertImageStream("Box 22", 60, 60);
+
+        Image image = new Image
+        {
+            Source = "dotnet_bot.png", // ImageSource.FromStream(() => new MemoryStream(sr)),
+            BackgroundColor = Colors.LightBlue
+        };
+        qrPage.TestImage = image;
     }
 }
