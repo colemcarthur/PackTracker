@@ -12,7 +12,8 @@ namespace PackTracker.Platforms
         {
             var barcodeWriter = new BarcodeWriter
             {
-          
+                ForegroundColor = Colors.Black,
+                BackgroundColor = Colors.Transparent,
                 Format = ZXing.BarcodeFormat.QR_CODE,
                 Options = new ZXing.Common.EncodingOptions
                 {
