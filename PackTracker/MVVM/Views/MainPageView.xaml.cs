@@ -1,5 +1,4 @@
 ﻿
-using Android.PrintServices;
 using Microsoft.Maui.ApplicationModel;
 
 namespace PackTracker.MVVM.Views;

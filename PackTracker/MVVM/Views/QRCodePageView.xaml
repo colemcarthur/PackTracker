@@ -16,6 +16,7 @@
                    FontFamily="OpenSans-Semibold"
                    Text="Box 22"/>
             <zxing:BarcodeGeneratorView Grid.Row="1"
+                                        x:Name="barcodeView"
                                         VerticalOptions="Center"
                                         HeightRequest="400"
                                         WidthRequest="400"
@@ -26,6 +27,7 @@
             <Button Grid.Row="3"
                     HeightRequest="100"
                     Text="Print" />
+
         </Grid>
 
     

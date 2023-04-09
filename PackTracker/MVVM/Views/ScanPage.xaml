@@ -38,6 +38,7 @@
                 <Button Text="Camera"
                         Clicked="Button_Clicked_2" />
             </HorizontalStackLayout>
+
         </VerticalStackLayout>
 
     </Grid>
