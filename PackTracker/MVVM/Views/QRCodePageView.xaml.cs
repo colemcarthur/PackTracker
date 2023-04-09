@@ -6,12 +6,13 @@ namespace PackTracker.MVVM.Views;
 
 public partial class QRCodePageView : ContentPage
 {
-
-	Image testImage { get; set; }
+	Image TestImage { get; set; }
 
 	public QRCodePageView()
 	{
 		InitializeComponent();
+
+        BindingContext = this;
 
 		Stream sr = App.BarcodeService.ConvertImageStream("Box 22", 350, 350);
 
@@ -20,7 +21,7 @@ public partial class QRCodePageView : ContentPage
             Source = ImageSource.FromStream(() => sr),
             BackgroundColor = Colors.AliceBlue
         };
-        testImage = image;
+        TestImage = image;
     }
 
 }
