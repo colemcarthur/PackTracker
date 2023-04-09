@@ -18,7 +18,7 @@ namespace PackTracker.Platforms
                 {
                     Width = width,
                     Height = height,
-                    Margin = 10
+                    Margin = 3
                 }
             };
             

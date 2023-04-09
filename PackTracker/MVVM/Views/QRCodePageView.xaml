@@ -17,6 +17,9 @@
                    Text="Box 22"/>
 
             <Image Source="{Binding textImage}"
+                   WidthRequest="400"
+                   HeightRequest="400"
+                   BackgroundColor="Pink"
                    Grid.Row="1"/>
             <!--
             <zxing:BarcodeGeneratorView Grid.Row="1"

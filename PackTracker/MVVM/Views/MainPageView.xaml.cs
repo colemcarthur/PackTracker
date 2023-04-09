@@ -52,6 +52,7 @@ public partial class MainPageView : ContentPage
 
     void GenerateButton_Clicked(System.Object sender, System.EventArgs e)
     {
+
         // Temporary to test display of QRCode
         Navigation.PushAsync(new QRCodePageView());
     }

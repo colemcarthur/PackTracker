@@ -12,20 +12,25 @@ namespace PackTracker.Platforms
         {
             var barcodeWriter = new BarcodeWriter
             {
+          
                 Format = ZXing.BarcodeFormat.QR_CODE,
                 Options = new ZXing.Common.EncodingOptions
                 {
                     Width = width,
                     Height = height,
-                    Margin = 10
+                    Margin = 3
                 }
             };
 
             var bitmap = barcodeWriter.Write(text);
+            
             var stream = new MemoryStream();
             bitmap.Compress(Bitmap.CompressFormat.Png, 100, stream);  // this is the diff between iOS and Android
+            Byte[] ba = stream.ToArray();
+
             stream.Position = 0;
             return stream;
+            
         }
     }
 }
