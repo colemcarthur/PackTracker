@@ -15,6 +15,10 @@
                    FontSize="Title"
                    FontFamily="OpenSans-Semibold"
                    Text="Box 22"/>
+
+            <Image Source="{Binding textImage}"
+                   Grid.Row="1"/>
+            <!--
             <zxing:BarcodeGeneratorView Grid.Row="1"
                                         x:Name="barcodeView"
                                         VerticalOptions="Center"
@@ -24,6 +28,7 @@
                                         Value="Box 22"
                                         Format="QrCode"
                                         Margin="3" />
+            -->
             <Button Grid.Row="3"
                     HeightRequest="100"
                     Text="Print" />
