@@ -2,6 +2,9 @@
 using PackTracker.Platforms;
 using System.ComponentModel;
 using PropertyChanged;
+using CommunityToolkit.Maui.Storage;
+using System.Threading;
+using CommunityToolkit.Maui.Alerts;
 
 namespace PackTracker.MVVM.Views;
 
@@ -11,7 +14,7 @@ public partial class QRCodePageView : ContentPage
 
     public ImageSource ImageQR { get; set; }
 
-    private CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+    private CancellationToken cancellationToken = new CancellationToken();
 
     public QRCodePageView()
     {
@@ -20,11 +23,18 @@ public partial class QRCodePageView : ContentPage
 
         Stream sr = App.BarcodeService.ConvertImageStream("Box 22", 200, 200);
 
-        var path = App.FileSaver.SaveAsync("QRCode.png", sr, cancellationTokenSource.Token);
-
-        sr.Position = 0;
-
         ImageQR = ImageSource.FromStream(() => sr);
+    }
+
+    async void SaveButton_Clicked(System.Object sender, System.EventArgs e)
+    {
+
+        Stream sr = App.BarcodeService.ConvertImageStream("Box 22", 200, 200);
+       
+        var fileSaverResult = await App.FileSaver.SaveAsync("Box 22.png", sr, cancellationToken);
+        fileSaverResult.EnsureSuccess();
+        await Toast.Make($"File is saved: {fileSaverResult.FilePath}").Show(cancellationToken);
+
     }
 }
 
