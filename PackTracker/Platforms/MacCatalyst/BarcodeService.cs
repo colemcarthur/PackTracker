@@ -9,7 +9,7 @@ namespace PackTracker.Platforms
 {
     public class BarcodeService : IBarcodeService
     {
-        public Byte[] ConvertImageStream(string text, int width = 300, int height = 130)
+        public Stream ConvertImageStream(string text, int width = 300, int height = 130)
         {
             var barcodeWriter = new BarcodeWriter
             {
@@ -28,11 +28,11 @@ namespace PackTracker.Platforms
 
             var stream = bitmap.AsPNG().AsStream(); // this is the difference
 
-            byte[] ba = bitmap.AsPNG().ToArray();
+            //byte[] ba = bitmap.AsPNG().ToArray();
 
             stream.Position = 0;
 
-            return ba;
+            return stream;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace PackTracker.Platforms
 {
     public class BarcodeService : IBarcodeService
     {
-        public Byte[] ConvertImageStream(string text, int width = 300, int height = 130)
+        public Stream ConvertImageStream(string text, int width = 300, int height = 130)
         {
             var barcodeWriter = new BarcodeWriter
             {
@@ -27,10 +27,10 @@ namespace PackTracker.Platforms
             
             var stream = new MemoryStream();
             bitmap.Compress(Bitmap.CompressFormat.Png, 100, stream);  // this is the diff between iOS and Android
-            Byte[] ba = stream.ToArray();
+            //Byte[] ba = stream.ToArray();
 
             stream.Position = 0;
-            return ba;
+            return stream;
             
         }
     }

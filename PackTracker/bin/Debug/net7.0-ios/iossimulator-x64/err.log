@@ -1,6 +1,0 @@
-2023-04-09 17:47:45.471506-0600 PackTracker[26437:519720] SecTaskLoadEntitlements failed error=22 cs_flags=200, pid=26437
-2023-04-09 17:47:45.471819-0600 PackTracker[26437:519720] SecTaskCopyDebugDescription: PackTracker[26437]/0#-1 LF=0
-2023-04-09 17:47:45.489109-0600 PackTracker[26437:519720] SecTaskLoadEntitlements failed error=22 cs_flags=200, pid=26437
-2023-04-09 17:47:45.489406-0600 PackTracker[26437:519720] SecTaskCopyDebugDescription: PackTracker[26437]/0#-1 LF=0
-2023-04-09 17:47:46.331588-0600 PackTracker[26437:519834] SecTaskLoadEntitlements failed error=22 cs_flags=200, pid=26437
-2023-04-09 17:47:46.331878-0600 PackTracker[26437:519834] SecTaskCopyDebugDescription: PackTracker[26437]/0#-1 LF=0

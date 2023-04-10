@@ -11,18 +11,20 @@ public partial class QRCodePageView : ContentPage
 
     public ImageSource ImageQR { get; set; }
 
+    private CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+
     public QRCodePageView()
     {
         InitializeComponent();
         BindingContext = this;
 
-        //Stream sr = App.BarcodeService.ConvertImageStream("Box 22", 60, 60);
+        Stream sr = App.BarcodeService.ConvertImageStream("Box 22", 200, 200);
 
-        Byte[] sr = App.BarcodeService.ConvertImageStream("Box 22", 200, 200);
+        var path = App.FileSaver.SaveAsync("QRCode.png", sr, cancellationTokenSource.Token);
 
-        //ImageSource.FromStream(() => new MemoryStream(sr))
+        sr.Position = 0;
 
-        ImageQR = ImageSource.FromStream(() => new MemoryStream(sr));
+        ImageQR = ImageSource.FromStream(() => sr);
     }
 }
 

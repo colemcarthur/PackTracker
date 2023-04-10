@@ -23,6 +23,7 @@
                 Source="{Binding ImageQR}"
                 WidthRequest="200"
                 HeightRequest="200"
+                VerticalOptions="Center"
                 Grid.Row="1"/>
            
             <zxing:BarcodeGeneratorView
