@@ -11,6 +11,7 @@
             Margin="20"
             Padding="20">
 
+            <!--
             <Label
                 Grid.Row="0"
                 HorizontalOptions="Center"
@@ -18,14 +19,16 @@
                 FontSize="Title"
                 FontFamily="OpenSans-Semibold"
                 Text="Box 22"/>
-          
+            -->
+
             <Image
                 Source="{Binding ImageQR}"
-                WidthRequest="200"
-                HeightRequest="200"
+                WidthRequest="400"
+                HeightRequest="400"
                 VerticalOptions="Center"
                 Grid.Row="1"/>
-           
+
+            <!--
             <zxing:BarcodeGeneratorView
                 Grid.Row="2"
                 x:Name="barcodeView"
@@ -36,7 +39,8 @@
                 Value="Box 22"
                 Format="QrCode"
                 Margin="3" />
-            
+            -->
+
             <Button
                 Grid.Row="3"
                 HeightRequest="100"

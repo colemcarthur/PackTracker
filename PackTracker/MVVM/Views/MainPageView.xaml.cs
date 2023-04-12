@@ -1,6 +1,8 @@
 ﻿
 using System.Net.Quic;
 using Microsoft.Maui.ApplicationModel;
+using System.Diagnostics;
+using System.Text;
 
 namespace PackTracker.MVVM.Views;
 
@@ -58,6 +60,13 @@ public partial class MainPageView : ContentPage
         // Temporary to test display of QRCode
         Navigation.PushAsync(qrPage);
 
+        StringBuilder builder = new();
+        builder.AppendLine("-----=-----------");
+        foreach (var page in Navigation.NavigationStack)
+        {
+            builder.AppendLine(page.GetType().Name);
+        }
+        Debug.Print(builder.ToString());
 
     }
 }
