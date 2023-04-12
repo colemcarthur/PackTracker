@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Maui.Storage;
 using PackTracker.MVVM.Views;
+using PackTracker.MVVM.Models;
+using PackTracker.Repositories;
 
 namespace PackTracker;
 
@@ -12,11 +14,16 @@ public partial class App : Application
 	// .Net Community Toolkit File Saver
 	public static IFileSaver FileSaver { get; set; }
 
-	public App(IBarcodeService barcodeService, IFileSaver fileSaver)
+	// Database Repositories
+	public static BaseRepository<Containers> Containers { get; private set; }
+
+	public App(IBarcodeService barcodeService, IFileSaver fileSaver,
+			   BaseRepository<Containers> containers)
 	{
 		InitializeComponent();
 
 		BarcodeService = barcodeService;
+		Containers = containers;
 		FileSaver = fileSaver;
 
 		MainPage = new NavigationPage(new MainPageView());
