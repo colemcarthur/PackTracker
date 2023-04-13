@@ -26,7 +26,8 @@ public static class MauiProgram
 
 		builder.Services.AddTransient<IBarcodeService, BarcodeService>();
 		builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);
-        builder.Services.AddSingleton<BaseRepository<Containers>>();
+        builder.Services.AddSingleton<BaseRepository<Package>>();
+		builder.Services.AddSingleton<BaseRepository<Item>>();
 
 #if DEBUG
         builder.Logging.AddDebug();

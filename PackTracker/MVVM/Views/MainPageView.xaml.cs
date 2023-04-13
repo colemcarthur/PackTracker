@@ -1,5 +1,4 @@
 ﻿
-using System.Net.Quic;
 using Microsoft.Maui.ApplicationModel;
 using System.Diagnostics;
 using System.Text;
@@ -37,7 +36,7 @@ public partial class MainPageView : ContentPage
             }
             else
             {
-                await Navigation.PushAsync(new ScanPage());  
+                await Navigation.PushAsync(new ScanPage());
             }
         }
         catch (PermissionException pex)
@@ -55,18 +54,8 @@ public partial class MainPageView : ContentPage
 
     void GenerateButton_Clicked(object sender, EventArgs e)
     {
-        QRCodePageView qrPage = new QRCodePageView();
-
-        // Temporary to test display of QRCode
-        Navigation.PushAsync(qrPage);
-
-        StringBuilder builder = new();
-        builder.AppendLine("-----=-----------");
-        foreach (var page in Navigation.NavigationStack)
-        {
-            builder.AppendLine(page.GetType().Name);
-        }
-        Debug.Print(builder.ToString());
+        // Create package creation view
+        Navigation.PushAsync(new CreatePackageView());
 
     }
 }
