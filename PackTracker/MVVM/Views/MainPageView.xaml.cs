@@ -52,10 +52,9 @@ public partial class MainPageView : ContentPage
         }
     }
 
-    void GenerateButton_Clicked(object sender, EventArgs e)
+    void ManagePackagesButton_Clicked(System.Object sender, System.EventArgs e)
     {
-        // Create package creation view
-        Navigation.PushAsync(new CreatePackageView());
-
+        // Create manage package view and display on navigation stack
+        Navigation.PushAsync(new ManagePackageView());
     }
 }

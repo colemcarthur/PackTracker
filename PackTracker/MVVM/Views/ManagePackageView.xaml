@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PackTracker.MVVM.Views.ManagePackageView"
+             Title="Manage Packages">
+
+        
+
+            <CollectionView EmptyView="No Data"
+                            ItemsSource="{Binding Packages}"
+                            Margin="10">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="10"
+                                       Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.Header>
+                    <StackLayout >
+                        <Frame BackgroundColor="{StaticResource Secondary}">
+                            <Frame.Shadow>
+                                <Shadow Brush="Black"
+                                        Offset="10,10"
+                                        Opacity="0.8" />
+                            </Frame.Shadow>        
+                            <Grid ColumnDefinitions=".8*,.2*">
+
+                                <Label FontAttributes="Bold"
+                                        Text="Name"
+                                        TextColor="MediumPurple"/>
+                                <Label Grid.Column="1"
+                                        HorizontalOptions="End"
+                                        Text="# of Items"
+                                        TextColor="MediumPurple"/>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                         <VerticalStackLayout>
+               
+                            <Frame>
+                                <Grid ColumnDefinitions=".8*,.2*">
+
+                                    <Label Grid.Column="0"
+                                            Text="{Binding Name}" />
+                                    <Label Grid.Column="1"
+                                            HorizontalOptions="End"
+                                            Text="{Binding Items.Count}" />
+                                
+                                </Grid>
+                            </Frame>
+                            
+                        </VerticalStackLayout>
+               
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+  
+
+</ContentPage>
