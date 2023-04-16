@@ -29,7 +29,7 @@ public partial class App : Application
 		ItemsRepo = items;
 		FileSaver = fileSaver;
 
-		MainPage = new NavigationPage(new MainPageView()
+		MainPage = new NavigationPage(new MainPage()
 		{
 			Title = "PackTracker"
 			

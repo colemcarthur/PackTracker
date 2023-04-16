@@ -5,9 +5,9 @@ using System.Text;
 
 namespace PackTracker.MVVM.Views;
 
-public partial class MainPageView : ContentPage
+public partial class MainPage : ContentPage
 {
-	public MainPageView()
+	public MainPage()
 	{
 		InitializeComponent();
 	}
@@ -55,6 +55,6 @@ public partial class MainPageView : ContentPage
     void ManagePackagesButton_Clicked(System.Object sender, System.EventArgs e)
     {
         // Create manage package view and display on navigation stack
-        Navigation.PushAsync(new ManagePackageView());
+        Navigation.PushAsync(new PackagePage());
     }
 }
