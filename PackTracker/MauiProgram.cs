@@ -22,7 +22,8 @@ public static class MauiProgram
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
+                fonts.AddFont("arrow.ttf", "Arrow");
+            });
 
 		builder.Services.AddTransient<IBarcodeService, BarcodeService>();
 		builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);

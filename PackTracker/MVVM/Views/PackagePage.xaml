@@ -34,14 +34,16 @@
             </Frame>
         </StackLayout>
 
-        <CollectionView EmptyView="No Data"
-                        ItemsSource="{Binding Packages}"
-                        Margin="10"
-                        Grid.Row="1">
+        <CollectionView
+            EmptyView="No Data"
+            ItemsSource="{Binding Packages}"
+            Margin="10"
+            Grid.Row="1">
             
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout ItemSpacing="10"
-                                    Orientation="Vertical" />
+                <LinearItemsLayout
+                    ItemSpacing="10"
+                    Orientation="Vertical" />
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
@@ -51,9 +53,10 @@
 
                         <SwipeView.RightItems>
                             <SwipeItems>
-                                <SwipeItem Text="Delete"
-                                           BackgroundColor="LightPink"
-                                           Invoked="SwipeItem_Invoked"/>
+                                <SwipeItem
+                                    Text="Delete"
+                                    BackgroundColor="IndianRed"
+                                    Invoked="SwipeItem_Invoked"/>
                             </SwipeItems>
                         </SwipeView.RightItems>
                     
@@ -62,17 +65,33 @@
                             <Frame>
                                 <Frame.GestureRecognizers>
 
-                                    <TapGestureRecognizer CommandParameter="{Binding .}"
-                                                          Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PackageViewModel}}, Path=GoToItemsCommand}"/>
+                                    <TapGestureRecognizer
+                                        CommandParameter="{Binding .}"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PackageViewModel}}, Path=GoToItemsCommand}"/>
 
                                 </Frame.GestureRecognizers>
-                                <Grid ColumnDefinitions=".8*,.2*">
+                                <Grid ColumnDefinitions=".75*,.2*,.05*">
 
-                                    <Label Grid.Column="0"
-                                            Text="{Binding Name}" />
-                                    <Label Grid.Column="1"
-                                            HorizontalOptions="End"
-                                            Text="{Binding Items.Count}" />
+                                    <Label
+                                        Grid.Column="0"
+                                        Text="{Binding Name}" />
+                                    <Label
+                                        Grid.Column="1"
+                                        HorizontalOptions="End"
+                                        Text="{Binding Items.Count}" />
+
+                                    <Image
+                                        Grid.Column="2"
+                                        HorizontalOptions="End">
+                                        <Image.Source>
+                                            <FontImageSource
+                                                FontFamily="Arrow"
+                                                Glyph="&#xF006;"
+                                                Size="12"
+                                                Color="Grey"/>
+
+                                        </Image.Source>
+                                    </Image>
                                 
                                 </Grid>
                             </Frame>
@@ -85,11 +104,12 @@
             
         </CollectionView>
 
-        <Button Grid.Row="2"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                Text="Add Package"
-                Clicked="AddPackageButton_Clicked"/>
+        <Button
+            Grid.Row="2"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Text="Add Package"
+            Clicked="AddPackageButton_Clicked"/>
     </Grid>
 
 </ContentPage>
