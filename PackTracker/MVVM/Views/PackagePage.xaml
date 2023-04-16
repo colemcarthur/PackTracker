@@ -7,67 +7,85 @@
              x:Class="PackTracker.MVVM.Views.PackagePage"
              Title="Manage Packages">
 
-    <Grid RowDefinitions=".9*, .1*">
+    <Grid RowDefinitions=".09*,.81*,.1*">
+        <StackLayout
+            Spacing="5"
+            Margin="10"
+            Grid.Row="0">
+            <Frame
+                BackgroundColor="{StaticResource Secondary}">     
+
+                <FlexLayout
+                    Direction="Row"
+                    JustifyContent="SpaceBetween"
+                    AlignItems="Center"
+                    BackgroundColor="{StaticResource Secondary}">
+
+                    <Label
+                        Text="Name"
+                        TextColor="MediumPurple"
+                        FontAttributes="Bold"/>
+
+                    <Label
+                        Text="# of Items"
+                        TextColor="MediumPurple"/>
+
+                </FlexLayout>                   
+            </Frame>
+        </StackLayout>
 
         <CollectionView EmptyView="No Data"
                         ItemsSource="{Binding Packages}"
                         Margin="10"
-                        Grid.Row="0">
+                        Grid.Row="1">
             
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout ItemSpacing="10"
                                     Orientation="Vertical" />
             </CollectionView.ItemsLayout>
 
-            <CollectionView.Header>
-                <StackLayout Spacing="5"
-                             Margin="5">
-                    <Frame BackgroundColor="{StaticResource Secondary}"
-                           HorizontalOptions="FillAndExpand">     
-                        <Grid ColumnDefinitions=".7*,.3*">
-
-                            <Label FontAttributes="Bold"
-                                    Text="Name"
-                                    TextColor="MediumPurple"/>
-                            <Label Grid.Column="1"
-                                    HorizontalOptions="End"
-                                    Text="# of Items"
-                                    TextColor="MediumPurple"/>
-                        </Grid>
-                    </Frame>
-                </StackLayout>
-            </CollectionView.Header>
-
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Package">
+
+                    <SwipeView>
+
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Delete"
+                                           BackgroundColor="LightPink"
+                                           Invoked="SwipeItem_Invoked"/>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                    
                         <VerticalStackLayout>
                
-                        <Frame>
-                            <Frame.GestureRecognizers>
+                            <Frame>
+                                <Frame.GestureRecognizers>
 
-                                <TapGestureRecognizer CommandParameter="{Binding .}"
-                                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PackageViewModel}}, Path=GoToItemsCommand}"/>
+                                    <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                          Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PackageViewModel}}, Path=GoToItemsCommand}"/>
 
-                            </Frame.GestureRecognizers>
-                            <Grid ColumnDefinitions=".8*,.2*">
+                                </Frame.GestureRecognizers>
+                                <Grid ColumnDefinitions=".8*,.2*">
 
-                                <Label Grid.Column="0"
-                                        Text="{Binding Name}" />
-                                <Label Grid.Column="1"
-                                        HorizontalOptions="End"
-                                        Text="{Binding Items.Count}" />
+                                    <Label Grid.Column="0"
+                                            Text="{Binding Name}" />
+                                    <Label Grid.Column="1"
+                                            HorizontalOptions="End"
+                                            Text="{Binding Items.Count}" />
                                 
-                            </Grid>
-                        </Frame>
+                                </Grid>
+                            </Frame>
                             
-                    </VerticalStackLayout>
-               
+                        </VerticalStackLayout>
+                    </SwipeView> 
                 </DataTemplate>
-            </CollectionView.ItemTemplate>
 
+            </CollectionView.ItemTemplate>
+            
         </CollectionView>
 
-        <Button Grid.Row="1"
+        <Button Grid.Row="2"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 Text="Add Package"

@@ -26,15 +26,22 @@ namespace PackTracker.MVVM.ViewModels
 
         public void AddOrUpdatePackage(Package package)
         {
-            App.PackagesRepo.SaveItem(package);
+            App.PackagesRepo.Save(package);
 
             Refresh();
         }
 
+        public void DeletePackage(Package package)
+        {
+            App.PackagesRepo.Delete(package);
+
+            Refresh();
+        }
 
         [RelayCommand]
         public async Task GoToItemsAsync(Package package)
         {
+
             if (package is null)
                 return;
 
@@ -43,9 +50,9 @@ namespace PackTracker.MVVM.ViewModels
                 Title = package.Name
             };
 
-          
             await _navigation.PushAsync(itemsPage);
         }
+
 
         private void Refresh()
         {

@@ -31,4 +31,11 @@ public partial class PackagePage : ContentPage
         }
     }
 
+    void SwipeItem_Invoked(System.Object sender, System.EventArgs e)
+    {
+        PackageViewModel vm = (PackageViewModel)BindingContext;
+
+        //vm.DeletePackage(vm.CurrentPackage);
+
+    }
 }

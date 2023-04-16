@@ -47,21 +47,21 @@ namespace PackTracker.Repositories
         /// <summary>
         /// Save the data item
         /// </summary>
-        /// <param name="item">Generic Data Item</param>
-        public void SaveItem(T item)
+        /// <param name="record">Generic Data Item</param>
+        public void Save(T record)
         {
             int result = 0;
             try
             {
-                if (item.Id != 0)
+                if (record.Id != 0)
                 {
-                    result = connection.Update(item);
+                    result = connection.Update(record);
                     StatusMessage =
                          $"{result} row(s) updated";
                 }
                 else
                 {
-                    result = connection.Insert(item);
+                    result = connection.Insert(record);
                     StatusMessage =
                          $"{result} row(s) added";
                 }
@@ -77,20 +77,20 @@ namespace PackTracker.Repositories
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="record"></param>
         /// <param name="recursive"></param>
-        public void SaveItemWithChildren(T item, bool recursive = false)
+        public void SaveWithChildren(T record, bool recursive = false)
         {
 
             try
             {
-                if (item.Id != 0)
+                if (record.Id != 0)
                 {
-                    connection.UpdateWithChildren(item);
+                    connection.UpdateWithChildren(record);
                 }
                 else
                 {
-                    connection.InsertWithChildren(item, recursive);
+                    connection.InsertWithChildren(record, recursive);
                 }
 
             }
@@ -105,12 +105,12 @@ namespace PackTracker.Repositories
         /// Delete Item
         /// </summary>
         /// <param name="item">Generic Data Item</param>
-        public void DeleteItem(T item)
+        public void Delete(T record)
         {
             try
             {
                 //connection.Delete(item);
-                connection.Delete(item, true);
+                connection.Delete(record, true);
             }
             catch (Exception ex)
             {
