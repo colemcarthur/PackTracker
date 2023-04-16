@@ -5,11 +5,12 @@ using System.Text;
 
 namespace PackTracker.MVVM.Views;
 
-public partial class MainPage : ContentPage
+public partial class MainPageView : ContentPage
 {
-	public MainPage()
+	public MainPageView()
 	{
 		InitializeComponent();
+        
 	}
 
     async void ScanButton_Clicked(System.Object sender, System.EventArgs e)

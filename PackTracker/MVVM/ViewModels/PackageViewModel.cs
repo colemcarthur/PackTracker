@@ -40,7 +40,7 @@ namespace PackTracker.MVVM.ViewModels
             if (package is null)
                 return;
 
-            ItemsPage itemsPage = new ItemsPage(package)
+            ItemsPage itemsPage = new(package)
             {
                 Title = package.Name
             };
