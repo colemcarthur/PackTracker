@@ -13,26 +13,24 @@ namespace PackTracker.MVVM.ViewModels
 
         private readonly INavigation _navigation;
 
-        public Package CurrentPackage { get; set; }
-
         [ObservableProperty]
         List<Package> packages;
-
-		public ICommand AddOrUpdateCommand { get; set; } 
 
 		public PackageViewModel(INavigation navigation)
 		{
 
             _navigation = navigation;
 
-			Packages = App.PackagesRepo.GetItemsWithChildren();
-
-			AddOrUpdateCommand = new Command( () =>
-			{
-				App.PackagesRepo.SaveItem(CurrentPackage);
-            });
-
+            Refresh();
         }
+
+        public void AddOrUpdatePackage(Package package)
+        {
+            App.PackagesRepo.SaveItem(package);
+
+            Refresh();
+        }
+
 
         [RelayCommand]
         public async Task GoToItemsAsync(Package package)
@@ -47,6 +45,12 @@ namespace PackTracker.MVVM.ViewModels
 
           
             await _navigation.PushAsync(itemsPage);
+        }
+
+        private void Refresh()
+        {
+            Packages = App.PackagesRepo.GetItemsWithChildren();
+
         }
     }
 

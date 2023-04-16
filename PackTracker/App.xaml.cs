@@ -24,11 +24,13 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
+		// Set the local static member properties
 		BarcodeService = barcodeService;
 		PackagesRepo = packages;
 		ItemsRepo = items;
 		FileSaver = fileSaver;
 
+		// Create the Navigation Stack
 		MainPage = new NavigationPage(new MainPageView()
 		{
 			Title = "PackTracker"

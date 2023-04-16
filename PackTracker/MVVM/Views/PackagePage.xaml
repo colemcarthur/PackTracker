@@ -7,64 +7,71 @@
              x:Class="PackTracker.MVVM.Views.PackagePage"
              Title="Manage Packages">
 
-            <CollectionView EmptyView="No Data"
-                            ItemsSource="{Binding Packages}"
-                            Margin="10">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout ItemSpacing="10"
-                                       Orientation="Vertical" />
-                </CollectionView.ItemsLayout>
+    <Grid RowDefinitions=".9*, .1*">
 
-                <CollectionView.Header>
-                    <StackLayout >
-                        <Frame BackgroundColor="{StaticResource Secondary}">
-                            <Frame.Shadow>
-                                <Shadow Brush="Black"
-                                        Offset="10,10"
-                                        Opacity="0.8" />
-                            </Frame.Shadow>        
+        <CollectionView EmptyView="No Data"
+                        ItemsSource="{Binding Packages}"
+                        Margin="10"
+                        Grid.Row="0">
+            
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="10"
+                                    Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.Header>
+                <StackLayout Spacing="5"
+                             Margin="5">
+                    <Frame BackgroundColor="{StaticResource Secondary}"
+                           HorizontalOptions="FillAndExpand">     
+                        <Grid ColumnDefinitions=".7*,.3*">
+
+                            <Label FontAttributes="Bold"
+                                    Text="Name"
+                                    TextColor="MediumPurple"/>
+                            <Label Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    Text="# of Items"
+                                    TextColor="MediumPurple"/>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+            </CollectionView.Header>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Package">
+                        <VerticalStackLayout>
+               
+                        <Frame>
+                            <Frame.GestureRecognizers>
+
+                                <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PackageViewModel}}, Path=GoToItemsCommand}"/>
+
+                            </Frame.GestureRecognizers>
                             <Grid ColumnDefinitions=".8*,.2*">
 
-                                <Label FontAttributes="Bold"
-                                        Text="Name"
-                                        TextColor="MediumPurple"/>
+                                <Label Grid.Column="0"
+                                        Text="{Binding Name}" />
                                 <Label Grid.Column="1"
                                         HorizontalOptions="End"
-                                        Text="# of Items"
-                                        TextColor="MediumPurple"/>
+                                        Text="{Binding Items.Count}" />
+                                
                             </Grid>
                         </Frame>
-                    </StackLayout>
-                </CollectionView.Header>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:Package">
-                         <VerticalStackLayout>
-               
-                            <Frame>
-                                <Frame.GestureRecognizers>
-
-                                    <TapGestureRecognizer CommandParameter="{Binding .}"
-                                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PackageViewModel}}, Path=GoToItemsCommand}"/>
-
-                                </Frame.GestureRecognizers>
-                                <Grid ColumnDefinitions=".8*,.2*">
-
-                                    <Label Grid.Column="0"
-                                            Text="{Binding Name}" />
-                                    <Label Grid.Column="1"
-                                            HorizontalOptions="End"
-                                            Text="{Binding Items.Count}" />
-                                
-                                </Grid>
-                            </Frame>
                             
-                        </VerticalStackLayout>
+                    </VerticalStackLayout>
                
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
 
-            </CollectionView>
+        </CollectionView>
 
-  
+        <Button Grid.Row="1"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Text="Add Package"
+                Clicked="AddPackageButton_Clicked"/>
+    </Grid>
 
 </ContentPage>
