@@ -13,13 +13,15 @@
 			x:Name="cameraBarcodeReaderView"
 			BarcodesDetected="BarcodesDetected" />
 
-        <Label Grid.Row="1"
+        <Label Grid.Row="2"
                x:Name="lblMessage"
                Text="Scan Barcode..."
                TextColor="White"
                FontSize="Subtitle"
                HorizontalOptions="Center"
-               VerticalOptions="Center"/>
+               VerticalOptions="Start"
+               Margin="20"/>
+
         <Label Grid.Row="2"
                Text=""
                x:Name="lblData"
@@ -28,7 +30,12 @@
                HorizontalOptions="Center"
                VerticalOptions="Center"/>
 
-        <VerticalStackLayout Grid.Row="3"
+        <Image
+            Source="range.png"
+            Grid.Row="1"
+            WidthRequest="300"/>
+
+        <VerticalStackLayout Grid.Row="2"
                              VerticalOptions="End">
             <HorizontalStackLayout>
                 <Button Text="Torch"

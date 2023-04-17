@@ -82,6 +82,7 @@
 	  <None Remove="Abstractions\" />
 	  <None Remove="Repositories\" />
 	  <None Remove="Resources\Fonts\arrow.ttf" />
+	  <None Remove="Resources\Images\Range.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="MVVM\" />
@@ -98,5 +99,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Fonts\arrow.ttf" />
+	  <BundleResource Include="Resources\Images\range.png" />
 	</ItemGroup>
 </Project>
