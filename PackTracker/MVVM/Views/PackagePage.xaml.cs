@@ -67,7 +67,7 @@ public partial class PackagePage : ContentPage
     {
         base.OnAppearing();
 
-        //PackageViewModel vm = (PackageViewModel)BindingContext;
-        //vm.Refresh();
+        PackageViewModel vm = (PackageViewModel)BindingContext;
+        vm.Refresh();
     }
 }
