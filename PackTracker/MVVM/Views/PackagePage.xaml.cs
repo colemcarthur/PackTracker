@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui.Views;
+using CommunityToolkit.Mvvm.Input;
 using PackTracker.MVVM.ViewModels;
 using PackTracker.MVVM.Models;
 
@@ -31,11 +32,42 @@ public partial class PackagePage : ContentPage
         }
     }
 
-    void SwipeItem_Invoked(System.Object sender, System.EventArgs e)
+    void CollectionView_SelectionChanged(System.Object sender, Microsoft.Maui.Controls.SelectionChangedEventArgs e)
     {
         PackageViewModel vm = (PackageViewModel)BindingContext;
+        vm.SelectedPackage = (e.CurrentSelection.FirstOrDefault() as Package);
+    }
 
-        //vm.DeletePackage(vm.CurrentPackage);
+    void TapGestureRecognizer_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
+    {
 
+        PackageViewModel vm = (PackageViewModel)BindingContext;
+        vm.SelectedPackage = (Package)e.Parameter;
+
+        ItemsPage itemsPage = new(vm.SelectedPackage)
+        {
+            Title = vm.SelectedPackage.Name
+        };
+
+        Navigation.PushAsync(itemsPage);
+    }
+
+    void DeleteSwipeItem_Invoked(System.Object sender, System.EventArgs e)
+    {
+        SwipeItem swipeItem = (SwipeItem)sender;
+
+        PackageViewModel vm = (PackageViewModel)BindingContext;
+
+        vm.SelectedPackage = (Package)swipeItem.CommandParameter;
+
+        vm.DeletePackage(vm.SelectedPackage);
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        //PackageViewModel vm = (PackageViewModel)BindingContext;
+        //vm.Refresh();
     }
 }

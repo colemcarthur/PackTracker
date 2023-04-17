@@ -36,6 +36,8 @@
 
         <CollectionView EmptyView="No Data"
                         ItemsSource="{Binding Packages}"
+                        SelectionMode="Single"
+                        SelectionChanged="CollectionView_SelectionChanged"
                         Margin="10"
                         Grid.Row="1">
             
@@ -47,25 +49,27 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Package">
 
-                    <SwipeView>
+                    <SwipeView> 
 
                         <SwipeView.RightItems>
                             <SwipeItems>
                                 <SwipeItem Text="Delete"
-                                           BackgroundColor="LightPink"
-                                           Invoked="SwipeItem_Invoked"/>
+                                            BackgroundColor="LightPink"
+                                            CommandParameter="{Binding .}"
+                                            Invoked="DeleteSwipeItem_Invoked" >
+                                </SwipeItem>
                             </SwipeItems>
                         </SwipeView.RightItems>
                     
                         <VerticalStackLayout>
                
-                            <Frame>
+                            <Frame BackgroundColor="Transparent">
+
                                 <Frame.GestureRecognizers>
-
-                                    <TapGestureRecognizer CommandParameter="{Binding .}"
-                                                          Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PackageViewModel}}, Path=GoToItemsCommand}"/>
-
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
+                                                            CommandParameter="{Binding .}"/>
                                 </Frame.GestureRecognizers>
+
                                 <Grid ColumnDefinitions=".8*,.2*">
 
                                     <Label Grid.Column="0"
@@ -75,10 +79,13 @@
                                             Text="{Binding Items.Count}" />
                                 
                                 </Grid>
+
                             </Frame>
                             
                         </VerticalStackLayout>
-                    </SwipeView> 
+
+                    </SwipeView>
+
                 </DataTemplate>
 
             </CollectionView.ItemTemplate>

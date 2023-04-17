@@ -16,6 +16,8 @@ namespace PackTracker.MVVM.ViewModels
         [ObservableProperty]
         List<Package> packages;
 
+        public Package SelectedPackage { get; set; }
+
 		public PackageViewModel(INavigation navigation)
 		{
 
@@ -33,31 +35,17 @@ namespace PackTracker.MVVM.ViewModels
 
         public void DeletePackage(Package package)
         {
+            if (package is null)
+                return;
+
             App.PackagesRepo.Delete(package);
 
             Refresh();
         }
-
-        [RelayCommand]
-        public async Task GoToItemsAsync(Package package)
-        {
-
-            if (package is null)
-                return;
-
-            ItemsPage itemsPage = new(package)
-            {
-                Title = package.Name
-            };
-
-            await _navigation.PushAsync(itemsPage);
-        }
-
-
-        private void Refresh()
+  
+        public void Refresh()
         {
             Packages = App.PackagesRepo.GetItemsWithChildren();
-
         }
     }
 

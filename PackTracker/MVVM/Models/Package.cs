@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.Maui.Controls;
+using System;
 using PackTracker.Abstractions;
 using SQLiteNetExtensions.Attributes;
+using System.Windows.Input;
 
 namespace PackTracker.MVVM.Models
 {
@@ -9,9 +11,7 @@ namespace PackTracker.MVVM.Models
         public string Name { get; set; }
         public DateTime CreationDate { get; set; }
 
-        [OneToMany(CascadeOperations = CascadeOperation.CascadeInsert |
-                                       CascadeOperation.CascadeRead |
-                                       CascadeOperation.CascadeDelete)]
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
         public List<Item> Items { get; set; }
 
         [ForeignKey(typeof(Item))]
@@ -21,6 +21,6 @@ namespace PackTracker.MVVM.Models
 		{
 
 		}
-	}
+    }
 }
 
