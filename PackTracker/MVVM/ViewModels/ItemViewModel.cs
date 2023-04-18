@@ -1,10 +1,18 @@
 ﻿using System;
+using CommunityToolkit.Mvvm.ComponentModel;
+using PackTracker.MVVM.Models;
+
 namespace PackTracker.MVVM.ViewModels
 {
-	public class ItemViewModel
+	partial class ItemViewModel : ObservableObject
 	{
-		public ItemViewModel()
+
+		[ObservableProperty]
+		Package package;
+
+		public ItemViewModel(Package package)
 		{
+			Package = package;
 		}
 	}
 }

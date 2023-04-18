@@ -11,17 +11,13 @@ namespace PackTracker.MVVM.ViewModels
 	partial class PackageViewModel : ObservableObject 
 	{
 
-        private readonly INavigation _navigation;
-
         [ObservableProperty]
         List<Package> packages;
 
         public Package SelectedPackage { get; set; }
 
-		public PackageViewModel(INavigation navigation)
+		public PackageViewModel()
 		{
-
-            _navigation = navigation;
 
             Refresh();
         }
@@ -29,6 +25,14 @@ namespace PackTracker.MVVM.ViewModels
         public void AddOrUpdatePackage(Package package)
         {
             App.PackagesRepo.Save(package);
+
+            Refresh();
+        }
+
+        public void AddOrUpdateItem(Item item)
+        {
+            SelectedPackage.Items.Add(item);
+            App.ItemsRepo.Save(item);
 
             Refresh();
         }

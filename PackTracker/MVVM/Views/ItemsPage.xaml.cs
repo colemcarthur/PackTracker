@@ -1,32 +1,22 @@
-﻿using PackTracker.MVVM.Models;
+﻿
+using PackTracker.MVVM.Models;
+using PackTracker.MVVM.ViewModels;
 
 namespace PackTracker.MVVM.Views;
 
 public partial class ItemsPage : ContentPage
 {
-	public ItemsPage(Package packages)
+
+
+	public ItemsPage(Package package)
 	{
 		InitializeComponent();
-		BindingContext = packages;
+		BindingContext = new ItemViewModel(package);
+
 	}
 
     void AddItemButton_Clicked(System.Object sender, System.EventArgs e)
     {
-		Package package = (Package)BindingContext;
-
-        Item item = new Item()
-        {
-            PackageID = package.Id,
-            CreationDate = DateTime.Now,
-            Value = 33.32,
-            Description = "Lights",
-            Image = new byte[] { 122, 223, 23, 2, 3, 66 }
-        };
-
-        package.Items.Add(item);
-
-        App.ItemsRepo.Save(item);
-
-
+		Navigation.PushModalAsync(new ItemEntryPage());
     }
 }
