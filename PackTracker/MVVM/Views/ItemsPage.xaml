@@ -25,7 +25,7 @@
                             <Grid ColumnDefinitions=".8*,.2*">
                                 <Label Text="{Binding Description}"
                                        Grid.Column="0"/>
-                                <Label Text="{Binding Value}"
+                                <Label Text="{Binding PurchasePrice}"
                                        Grid.Column="1"/>
                             </Grid>
                         </Frame>

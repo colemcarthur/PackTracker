@@ -7,10 +7,15 @@ namespace PackTracker.MVVM.Views;
 
 public partial class PackagePage : ContentPage
 {
+    private PackageViewModel viewModel { get; set; }
+
 	public PackagePage()
 	{ 
 		InitializeComponent();
-		BindingContext = new PackageViewModel();
+
+        viewModel = new PackageViewModel();
+
+		BindingContext = viewModel;
 	}
 
     async void AddPackageButton_Clicked(System.Object sender, System.EventArgs e)
@@ -34,18 +39,18 @@ public partial class PackagePage : ContentPage
 
     void CollectionView_SelectionChanged(System.Object sender, Microsoft.Maui.Controls.SelectionChangedEventArgs e)
     {
-        PackageViewModel vm = (PackageViewModel)BindingContext;
-        vm.SelectedPackage = (e.CurrentSelection.FirstOrDefault() as Package);
+        
+        viewModel.SelectedPackage = (e.CurrentSelection.FirstOrDefault() as Package);
     }
 
     void TapGestureRecognizer_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
     {
-        PackageViewModel vm = (PackageViewModel)BindingContext;
-        vm.SelectedPackage = (Package)e.Parameter;
+        
+        viewModel.SelectedPackage = (Package)e.Parameter;
 
-        ItemsPage itemsPage = new(vm.SelectedPackage)
+        ItemsPage itemsPage = new(viewModel.SelectedPackage)
         {
-            Title = vm.SelectedPackage.Name
+            Title = viewModel.SelectedPackage.Name
         };
 
         Navigation.PushAsync(itemsPage);
@@ -55,20 +60,16 @@ public partial class PackagePage : ContentPage
     {
         SwipeItem swipeItem = (SwipeItem)sender;
 
-        PackageViewModel vm = (PackageViewModel)BindingContext;
+        viewModel.SelectedPackage = (Package)swipeItem.CommandParameter;
 
-        vm.SelectedPackage = (Package)swipeItem.CommandParameter;
-
-        vm.DeletePackage(vm.SelectedPackage);
+        viewModel.DeletePackage(viewModel.SelectedPackage);
     }
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
 
-        /*
-        PackageViewModel vm = (PackageViewModel)BindingContext;
-        vm.Refresh();
-        */
+        viewModel.Refresh();
     }
+
 }

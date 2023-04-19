@@ -18,7 +18,7 @@ namespace PackTracker.MVVM.Models
 
 		public DateTime CreationDate { get; set; }
 
-		public Double Value { get; set; }
+		public Double PurchasePrice { get; set; }
 
         public Item()
 		{

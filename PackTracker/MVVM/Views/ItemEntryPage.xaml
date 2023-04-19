@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:PackTracker.MVVM.ViewModels"
+             x:DataType="viewmodel:ItemViewModel"
              x:Class="PackTracker.MVVM.Views.ItemEntryPage"
              Title="ItemEntryPage"
              BackgroundColor="{StaticResource Secondary}">
@@ -12,17 +14,21 @@
                                 Padding="10">
             <StackLayout>
                 <Label Text="Description" />
-                <Entry x:Name="Description"
+                <Entry x:Name="txtDescription"
+                       Text="{Binding Description}"
+                      TextChanged="Description_TextChanged"
                        BackgroundColor="White"/>
             </StackLayout>
-
+            
             <StackLayout>
                 <Label Text="Value" />
-                <Entry x:Name="Value"
+                <Entry x:Name="txtValue"
+                       Text="{Binding PurchasePrice}"
+                       TextChanged="Description_TextChanged"
                        Keyboard="Numeric"
                        BackgroundColor="White"/>
             </StackLayout>
-
+            
             <StackLayout Spacing="10">
                 <Border WidthRequest="400"
                         HeightRequest="450"
@@ -45,9 +51,10 @@
                                 HorizontalOptions="Center"
                                 VerticalOptions="End">
             <Button Text="Cancel"
-                    Clicked="AddButton_Clicked"/>
-            <Button Text="Add"
                     Clicked="CancelButton_Clicked"/>
+            <Button Text="Add"
+                    x:Name="btnAdd"
+                    Clicked="AddButton_Clicked"/>
         </HorizontalStackLayout>
 
     </Grid>
