@@ -8,11 +8,12 @@ namespace PackTracker.Abstractions
     {
         void Save(T record);
         void SaveWithChildren(T recoord, bool recursive = false);
-        //T GetItem(int id);
-        //T GetItem(Expression<Func<T, bool>> predicate);
+        T GetItem(int id);
+        T GetItem(Expression<Func<T, bool>> predicate);
         List<T> GetItems();
         List<T> GetItemsWithChildren();
-        //List<T> GetItems(Expression<Func<T, bool>> predicate);
+        T GetItemsWithChildren(int Id);
+        List<T> GetItems(Expression<Func<T, bool>> predicate);
         void Delete(T record);
     }
 }

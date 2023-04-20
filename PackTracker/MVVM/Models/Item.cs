@@ -20,6 +20,9 @@ namespace PackTracker.MVVM.Models
 
 		public Double PurchasePrice { get; set; }
 
+		[MaxLength(50)]
+		public string PurchaseLocation { get; set; }
+
         public Item()
 		{
 		}

@@ -26,9 +26,8 @@ public partial class PackagePage : ContentPage
 
         if (result != null)
         {
-            PackageViewModel vm = (PackageViewModel)BindingContext;
-
-            vm.AddOrUpdatePackage(new Package()
+ 
+            viewModel.AddOrUpdatePackage(new Package()
             {
                 Name = result.ToString(),
                 CreationDate = DateTime.Now

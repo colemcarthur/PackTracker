@@ -7,29 +7,37 @@ namespace PackTracker.MVVM.Views;
 public partial class ItemEntryPage : ContentPage
 {
 
-    private ItemViewModel viewModel { get; set; }
+    private TaskCompletionSource<Item> _completionSource;
 
-	public ItemEntryPage(ObservableObject viewModel)
-	{
+	public ItemEntryPage(Package package) 
+    {
 		InitializeComponent();
 
-        this.viewModel = (ItemViewModel)viewModel;
-
-        BindingContext = viewModel;
+        BindingContext = new ItemViewModel(package); 
 
         btnAdd.IsEnabled = false;
 	}
 
-    void AddButton_Clicked(System.Object sender, System.EventArgs e)
+    public Task<Item> GetFormDataAsync()
     {
-
-        viewModel.Save();
-        Navigation.PopModalAsync();
+        _completionSource = new TaskCompletionSource<Item>();
+        return _completionSource.Task;
     }
 
-    void CancelButton_Clicked(System.Object sender, System.EventArgs e)
+    private async void AddButton_Clicked(System.Object sender, System.EventArgs e)
     {
-        Navigation.PopModalAsync();
+
+        Item item = ((ItemViewModel)BindingContext).Item;
+        item.CreationDate = DateTime.Now;
+
+        _completionSource.SetResult(item);
+        await Navigation.PopModalAsync();
+    }
+
+    private async void CancelButton_Clicked(System.Object sender, System.EventArgs e)
+    {
+        _completionSource.SetResult(null);
+        await Navigation.PopModalAsync();
     }
 
     void Description_TextChanged(System.Object sender, Microsoft.Maui.Controls.TextChangedEventArgs e)

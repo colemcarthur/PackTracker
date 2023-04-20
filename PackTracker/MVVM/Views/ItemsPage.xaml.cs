@@ -1,4 +1,6 @@
 ﻿
+
+using CommunityToolkit.Mvvm.ComponentModel;
 using PackTracker.MVVM.Models;
 using PackTracker.MVVM.ViewModels;
 
@@ -21,10 +23,27 @@ public partial class ItemsPage : ContentPage
 
 	}
 
-    void AddItemButton_Clicked(System.Object sender, System.EventArgs e)
+    async void AddItemButton_Clicked(System.Object sender, System.EventArgs e)
     {
-		viewModel.AddNewItem();
-		Navigation.PushModalAsync(new ItemEntryPage(viewModel));
+		
+		ItemEntryPage page = new ItemEntryPage(package);
+
+		await Navigation.PushModalAsync(page);
+
+		Item item = await page.GetFormDataAsync();
+
+		if (item != null)
+		{
+			
+			viewModel.Save(item);
+		}
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+		viewModel.Refresh();
     }
 
 }

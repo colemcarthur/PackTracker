@@ -9,9 +9,10 @@
     <Grid RowDefinitions=".9*, .1*">
 
         <CollectionView EmptyView="No Data"
-                ItemsSource="{Binding Package.Items}"
-                Margin="10"
-                Grid.Row="0">
+                        x:Name="collectionView"
+                        ItemsSource="{Binding Package.Items}"
+                        Margin="10"
+                        Grid.Row="0">
 
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout ItemSpacing="10"

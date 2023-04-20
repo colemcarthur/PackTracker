@@ -136,6 +136,7 @@ namespace PackTracker.Repositories
         {
             try
             {
+                
                 return connection.GetAllWithChildren<T>().ToList();
             }
             catch (Exception ex)
@@ -145,5 +146,62 @@ namespace PackTracker.Repositories
             return null;
         }
 
+        public T GetItemsWithChildren(int Id)
+        {
+            try
+            {
+                return connection.GetAllWithChildren<T>()
+                            .FirstOrDefault(x => x.Id == Id);
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"{ex.Message}";
+            }
+
+            return null;
+        }
+
+        public T GetItem(int id)
+        {
+            try
+            {
+                return connection.Table<T>()
+                    .FirstOrDefault(x => x.Id == id);
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"{ex.Message}";
+            }
+
+            return null;
+        }
+
+        public List<T> GetItems(Expression<Func<T, bool>> predicate)
+        {
+            try
+            {
+                return connection.Table<T>()
+                    .Where(predicate).ToList();
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"{ex.Message}";
+            }
+            return null;
+        }
+
+        public T GetItem(Expression<Func<T, bool>> predicate)
+        {
+            try
+            {
+                return connection.Table<T>()
+                    .Where(predicate).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"{ex.Message}";
+            }
+            return null;
+        }
     }
 }

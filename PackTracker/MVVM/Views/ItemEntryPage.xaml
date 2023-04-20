@@ -12,21 +12,29 @@
         <VerticalStackLayout Grid.Row="1"
                                 Spacing="30"
                                 Padding="10">
+
             <StackLayout>
                 <Label Text="Description" />
                 <Entry x:Name="txtDescription"
-                       Text="{Binding Description}"
+                       Text="{Binding Item.Description}"
                       TextChanged="Description_TextChanged"
                        BackgroundColor="White"/>
             </StackLayout>
             
             <StackLayout>
-                <Label Text="Value" />
-                <Entry x:Name="txtValue"
-                       Text="{Binding PurchasePrice}"
-                       TextChanged="Description_TextChanged"
-                       Keyboard="Numeric"
-                       BackgroundColor="White"/>
+                <HorizontalStackLayout Spacing="10">
+                    <Label Text="Purchase Location" />
+                    <Entry x:Name="txtPurchaseLocation"
+                            Text="{Binding Item.PurchaseLocation}"
+                            BackgroundColor="White"/>              
+                    <Label Text="Value" />
+                    <Entry x:Name="txtValue"
+                            Text="{Binding Item.PurchasePrice}"
+                            TextChanged="Description_TextChanged"
+                            Keyboard="Numeric"
+                            BackgroundColor="White"/>   
+                </HorizontalStackLayout>
+
             </StackLayout>
             
             <StackLayout Spacing="10">

@@ -10,38 +10,32 @@ namespace PackTracker.MVVM.ViewModels
 		Package package;
 
 		[ObservableProperty]
-		String description;
-
-		[ObservableProperty]
-		Double purchasePrice;
+		Item item;
 
 		public ItemViewModel(Package package)
 		{
 			Package = package;
-		}
 
-		public void AddNewItem()
-		{
-
-			Description = "";
-			PurchasePrice = 0.00;
-		}
-
-		public void Save()
-		{
-
-			Item item = new Item()
+			Item = new Item()
 			{
-                Description = Description,
-                PurchasePrice = PurchasePrice,
-                PackageID = Package.Id,
-                CreationDate = DateTime.Now
-            };
-
-			Package.Items.Add(item);
-
-			App.ItemsRepo.Save(item);
+				PackageID = package.Id,
+				Description = "",
+				PurchasePrice = 0,
+				PurchaseLocation = ""
+			};
+			
 		}
+
+		public void Save(Item newItem)
+		{
+            Package.Items.Add(newItem);
+			App.ItemsRepo.Save(newItem);
+		}
+
+		public void Refresh()
+		{
+			Package = App.PackagesRepo.GetItemsWithChildren(Package.Id);
+        }
 	}
 }
 
