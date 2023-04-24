@@ -12,21 +12,38 @@ namespace PackTracker.MVVM.ViewModels
 		[ObservableProperty]
 		Item item;
 
-		public ItemViewModel(Package package)
+		public ItemViewModel(Package package, Item item = null)
 		{
 			Package = package;
 
-			Item = new Item()
+			if (item == null)
 			{
-				PackageID = package.Id,
-				Description = "",
-				PurchasePrice = 0,
-				PurchaseLocation = ""
-			};
-			
+				Item = new Item()
+				{
+					PackageID = package.Id,
+					Description = "",
+					PurchasePrice = 0,
+					PurchaseLocation = ""
+				};
+			}
+			else
+			{
+				Item = item;
+			}
+
 		}
 
-		public void Save(Item newItem)
+        public void DeleteItem(Item item)
+        {
+            if (item is null)
+                return;
+
+            App.ItemsRepo.Delete(item);
+
+            Refresh();
+        }
+
+        public void Save(Item newItem)
 		{
             Package.Items.Add(newItem);
 			App.ItemsRepo.Save(newItem);

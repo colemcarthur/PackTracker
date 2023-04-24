@@ -21,16 +21,33 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Item">
-                    <VerticalStackLayout>
-                        <Frame>
-                            <Grid ColumnDefinitions=".8*,.2*">
-                                <Label Text="{Binding Description}"
-                                       Grid.Column="0"/>
-                                <Label Text="{Binding PurchasePrice}"
-                                       Grid.Column="1"/>
-                            </Grid>
-                        </Frame>
-                    </VerticalStackLayout>
+                    <SwipeView> 
+
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Delete"
+                                            BackgroundColor="LightPink"
+                                            CommandParameter="{Binding .}"
+                                            Invoked="DeleteSwipeItem_Invoked" >
+                                </SwipeItem>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <VerticalStackLayout>
+                            <Frame>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
+                                                            CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+                                <Grid ColumnDefinitions=".8*,.2*">
+                                    <Label Text="{Binding Description}"
+                                           Grid.Column="0"/>
+                                    <Label Text="{Binding PurchasePrice}"
+                                           Grid.Column="1"/>
+                                </Grid>
+                            </Frame>
+                        </VerticalStackLayout>
+                    </SwipeView>
                 </DataTemplate>
 
             </CollectionView.ItemTemplate>

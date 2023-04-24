@@ -39,6 +39,33 @@ public partial class ItemsPage : ContentPage
 		}
     }
 
+    async void TapGestureRecognizer_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
+    {
+
+        Item item = (Item)e.Parameter;
+
+		ItemEntryPage page = new ItemEntryPage(package, item);
+
+        await Navigation.PushModalAsync(page);
+
+		item = await page.GetFormDataAsync();
+
+        if (item != null)
+        {
+
+            viewModel.Save(item);
+        }
+    }
+
+    void DeleteSwipeItem_Invoked(System.Object sender, System.EventArgs e)
+    {
+        SwipeItem swipeItem = (SwipeItem)sender;
+
+        Item item = (Item)swipeItem.CommandParameter;
+
+        viewModel.DeleteItem(item);
+    }
+
     protected override void OnAppearing()
     {
         base.OnAppearing();

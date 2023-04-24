@@ -9,13 +9,21 @@ public partial class ItemEntryPage : ContentPage
 
     private TaskCompletionSource<Item> _completionSource;
 
-	public ItemEntryPage(Package package) 
+	public ItemEntryPage(Package package, Item item = null) 
     {
 		InitializeComponent();
 
-        BindingContext = new ItemViewModel(package); 
+        BindingContext = new ItemViewModel(package, item);
 
-        btnAdd.IsEnabled = false;
+        bool enablebutton = false;
+
+        if (item != null)
+        {
+            btnAdd.Text = "Save";
+            enablebutton = true;
+        }
+        btnAdd.IsEnabled = enablebutton;
+  
 	}
 
     public Task<Item> GetFormDataAsync()
@@ -43,6 +51,6 @@ public partial class ItemEntryPage : ContentPage
     void Description_TextChanged(System.Object sender, Microsoft.Maui.Controls.TextChangedEventArgs e)
     {
         btnAdd.IsEnabled = string.IsNullOrEmpty(txtDescription.Text) ? false : txtDescription.Text.Length > 0 &&
-                           string.IsNullOrEmpty(txtValue.Text)  ? false : txtValue.Text.Length > 0;
+                           string.IsNullOrEmpty(txtPurchasePrice.Text)  ? false : txtPurchasePrice.Text.Length > 0;
     }
 }

@@ -7,55 +7,62 @@
              Title="ItemEntryPage"
              BackgroundColor="{StaticResource Secondary}">
 
-    <Grid RowDefinitions=".05*,.8*, .1*">
+     <Grid RowDefinitions=".9*, .1*">
 
-        <VerticalStackLayout Grid.Row="1"
-                                Spacing="30"
-                                Padding="10">
+        <VerticalStackLayout Spacing="10" Padding="10">
 
-            <StackLayout>
-                <Label Text="Description" />
-                <Entry x:Name="txtDescription"
-                       Text="{Binding Item.Description}"
-                      TextChanged="Description_TextChanged"
-                       BackgroundColor="White"/>
-            </StackLayout>
-            
-            <StackLayout>
-                <HorizontalStackLayout Spacing="10">
-                    <Label Text="Purchase Location" />
-                    <Entry x:Name="txtPurchaseLocation"
-                            Text="{Binding Item.PurchaseLocation}"
-                            BackgroundColor="White"/>              
-                    <Label Text="Value" />
-                    <Entry x:Name="txtValue"
-                            Text="{Binding Item.PurchasePrice}"
-                            TextChanged="Description_TextChanged"
-                            Keyboard="Numeric"
-                            BackgroundColor="White"/>   
-                </HorizontalStackLayout>
+            <Label Text="Description" />
 
-            </StackLayout>
-            
-            <StackLayout Spacing="10">
-                <Border WidthRequest="400"
-                        HeightRequest="450"
-                        BackgroundColor="white">
+            <Entry x:Name="txtDescription"
+                Text="{Binding Item.Description}"
+                TextChanged="Description_TextChanged"
+                BackgroundColor="White"/>
+        
+             <Grid ColumnDefinitions=".7*, .3*"
+                   ColumnSpacing="10">
+                 <Label Text="Purchase Location"/>
+                 <Label Text="Value" Grid.Column="1"/>
+             </Grid>
+
+             <Grid ColumnDefinitions=".7*, .3*"
+                   ColumnSpacing="10">
+
+                <Entry x:Name="txtPurchaseLocation"
+                       Grid.Row="1"
+                    Text="{Binding Item.PurchaseLocation}"
+                    BackgroundColor="White"/>
+
+                <Entry x:Name="txtPurchasePrice"
+                       Grid.Row="1"
+                       Grid.Column="2"
+                    Text="{Binding Item.PurchasePrice}"
+                    TextChanged="Description_TextChanged"
+                    Keyboard="Numeric"
+                    BackgroundColor="White"/>
+
+             </Grid>
+
+            <StackLayout Spacing="10"
+                         Padding="0, 20, 0, 0">
+                    
+                <Border HeightRequest="450"
+                        BackgroundColor="White">
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="20,20,20,20" />
                     </Border.StrokeShape>
                     <Image Source="dotnet_bot.png"/>
                 </Border>
 
-            <Button Text="Take Photo"
-                    WidthRequest="300"/>
+                <Button Text="Take Photo" />
 
             </StackLayout>
 
 
+
         </VerticalStackLayout>
-        <HorizontalStackLayout Grid.Row="2"
-                                Spacing="10"
+
+        <HorizontalStackLayout Spacing="10"
+                                Grid.Row="1"
                                 HorizontalOptions="Center"
                                 VerticalOptions="End">
             <Button Text="Cancel"
@@ -65,6 +72,6 @@
                     Clicked="AddButton_Clicked"/>
         </HorizontalStackLayout>
 
-    </Grid>
-
+     </Grid>
+    
 </ContentPage>
