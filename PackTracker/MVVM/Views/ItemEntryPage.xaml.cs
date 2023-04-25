@@ -19,6 +19,9 @@ public partial class ItemEntryPage : ContentPage
 
         if (item != null)
         {
+            ImageSource imageSource = ImageSource.FromStream(() => new MemoryStream(item.Image));
+            imgItem.Source = imageSource;
+
             btnAdd.Text = "Save";
             enablebutton = true;
         }
@@ -53,4 +56,43 @@ public partial class ItemEntryPage : ContentPage
         btnAdd.IsEnabled = string.IsNullOrEmpty(txtDescription.Text) ? false : txtDescription.Text.Length > 0 &&
                            string.IsNullOrEmpty(txtPurchasePrice.Text)  ? false : txtPurchasePrice.Text.Length > 0;
     }
+
+    async void TakePhotoButton_Clicked(System.Object sender, System.EventArgs e)
+    {
+        if (MediaPicker.Default.IsCaptureSupported)
+        {
+            Item item = ((ItemViewModel)BindingContext).Item;
+
+            FileResult photo = await MediaPicker.Default.CapturePhotoAsync();
+
+            if (photo != null)
+            {
+                // save the file into local storage
+                string localFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
+
+                using Stream sourceStream = await photo.OpenReadAsync();
+
+                item.Image = StreamToByteArray(sourceStream);
+
+                // Convert the byte array to an ImageSource object
+                ImageSource imageSource = ImageSource.FromStream(() => new MemoryStream(item.Image));
+                imgItem.Source = imageSource;
+
+                //using FileStream localFileStream = File.OpenWrite(localFilePath);
+
+                //await sourceStream.CopyToAsync(localFileStream);
+
+            }
+        }
+    }
+
+    public static byte[] StreamToByteArray(Stream stream)
+    {
+        using (var memoryStream = new MemoryStream())
+        {
+            stream.CopyTo(memoryStream);
+            return memoryStream.ToArray();
+        }
+    }
+
 }

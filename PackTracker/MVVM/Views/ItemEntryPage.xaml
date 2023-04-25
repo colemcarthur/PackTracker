@@ -50,10 +50,12 @@
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="20,20,20,20" />
                     </Border.StrokeShape>
-                    <Image Source="dotnet_bot.png"/>
+                    <Image Source="{Binding Item.Image}"
+                           x:Name="imgItem"/>
                 </Border>
 
-                <Button Text="Take Photo" />
+                <Button Text="Take Photo"
+                        Clicked="TakePhotoButton_Clicked"/>
 
             </StackLayout>
 
