@@ -8,9 +8,10 @@ public partial class ScanPage : ContentPage
 	{
 		InitializeComponent();
 
+        // TODO delete this comment
+
         if (cameraBarcodeReaderView != null)
         {
-
             cameraBarcodeReaderView.Options = new BarcodeReaderOptions
             {
                 Formats = BarcodeFormats.All,

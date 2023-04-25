@@ -30,6 +30,7 @@
                HorizontalOptions="Center"
                VerticalOptions="Center"/>
 
+        <!--range displayed here-->
         <Image
             Source="range.png"
             Grid.Row="1"
