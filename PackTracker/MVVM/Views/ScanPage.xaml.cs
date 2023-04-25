@@ -8,10 +8,9 @@ public partial class ScanPage : ContentPage
 	{
 		InitializeComponent();
 
-        // TODO delete this comment
-
         if (cameraBarcodeReaderView != null)
         {
+
             cameraBarcodeReaderView.Options = new BarcodeReaderOptions
             {
                 Formats = BarcodeFormats.All,
@@ -52,5 +51,13 @@ public partial class ScanPage : ContentPage
     void Button_Clicked_2(System.Object sender, System.EventArgs e)
     {
         cameraBarcodeReaderView.CameraLocation = cameraBarcodeReaderView.CameraLocation == CameraLocation.Rear ? CameraLocation.Front : CameraLocation.Rear;
+    }
+
+    protected override void OnDisappearing()
+    {
+
+        base.OnDisappearing();
+        cameraBarcodeReaderView.IsDetecting = false;
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.Maui.ApplicationModel;
+using PackTracker.MVVM.ViewModels;
 using System.Diagnostics;
 using System.Text;
 
@@ -7,10 +8,15 @@ namespace PackTracker.MVVM.Views;
 
 public partial class MainPageView : ContentPage
 {
+    private PackageViewModel viewModel {get; set;}
+
 	public MainPageView()
 	{
 		InitializeComponent();
-        
+
+        viewModel = new PackageViewModel();
+        BindingContext = viewModel;
+
 	}
 
     async void ScanButton_Clicked(System.Object sender, System.EventArgs e)
@@ -55,7 +61,15 @@ public partial class MainPageView : ContentPage
 
     void ManagePackagesButton_Clicked(System.Object sender, System.EventArgs e)
     {
+  
         // Create manage package view and display on navigation stack
-        Navigation.PushAsync(new PackagePage());
+        Navigation.PushAsync(new PackagePage(viewModel));
     }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+    }
+
 }

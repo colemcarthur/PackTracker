@@ -3,9 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:PackTracker.MVVM.Models"
              xmlns:viewmodel="clr-namespace:PackTracker.MVVM.ViewModels"
+             xmlns:converters="clr-namespace:PackTracker.Converters"
              x:DataType="viewmodel:ItemViewModel"
              x:Class="PackTracker.MVVM.Views.ItemsPage"
              Title="Package Items">
+
+    <ContentPage.Resources>
+        <converters:ImageSourceConverter x:Key="ImageSourceConverter" />
+    </ContentPage.Resources>
+
     <Grid RowDefinitions=".9*, .1*">
 
         <CollectionView EmptyView="No Data"
@@ -34,16 +40,27 @@
                         </SwipeView.RightItems>
 
                         <VerticalStackLayout>
-                            <Frame>
+                            <Frame Padding="5">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
                                                             CommandParameter="{Binding .}"/>
                                 </Frame.GestureRecognizers>
-                                <Grid ColumnDefinitions=".8*,.2*">
+                                <Grid ColumnDefinitions="*,*,*">
+                                    <Image Source="{Binding Image, Converter={StaticResource ImageSourceConverter}}"
+                                           Grid.Column="0"
+                                           WidthRequest="135"
+                                           HeightRequest="100"
+                                           VerticalOptions="Center"/>
                                     <Label Text="{Binding Description}"
-                                           Grid.Column="0"/>
+                                            Grid.Column="1"
+                                           VerticalOptions="Center"
+                                           FontSize="Large"
+                                           BackgroundColor="Green"/>
                                     <Label Text="{Binding PurchasePrice}"
-                                           Grid.Column="1"/>
+                                            Grid.Column="2"
+                                           BackgroundColor="LightGray"
+                                           VerticalOptions="Center"
+                                           FontSize="Large"/>
                                 </Grid>
                             </Frame>
                         </VerticalStackLayout>

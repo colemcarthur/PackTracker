@@ -203,5 +203,17 @@ namespace PackTracker.Repositories
             }
             return null;
         }
+
+        public Double TotalValue()
+        {
+            var query = @"Select SUM(PurchasePrice) as TotalValue
+                          FROM Item";
+
+            SQLiteCommand command = new SQLiteCommand(connection);
+            command.CommandText = query;
+
+            return command.ExecuteScalar<Double>();
+
+        }
     }
 }

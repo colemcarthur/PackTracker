@@ -20,7 +20,6 @@ public partial class ItemsPage : ContentPage
 		viewModel = new ItemViewModel(package);
 
         BindingContext = viewModel;
-
 	}
 
     async void AddItemButton_Clicked(System.Object sender, System.EventArgs e)

@@ -29,13 +29,12 @@
                FontSize="Subtitle"
                HorizontalOptions="Center"
                VerticalOptions="Center"/>
-
-        <!--range displayed here-->
+       
         <Image
             Source="range.png"
             Grid.Row="1"
             WidthRequest="300"/>
-
+    
         <VerticalStackLayout Grid.Row="2"
                              VerticalOptions="End">
             <HorizontalStackLayout>
@@ -48,7 +47,7 @@
             </HorizontalStackLayout>
 
         </VerticalStackLayout>
-
+        
     </Grid>
 
   

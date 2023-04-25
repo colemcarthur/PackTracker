@@ -19,8 +19,6 @@ public partial class ItemEntryPage : ContentPage
 
         if (item != null)
         {
-            ImageSource imageSource = ImageSource.FromStream(() => new MemoryStream(item.Image));
-            imgItem.Source = imageSource;
 
             btnAdd.Text = "Save";
             enablebutton = true;

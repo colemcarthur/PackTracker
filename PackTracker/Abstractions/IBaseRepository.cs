@@ -15,6 +15,7 @@ namespace PackTracker.Abstractions
         T GetItemsWithChildren(int Id);
         List<T> GetItems(Expression<Func<T, bool>> predicate);
         void Delete(T record);
+        Double TotalValue();
     }
 }
 

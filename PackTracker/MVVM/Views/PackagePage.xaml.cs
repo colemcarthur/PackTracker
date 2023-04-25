@@ -9,11 +9,11 @@ public partial class PackagePage : ContentPage
 {
     private PackageViewModel viewModel { get; set; }
 
-	public PackagePage()
+	internal PackagePage(PackageViewModel viewmodel)
 	{ 
 		InitializeComponent();
 
-        viewModel = new PackageViewModel();
+        viewModel = viewmodel;
 
 		BindingContext = viewModel;
 	}

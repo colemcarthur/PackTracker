@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:PackTracker.MVVM.ViewModels"
+             x:DataType="viewmodel:PackageViewModel"
              x:Class="PackTracker.MVVM.Views.MainPageView">
 
     <Grid
@@ -31,7 +33,7 @@
 
                 <Label
                     Grid.Row="3"
-                    Text="23"
+                    Text="{Binding Count}"
                     FontSize="30"
                     FontAutoScalingEnabled="True"
                     HorizontalTextAlignment="Center"
@@ -57,7 +59,7 @@
                 <Label
                     Grid.Column="3"
                     Grid.Row="3"
-                    Text="$230"
+                    Text="{Binding TotalValue, StringFormat='{0:C}'}"
                     FontSize="30"
                     FontAutoScalingEnabled="True"
                     HorizontalTextAlignment="Center"
