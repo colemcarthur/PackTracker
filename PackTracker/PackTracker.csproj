@@ -40,9 +40,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
-
-		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
 
 		<!-- Images -->
@@ -73,17 +70,6 @@
 		<PackageReference Include="CommunityToolkit.Maui" Version="5.1.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <None Remove="MVVM\" />
-	  <None Remove="MVVM\Views\" />
-	  <None Remove="MVVM\ViewModels\" />
-	  <None Remove="MVVM\Models\" />
-	  <None Remove="Abstractions\" />
-	  <None Remove="Repositories\" />
-	  <None Remove="Resources\Fonts\arrow.ttf" />
-	  <None Remove="Resources\Images\Range.png" />
-	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="MVVM\" />
 	  <Folder Include="MVVM\Views\" />
@@ -100,5 +86,8 @@
 	<ItemGroup>
 	  <BundleResource Include="Resources\Fonts\arrow.ttf" />
 	  <BundleResource Include="Resources\Images\range.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiIcon Include="Resources\AppIcon\appicon.svg" />
 	</ItemGroup>
 </Project>
