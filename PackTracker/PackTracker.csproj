@@ -67,7 +67,7 @@
 		<PackageReference Include="ZXing.Net" Version="0.16.9" />
 		<PackageReference Include="ZXing.Net.Bindings.CoreCompat.System.Drawing" Version="0.16.8-beta" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="5.1.0" />
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
 		<PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
 	</ItemGroup>
 	<ItemGroup>

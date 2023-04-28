@@ -10,6 +10,7 @@
 
     <ContentPage.Resources>
         <converters:ImageSourceConverter x:Key="ImageSourceConverter" />
+        <converters:DisplayWidthConverter x:Key="DisplayWidthConverter" />
     </ContentPage.Resources>
 
     <Grid RowDefinitions=".9*, .1*">
@@ -17,8 +18,7 @@
         <CollectionView EmptyView="No Data"
                         x:Name="collectionView"
                         ItemsSource="{Binding Package.Items}"
-                        Margin="10"
-                        Grid.Row="0">
+                        Margin="10">
 
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout ItemSpacing="10"
@@ -39,31 +39,52 @@
                             </SwipeItems>
                         </SwipeView.RightItems>
 
-                        <VerticalStackLayout>
-                            <Frame Padding="5">
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
-                                                            CommandParameter="{Binding .}"/>
-                                </Frame.GestureRecognizers>
-                                <Grid ColumnDefinitions="*,*,*">
+                        
+                        <Frame Padding="5,5,5,5">
+                            
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
+                                                        CommandParameter="{Binding .}"/>
+                            </Frame.GestureRecognizers>
+
+                                
+                                <HorizontalStackLayout>
+
                                     <Image Source="{Binding Image, Converter={StaticResource ImageSourceConverter}}"
-                                           Grid.Column="0"
-                                           WidthRequest="135"
-                                           HeightRequest="100"
-                                           VerticalOptions="Center"/>
-                                    <Label Text="{Binding Description}"
-                                            Grid.Column="1"
-                                           VerticalOptions="Center"
-                                           FontSize="Large"
-                                           BackgroundColor="Green"/>
-                                    <Label Text="{Binding PurchasePrice}"
-                                            Grid.Column="2"
-                                           BackgroundColor="LightGray"
-                                           VerticalOptions="Center"
-                                           FontSize="Large"/>
-                                </Grid>
-                            </Frame>
-                        </VerticalStackLayout>
+                                            WidthRequest="130"
+                                            HeightRequest="100"/>
+                                    
+                                    <Grid RowDefinitions="*,*">
+
+                                        <Label Grid.Row="0"
+                                                Text="{Binding Description}"
+                                                FontSize="Large"
+                                                VerticalOptions="Center"
+                                                Padding="5,0,0,0"/>
+
+                                        <HorizontalStackLayout Grid.Row="1"
+                                                               >
+                                            
+                                            <Label Text="{Binding PurchaseLocation}"
+                                                    VerticalOptions="Center"
+                                                    FontSize="Medium"
+                                                    WidthRequest="{Binding Path=PurchaseLocationLabelWidth, Source={RelativeSource AncestorType={x:Type viewmodel:ItemViewModel}}}"/>
+                                            <Label Text="{Binding PurchasePrice, StringFormat='{0:C}'}"
+                                                    BackgroundColor="LightGray"
+                                                    VerticalOptions="Center"
+                                                    WidthRequest="100"
+                                                    HorizontalTextAlignment="End"
+                                                    HorizontalOptions="EndAndExpand"
+                                                    FontSize="Medium"/>
+                                         
+                                        </HorizontalStackLayout>
+
+                                    </Grid>
+                                 
+                                </HorizontalStackLayout>
+
+                        </Frame>
+                    
                     </SwipeView>
                 </DataTemplate>
 

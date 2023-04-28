@@ -12,6 +12,12 @@ namespace PackTracker.MVVM.ViewModels
 		[ObservableProperty]
 		Item item;
 
+		[ObservableProperty]
+		Int32 purchaseLocationLabelWidth = 100;
+
+		[ObservableProperty]
+		Int32 purchasePriceLabelWidth = 0;
+
 		public ItemViewModel(Package package, Item item = null)
 		{
 			Package = package;
