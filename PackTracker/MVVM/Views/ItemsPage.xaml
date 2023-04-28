@@ -11,7 +11,6 @@
 
     <ContentPage.Resources>
         <converters:ImageSourceConverter x:Key="ImageSourceConverter" />
-        <converters:DisplayWidthConverter x:Key="DisplayWidthConverter" />
     </ContentPage.Resources>
 
     <Grid RowDefinitions=".9*, .1*">
@@ -83,28 +82,6 @@
                                         HorizontalTextAlignment="End"
                                         FontSize="Medium"/>
                                 </Grid>
-
-                                <!--<Grid RowDefinitions="*,*">
-                                    <Label
-                                        Text="{Binding Description}"
-                                        FontSize="Large"
-                                        VerticalOptions="Center"/>
-                                    <HorizontalStackLayout Grid.Row="1">
-                                        <Label
-                                            Text="{Binding PurchaseLocation}"
-                                            VerticalOptions="Center"
-                                            FontSize="Medium"
-                                            WidthRequest="{Binding Path=PurchaseLocationLabelWidth, Source={RelativeSource AncestorType={x:Type viewmodel:ItemViewModel}}}"/>
-                                        <Label
-                                            Text="{Binding PurchasePrice, StringFormat='{0:C}'}"
-                                            BackgroundColor="LightGray"
-                                            VerticalOptions="Center"
-                                            WidthRequest="100"
-                                            HorizontalTextAlignment="End"
-                                            HorizontalOptions="EndAndExpand"
-                                            FontSize="Medium"/>
-                                    </HorizontalStackLayout>
-                                </Grid>-->
                             </Grid>
                         </Frame>
                     </SwipeView>
