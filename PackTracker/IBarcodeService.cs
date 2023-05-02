@@ -5,6 +5,7 @@ namespace PackTracker;
 
 public interface IBarcodeService
 {
-    Stream ConvertImageStream(string text, int width = 350, int height = 350);
+    Stream ConvertImageStream(string barodeText, string displayText, int width = 350, int height = 350,
+                            bool includeTextInImage = true, bool forPrinting = false);
 }
 

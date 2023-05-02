@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+             xmlns:views="clr-namespace:PackTracker.MVVM.Views"
+             x:DataType="views:QRCodePageView"
              x:Class="PackTracker.MVVM.Views.QRCodePageView"
              Title="Print Package Code">
 
@@ -41,11 +43,17 @@
                 Margin="3" />
             -->
 
-            <Button
-                Grid.Row="3"
-                HeightRequest="100"
-                Clicked="SaveButton_Clicked"
-                Text="Save" />
+            <HorizontalStackLayout Grid.Row="3">
+                <Button
+                    HeightRequest="100"
+                    Clicked="SaveButton_Clicked"
+                    Text="Save" />
+                <Button
+                    HeightRequest="100"
+                    Clicked="PrintButton_Clicked"
+                    Text="Print" />
+            </HorizontalStackLayout>
+
 
         </Grid>
 

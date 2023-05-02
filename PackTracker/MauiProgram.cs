@@ -26,6 +26,7 @@ public static class MauiProgram
             });
 
 		builder.Services.AddTransient<IBarcodeService, BarcodeService>();
+		builder.Services.AddTransient<IPrintService, KFPrintService>();
 		builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);
         builder.Services.AddSingleton<BaseRepository<Package>>();
 		builder.Services.AddSingleton<BaseRepository<Item>>();

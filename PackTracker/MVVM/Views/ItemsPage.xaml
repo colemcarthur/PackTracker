@@ -46,7 +46,7 @@
                                     CommandParameter="{Binding .}"/>
                             </Frame.GestureRecognizers>
                             <Grid
-                                ColumnDefinitions=".3*,.7*"
+                                ColumnDefinitions="130,.7*"
                                 ColumnSpacing="12">
                                 <Frame
                                     CornerRadius="12"

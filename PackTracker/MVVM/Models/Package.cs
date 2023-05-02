@@ -3,6 +3,8 @@ using System;
 using PackTracker.Abstractions;
 using SQLiteNetExtensions.Attributes;
 using System.Windows.Input;
+using SQLite;
+using Microsoft.Maui.Controls.PlatformConfiguration;
 
 namespace PackTracker.MVVM.Models
 {
@@ -16,6 +18,18 @@ namespace PackTracker.MVVM.Models
 
         [ForeignKey(typeof(Item))]
         public int ItemId { get; set; }
+
+        [Ignore]
+        public ImageSource QRImage
+        {
+            get
+            {
+               
+                Stream sr = App.BarcodeService.ConvertImageStream(this.Id.ToString() + " - " + this.Name, this.Name, 25, 25, false);
+                return ImageSource.FromStream(() => sr);
+       
+            }
+        }
 
         public Package()
 		{

@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using PackTracker.MVVM.ViewModels;
 using PackTracker.MVVM.Models;
+using ZXing.QrCode.Internal;
 
 namespace PackTracker.MVVM.Views;
 
@@ -71,4 +72,15 @@ public partial class PackagePage : ContentPage
         viewModel.Refresh();
     }
 
+    void QRCodeTapGestureRecognizer_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
+    {
+        viewModel.SelectedPackage = (Package)e.Parameter;
+
+        string barcodeText = viewModel.SelectedPackage.Id + " - " + viewModel.SelectedPackage.Name;
+        string displayText = viewModel.SelectedPackage.Name;
+
+        QRCodePageView qrCodePage = new QRCodePageView(barcodeText, displayText);
+
+        Navigation.PushAsync(qrCodePage);
+    }
 }

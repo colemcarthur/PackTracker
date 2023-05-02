@@ -1,76 +1,75 @@
 ﻿using ZXing.Net.Maui;
 using PackTracker.Platforms;
 using System.ComponentModel;
-using PropertyChanged;
 using CommunityToolkit.Maui.Storage;
 using System.Threading;
 using CommunityToolkit.Maui.Alerts;
 using Microsoft.Maui.Graphics.Platform;
 using PackTracker.MVVM.Models;
+using ZXing.QrCode.Internal;
+using System.Drawing;
+using System.Drawing.Printing;
+using System.Diagnostics;
 
 namespace PackTracker.MVVM.Views;
 
-[AddINotifyPropertyChangedInterface]
 public partial class QRCodePageView : ContentPage
 {
 
-    public ImageSource ImageQR { get; set; }
+    public ImageSource ImageQR { get; private set; }
+
+    private String BarcodeText { get; set; }
+    private String DisplayText { get; set; }
 
     private CancellationToken cancellationToken = new CancellationToken();
 
-    public QRCodePageView()
+    public QRCodePageView(string barcodeText, string displayText)
     {
         InitializeComponent();
-        BindingContext = this;
 
-        // ********* TEST ************
-        //Package package = new Package()
-        //{
-        //    Name = "Box 22",
-        //    CreationDate = DateTime.Now,
+        BarcodeText = barcodeText;
+        DisplayText = displayText;
 
-        //};
-
-        //package.Items = new List<Item>()
-        //{
-        //    new Item
-        //    {
-        //        CreationDate = DateTime.Now,
-        //        Value = 33.32,
-        //        Description = "Lights",
-        //        Image = new byte[] {122, 223, 23, 2, 3, 66}
-        //    },
-        //    new Item
-        //    {
-        //        CreationDate = DateTime.Now,
-        //        Value = 33.32,
-        //        Description = "Ordiment",
-        //        Image = new byte[] {122, 33, 23, 2, 3, 66}
-        //    }
-        //};
-
-        // App.Packages.SaveItemWithChildren(package);
-        
-        //List<Package> pkgs = App.PackagesRepo.GetItemsWithChildren();
-
-
-        Stream sr = App.BarcodeService.ConvertImageStream("Box 22", 200, 200);
+        Stream sr = App.BarcodeService.ConvertImageStream(BarcodeText, DisplayText, 200, 200);
 
         ImageQR = ImageSource.FromStream(() => sr);
 
-        // ******************************************
+        BindingContext = this;
+
     }
 
     async void SaveButton_Clicked(System.Object sender, System.EventArgs e)
     {
 
-        Stream sr = App.BarcodeService.ConvertImageStream("Box 22", 200, 200);
-       
-        var fileSaverResult = await App.FileSaver.SaveAsync("Box 22.png", sr, cancellationToken);
-        fileSaverResult.EnsureSuccess();
-        await Toast.Make($"File is saved: {fileSaverResult.FilePath}").Show(cancellationToken);
+        try
+        {
+            Stream sr = App.BarcodeService.ConvertImageStream(BarcodeText, DisplayText, 200, 200);
 
+            var fileSaverResult = await App.FileSaver.SaveAsync($"{DisplayText}.png", sr, cancellationToken);
+            fileSaverResult.EnsureSuccess();
+            await Toast.Make($"File is saved: {fileSaverResult.FilePath}").Show(cancellationToken);
 
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+        }
+
+    }
+
+    void PrintButton_Clicked(System.Object sender, System.EventArgs e)
+    {
+        try
+        {
+            Stream sr = App.BarcodeService.ConvertImageStream(BarcodeText, DisplayText, 400, 400, true, true);
+            App.KFPrintService.Print(sr);
+
+        }
+        catch (Exception ex)
+        {
+
+            Debug.WriteLine(ex.Message);
+        }
     }
 }
 

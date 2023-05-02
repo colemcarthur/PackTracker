@@ -64,38 +64,61 @@
                     
                         <VerticalStackLayout>
                
-                            <Frame BackgroundColor="Transparent">
+                            <Frame BackgroundColor="Transparent"
+                                   Padding="0">
 
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
                                                             CommandParameter="{Binding .}"/>
                                 </Frame.GestureRecognizers>
 
-                                <Grid ColumnDefinitions=".75*,.2*,.05*">
+                                <Grid ColumnDefinitions="80,*">
+                     
+                                    <!-- Alternate to Button with image because in iOs the image was resizing
+                                        when the screen was doing a refresh.
+                                    -->
+                                    <Frame HeightRequest="60" WidthRequest="60" BorderColor="Lavender" Margin="10" >   
+                                        <Image Source="{Binding QRImage}"
+                                               WidthRequest="50"
+                                               HeightRequest="50"/>
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="QRCodeTapGestureRecognizer_Tapped"
+                                                                  CommandParameter="{Binding .}"/>
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
 
-                                    <Label
-                                        Grid.Column="0"
-                                        Text="{Binding Name}" />
-                                    <Label
-                                        Grid.Column="1"
-                                        HorizontalOptions="End"
-                                        Text="{Binding Items.Count}" />
+                                    <Grid Grid.Column="1"
+                                        ColumnDefinitions=".9*,.3*,.2*"
+                                          Margin="0,0,20,0">
 
-                                    <Image
-                                        Grid.Column="2"
-                                        HorizontalOptions="End">
-                                        <Image.Source>
-                                            <FontImageSource
-                                                FontFamily="Arrow"
-                                                Glyph="&#xF006;"
-                                                Size="12"
-                                                Color="Grey"/>
+                                        <Label
+                                            Grid.Column="0"
+                                            VerticalOptions="Center"
+                                            FontSize="Large"
+                                            Text="{Binding Name}"/>
+                                        <Label
+                                            Grid.Column="1"
+                                            VerticalOptions="Center"
+                                            FontSize="Medium"
+                                            HorizontalOptions="End"
+                                            Text="{Binding Items.Count}"/>
 
-                                        </Image.Source>
-                                    </Image>
+                                        <Image
+                                            Grid.Column="2"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center">
+                                            
+                                            <Image.Source>
+                                                <FontImageSource
+                                                    FontFamily="Arrow"
+                                                    Glyph="&#xF006;"
+                                                    Size="12"
+                                                    Color="Grey"/>
+                                            </Image.Source>
+                                        </Image>
                                 
+                                    </Grid>
                                 </Grid>
-
                             </Frame>
                             
                         </VerticalStackLayout>

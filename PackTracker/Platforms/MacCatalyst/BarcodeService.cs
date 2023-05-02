@@ -10,8 +10,14 @@ namespace PackTracker.Platforms
 {
     public class BarcodeService : IBarcodeService
     {
-        public Stream ConvertImageStream(string text, int width = 300, int height = 300)
+        public Stream ConvertImageStream(string barcodeText, string displayText, int width = 300, int height = 300, bool includeTextInImage = true, bool forPrinting = false)
         {
+
+            Int32 extraHeight = 0;
+            Int32 canvasWidth = width;
+            Int32 canvasHeight = height;
+            Double xPosition = 0;
+            Double yPosition = 0;
 
             var barcodeWriter = new BarcodeWriter
             {
@@ -26,25 +32,50 @@ namespace PackTracker.Platforms
                 }
             };
 
-            var bitmap = barcodeWriter.Write(text);
+            var bitmap = barcodeWriter.Write(barcodeText);
+
+            if (includeTextInImage)
+            {
+                if (forPrinting)
+                    extraHeight = 60;
+                else
+                    extraHeight = 20;
+            }
+
+            if (forPrinting)
+            {
+                canvasWidth = 1000;
+                canvasHeight = 1000;
+                xPosition = (canvasWidth - width) / 2;
+                yPosition = (canvasHeight - height) / 2;
+            }
+            else
+            {
+                canvasHeight += extraHeight;
+            }
 
             // Create a UIView to hold the QR code and the label
-            UIView view = new UIView(new CGRect(0, 0, width, height + 20));
+            UIView view = new UIView(new CGRect(0, 0, canvasWidth, canvasHeight));
             view.BackgroundColor = UIColor.White;
 
             // Create a UIImageView to display the QR Code
-            var imageView = new UIImageView(new CGRect(0, 0, width, height));
+            var imageView = new UIImageView(new CGRect(xPosition, yPosition, width, height));
             imageView.Image = UIImage.LoadFromData(NSData.FromArray(bitmap.AsPNG().ToArray()));
 
             // Create a UILabel to  display the text
-            var label = new UILabel(new CGRect(0, height, width - 5, 20));
-            label.Text = text;
+            var label = new UILabel(new CGRect(xPosition, yPosition + height, width - 5, extraHeight));
+            label.Text = displayText;
             label.TextAlignment = UITextAlignment.Right;
-            label.Font = UIFont.SystemFontOfSize(14);
+            if (forPrinting)
+                label.Font = UIFont.SystemFontOfSize(48);
+            else
+                label.Font = UIFont.SystemFontOfSize(14);
 
             // Add the UIImageView and UILabel to the UIView
             view.AddSubview(imageView);
-            view.AddSubview(label);
+
+            if (includeTextInImage)
+                view.AddSubview(label);
 
             // Convert the UIView to a UIImage and return it as a stream
             UIGraphics.BeginImageContextWithOptions(view.Bounds.Size, view.Opaque, 0.0f);
