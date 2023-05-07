@@ -8,31 +8,17 @@ public partial class ScanPage : ContentPage
     {
         InitializeComponent();
 
-        if (cameraBarcodeReaderView != null)
-        {
-            cameraBarcodeReaderView.Options = new BarcodeReaderOptions
-            {
-                Formats = BarcodeFormats.All,
-                AutoRotate = true,
-                Multiple = true
-            };
-        }
     }
 
     protected void BarcodesDetected(object sender, BarcodeDetectionEventArgs e)
     {
-        /*
-        foreach (var barcode in e.Results)
-        {
-            Console.WriteLine($"Barcodes: {barcode.Format} -> {barcode.Value}");
-        }
-        */
-
+        
         MainThread.BeginInvokeOnMainThread(() => {
             lblData.Text = $"{e.Results[0].Format}->{e.Results[0].Value}";
             lblMessage.Text = "";
             cameraBarcodeReaderView.IsDetecting = false;
         });
+        
     }
 
     void Button_Clicked(System.Object sender, System.EventArgs e)
@@ -52,6 +38,23 @@ public partial class ScanPage : ContentPage
         cameraBarcodeReaderView.CameraLocation = cameraBarcodeReaderView.CameraLocation == CameraLocation.Rear ? CameraLocation.Front : CameraLocation.Rear;
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        
+        if (cameraBarcodeReaderView != null)
+        {
+            cameraBarcodeReaderView.Options = new BarcodeReaderOptions
+            {
+                Formats = BarcodeFormats.All,
+                AutoRotate = true,
+                Multiple = true
+            };
+        }
+        cameraBarcodeReaderView.IsDetecting = true;
+        
+    }
     protected override void OnDisappearing()
     {
 
@@ -59,4 +62,6 @@ public partial class ScanPage : ContentPage
         cameraBarcodeReaderView.IsDetecting = false;
 
     }
+
+
 }

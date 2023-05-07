@@ -1,14 +1,25 @@
-﻿namespace PackTracker.MVVM.Views;
+﻿
+namespace PackTracker.MVVM.Views;
 
 public partial class AppContainer : TabbedPage
 {
-	public AppContainer()
+    public AppContainer()
 	{
 		InitializeComponent();
+
+        Task<bool> haveCamera = IsCameraAvailableAsync();
+
+        if (haveCamera.Result == true)
+            Children.Add(new ScanPage());
+        else
+            Children.Add(new CameraNotPresentPage());
 	}
 
-    private async void ScanPage_Tapped(object sender, EventArgs e)
+
+    private static async Task<bool> IsCameraAvailableAsync()
     {
+        bool result = true;
+
         try
         {
             // Check to see if we are working with a physical device
@@ -27,23 +38,24 @@ public partial class AppContainer : TabbedPage
 
             if (isVirtual || status == PermissionStatus.Denied || status == PermissionStatus.Disabled)
             {
-                await DisplayAlert("Camera not Available", "Feature not available without a Camera. Please allow or enable your camera in settings.", "OK");
+                result = false;
+                //await DisplayAlert("Camera not Available", "Feature not available without a Camera. Please allow or enable your camera in settings.", "OK");
             }
-            else
-            {
-                await Navigation.PushAsync(new ScanPage());
-            }
+
         }
         catch (PermissionException pex)
         {
 
             Console.WriteLine($"{pex.Message}");
-
-            await DisplayAlert("Camera", "Feature not available without permission to use the camera", "OK");
+            result = false;
+            //await DisplayAlert("Camera", "Feature not available without permission to use the camera", "OK");
         }
         catch (Exception ex)
         {
-            await DisplayAlert("PackTracker Error", $"{ex.Message}", "OK");
+            result = false;
+            // await DisplayAlert("PackTracker Error", $"{ex.Message}", "OK");
         }
+
+        return result;
     }
 }

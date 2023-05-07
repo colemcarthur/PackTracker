@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage
+<TabbedPage x:Name="tabbedPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:PackTracker.MVVM.Views"
@@ -10,5 +10,5 @@
             <views:MainPageView/>
         </x:Arguments>
     </NavigationPage>
-    <!--<views:ScanPage/>-->
+
 </TabbedPage>
