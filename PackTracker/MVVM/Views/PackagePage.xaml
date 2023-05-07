@@ -9,11 +9,12 @@
              Title="Manage Packages">
 
     <Grid RowDefinitions=".07*,.88*,.05*">
-
+        
         <StackLayout
             Spacing="5"
             Margin="10"
-            Grid.Row="0">
+            Grid.Row="0"
+            ZIndex="1">
 
             <Frame
                 BackgroundColor="{StaticResource Secondary}">     
@@ -39,12 +40,15 @@
        
         </StackLayout>
 
-        <CollectionView EmptyView="No Data"
+        <CollectionView x:Name="packageCollectionView"
+                        EmptyView="No Data"
                         ItemsSource="{Binding Packages}"
                         SelectionMode="Single"
                         SelectionChanged="CollectionView_SelectionChanged"
                         Margin="10"
-                        Grid.Row="1">
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Scrolled="CollectionView_Scrolled">
 
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout
@@ -52,8 +56,8 @@
                     Orientation="Vertical" />
             </CollectionView.ItemsLayout>
 
-            <CollectionView.Header>
 
+            <CollectionView.Header>
                 <Grid ColumnDefinitions=".96*,.04*">
                     <SearchBar  Placeholder="Search..."
                                 BackgroundColor="White"
@@ -68,10 +72,9 @@
                                 ShouldDismissKeyboardAutomatically="True"/>
                         </SearchBar.Behaviors>
                     </SearchBar>
-                 </Grid>
-
+                </Grid>
             </CollectionView.Header>
-
+           
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Package">
 
@@ -155,13 +158,14 @@
             </CollectionView.ItemTemplate>
             
         </CollectionView>
- 
+
         <Button
             Grid.Row="2"
             HorizontalOptions="Center"
             VerticalOptions="Center"
             Text="Add Package"
             Clicked="AddPackageButton_Clicked"/>
+
     </Grid>
 
 </ContentPage>

@@ -4,6 +4,7 @@ using PackTracker.MVVM.ViewModels;
 using PackTracker.MVVM.Models;
 using ZXing.QrCode.Internal;
 using System.Diagnostics;
+using Microsoft.Maui.Controls;
 
 namespace PackTracker.MVVM.Views;
 
@@ -20,6 +21,7 @@ public partial class PackagePage : ContentPage
 		BindingContext = viewModel;
 
         searchBar.TextChanged += SearchBar_TextChanged;
+        
     }
 
     async void AddPackageButton_Clicked(System.Object sender, System.EventArgs e)
@@ -30,13 +32,15 @@ public partial class PackagePage : ContentPage
 
         if (result != null)
         {
- 
+  
             viewModel.AddOrUpdatePackage(new Package()
             {
                 Name = result.ToString(),
                 CreationDate = DateTime.Now
             });
 
+            packageCollectionView.ScrollTo(viewModel.Count - 1, position: ScrollToPosition.MakeVisible, animate: false);
+           
         }
     }
 
@@ -89,7 +93,14 @@ public partial class PackagePage : ContentPage
     private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
     {
         if (e.NewTextValue.Trim().Length == 0)
+        {
+            var parentGrid = packageCollectionView.Parent as Grid;
+            // set the row span of the collection view
+            // This will create a sticky feature for the search bar
+            Grid.SetRow(packageCollectionView, 0);
+            Grid.SetRowSpan(packageCollectionView, 2);
             viewModel.Refresh();
+        }
     }
 
     void QRCodeTapGestureRecognizer_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
@@ -104,4 +115,19 @@ public partial class PackagePage : ContentPage
         Navigation.PushAsync(qrCodePage);
     }
 
+    
+    void CollectionView_Scrolled(System.Object sender, Microsoft.Maui.Controls.ItemsViewScrolledEventArgs e)
+    {
+        
+        if (e.VerticalDelta < 0)
+        {
+            var parentGrid = packageCollectionView.Parent as Grid;
+            // set the row span of the collection view
+            // This will create a sticky feature for the search bar
+            Grid.SetRow(packageCollectionView, 1);
+            Grid.SetRowSpan(packageCollectionView, 1);
+        }
+
+    }
+    
 }

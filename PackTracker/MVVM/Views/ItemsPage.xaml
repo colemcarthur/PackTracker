@@ -68,6 +68,7 @@
                                     <Label
                                         Text="{Binding Description}"
                                         FontSize="Large"
+                                        Grid.ColumnSpan="2"
                                         VerticalOptions="Center"/>
                                     <Label
                                         Grid.Row="1"
