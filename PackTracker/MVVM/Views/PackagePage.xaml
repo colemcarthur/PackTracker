@@ -3,15 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:PackTracker.MVVM.Models"
              xmlns:viewmodel="clr-namespace:PackTracker.MVVM.ViewModels"
+             xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
              x:DataType="viewmodel:PackageViewModel"
              x:Class="PackTracker.MVVM.Views.PackagePage"
              Title="Manage Packages">
 
-    <Grid RowDefinitions=".09*,.81*,.1*">
+    <Grid RowDefinitions=".07*,.88*,.05*">
+
         <StackLayout
             Spacing="5"
             Margin="10"
             Grid.Row="0">
+
             <Frame
                 BackgroundColor="{StaticResource Secondary}">     
 
@@ -30,8 +33,10 @@
                         Text="# of Items"
                         TextColor="MediumPurple"/>
 
-                </FlexLayout>                   
+                </FlexLayout>
+    
             </Frame>
+       
         </StackLayout>
 
         <CollectionView EmptyView="No Data"
@@ -46,6 +51,26 @@
                     ItemSpacing="10"
                     Orientation="Vertical" />
             </CollectionView.ItemsLayout>
+
+            <CollectionView.Header>
+
+                <Grid ColumnDefinitions=".96*,.04*">
+                    <SearchBar  Placeholder="Search..."
+                                BackgroundColor="White"
+                                Grid.Column="0"
+                                x:Name="searchBar"
+                                SearchCommand="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PackageViewModel}}, Path=PerformSearchCommand}"
+                                SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}">
+                        <SearchBar.Behaviors>
+                            <behaviors:UserStoppedTypingBehavior
+                                StoppedTypingTimeThreshold="1000"
+                                MinimumLengthThreshold="3"
+                                ShouldDismissKeyboardAutomatically="True"/>
+                        </SearchBar.Behaviors>
+                    </SearchBar>
+                 </Grid>
+
+            </CollectionView.Header>
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Package">
@@ -65,7 +90,7 @@
                         <VerticalStackLayout>
                
                             <Frame BackgroundColor="Transparent"
-                                   Padding="0">
+                                    Padding="0">
 
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
@@ -79,17 +104,17 @@
                                     -->
                                     <Frame HeightRequest="60" WidthRequest="60" BorderColor="Lavender" Margin="10" >   
                                         <Image Source="{Binding QRImage}"
-                                               WidthRequest="50"
-                                               HeightRequest="50"/>
+                                                WidthRequest="50"
+                                                HeightRequest="50"/>
                                         <Frame.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="QRCodeTapGestureRecognizer_Tapped"
-                                                                  CommandParameter="{Binding .}"/>
+                                                                    CommandParameter="{Binding .}"/>
                                         </Frame.GestureRecognizers>
                                     </Frame>
 
                                     <Grid Grid.Column="1"
                                         ColumnDefinitions=".9*,.3*,.2*"
-                                          Margin="0,0,20,0">
+                                            Margin="0,0,20,0">
 
                                         <Label
                                             Grid.Column="0"
@@ -130,7 +155,7 @@
             </CollectionView.ItemTemplate>
             
         </CollectionView>
-
+ 
         <Button
             Grid.Row="2"
             HorizontalOptions="Center"

@@ -9,7 +9,7 @@
 
    
         <Grid
-            RowDefinitions=".1*,.4*,.4*, .1*"
+            RowDefinitions=".1*,.4*,.45*, .05*"
             Margin="20"
             Padding="20">
 
@@ -43,13 +43,19 @@
                 Margin="3" />
             -->
 
-            <HorizontalStackLayout Grid.Row="3">
+            <HorizontalStackLayout Grid.Row="3"
+                                   Spacing="10"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="End">
                 <Button
-                    HeightRequest="100"
+                    HeightRequest="60"
+                    WidthRequest="100"
                     Clicked="SaveButton_Clicked"
                     Text="Save" />
                 <Button
-                    HeightRequest="100"
+                    HeightRequest="60"
+                    WidthRequest="100"
+                    HorizontalOptions="Center"
                     Clicked="PrintButton_Clicked"
                     Text="Print" />
             </HorizontalStackLayout>

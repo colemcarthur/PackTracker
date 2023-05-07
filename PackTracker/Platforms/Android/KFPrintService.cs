@@ -1,4 +1,6 @@
 ﻿using System;
+using Android.Print;
+using Android.Util;
 
 namespace PackTracker.Platforms
 {
@@ -8,9 +10,9 @@ namespace PackTracker.Platforms
 		{
 		}
 
-        public void Print(Stream stream)
+        public async void Print(Stream stream)
         {
-            throw new NotImplementedException();
+           Log.Debug("PackTracker", "Not Implemented");
         }
     }
 }

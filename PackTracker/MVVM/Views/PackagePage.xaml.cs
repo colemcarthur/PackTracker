@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using PackTracker.MVVM.ViewModels;
 using PackTracker.MVVM.Models;
 using ZXing.QrCode.Internal;
+using System.Diagnostics;
 
 namespace PackTracker.MVVM.Views;
 
@@ -17,7 +18,9 @@ public partial class PackagePage : ContentPage
         viewModel = viewmodel;
 
 		BindingContext = viewModel;
-	}
+
+        searchBar.TextChanged += SearchBar_TextChanged;
+    }
 
     async void AddPackageButton_Clicked(System.Object sender, System.EventArgs e)
     {
@@ -69,7 +72,24 @@ public partial class PackagePage : ContentPage
     {
         base.OnAppearing();
 
-        viewModel.Refresh();
+        if (searchBar.Text != null)
+        {
+            if (searchBar.Text.Length > 0)
+                viewModel.PerformSearch(searchBar.Text);
+            else
+                viewModel.Refresh();
+        }
+        else
+        {
+            viewModel.Refresh();
+        }
+        
+    }
+
+    private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (e.NewTextValue.Trim().Length == 0)
+            viewModel.Refresh();
     }
 
     void QRCodeTapGestureRecognizer_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
@@ -83,4 +103,5 @@ public partial class PackagePage : ContentPage
 
         Navigation.PushAsync(qrCodePage);
     }
+
 }

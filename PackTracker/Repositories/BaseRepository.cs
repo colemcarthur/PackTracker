@@ -136,7 +136,6 @@ namespace PackTracker.Repositories
         {
             try
             {
-                
                 return connection.GetAllWithChildren<T>().ToList();
             }
             catch (Exception ex)
