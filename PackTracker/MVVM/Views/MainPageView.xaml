@@ -1,16 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodel="clr-namespace:PackTracker.MVVM.ViewModels"
-             x:DataType="viewmodel:PackageViewModel"
-             x:Class="PackTracker.MVVM.Views.MainPageView">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:PackTracker.MVVM.Models"
+    xmlns:viewmodel="clr-namespace:PackTracker.MVVM.ViewModels"
+    xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+    NavigationPage.HasNavigationBar="False"
+    x:DataType="viewmodel:PackageViewModel"
+    x:Class="PackTracker.MVVM.Views.MainPageView">
 
     <Grid
-        RowDefinitions=".35*,.65*"
+        RowDefinitions=".20*,.75*"
         BackgroundColor="White"
         RowSpacing="12"
         Padding="12">
-
+        <!--#region Summary-->
         <Frame
             BackgroundColor="LightGrey"
             CornerRadius="12">
@@ -69,36 +73,190 @@
 
             </Grid>
         </Frame>
+        <!--#endregion-->
+        <!--<Grid
+            RowDefinitions="*,*"
+            RowSpacing="12">
+            <Button
+                Text="Scan A Package"
+                TextTransform="Uppercase"
+                BorderColor="Gray"
+                BorderWidth="2"
+                BackgroundColor="Transparent"
+                TextColor="Gray"
+                Clicked="ScanButton_Clicked"/>
+            <Button
+                Text="Manage Packages"
+                TextTransform="Uppercase"
+                BorderColor="Gray"
+                BorderWidth="2"
+                BackgroundColor="Transparent"
+                TextColor="Gray"
+                Grid.Row="1"
+                Clicked="ManagePackagesButton_Clicked"/>
 
-        <Frame
+            </Grid>-->
+
+        <Grid
             Grid.Row="2"
-            CornerRadius="12"
-            BackgroundColor="LightGray">
+            RowDefinitions=".9*,.1*">
+        
+            <!--<StackLayout ZIndex="1">
+                <Frame BackgroundColor="{StaticResource Secondary}">
+                    <FlexLayout
+                        HeightRequest="0"
+                        Direction="Row"
+                        JustifyContent="SpaceBetween"
+                        AlignItems="Center"
+                        BackgroundColor="{StaticResource Secondary}">
+                        <Label
+                            Text="Name"
+                            TextColor="MediumPurple"
+                            FontAttributes="Bold"/>
+                        <Label
+                            Text="# of Items"
+                            TextColor="MediumPurple"/>
+                    </FlexLayout>
+                </Frame>
+            </StackLayout>-->
 
-            <Grid
-                RowDefinitions="*,*"
-                RowSpacing="12">
-                <Button
-                    Text="Scan A Package"
-                    TextTransform="Uppercase"
-                    BorderColor="Gray"
-                    BorderWidth="2"
-                    BackgroundColor="Transparent"
-                    TextColor="Gray"
-                    Clicked="ScanButton_Clicked"/>
-                <Button
-                    Text="Manage Packages"
-                    TextTransform="Uppercase"
-                    BorderColor="Gray"
-                    BorderWidth="2"
-                    BackgroundColor="Transparent"
-                    TextColor="Gray"
-                    Grid.Row="1"
-                    Clicked="ManagePackagesButton_Clicked"/>
+            <CollectionView
+                x:Name="packageCollectionView"
+                EmptyView="No Data"
+                ItemsSource="{Binding Packages}"
+                SelectionMode="Single"
+                SelectionChanged="CollectionView_SelectionChanged"
+                Grid.Row="0"
+                Grid.RowSpan="2">
 
-            </Grid>
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout
+                        ItemSpacing="10"
+                        Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
 
-        </Frame>
+
+                <CollectionView.Header>
+                    <Grid ColumnDefinitions=".95*">
+                        <SearchBar
+                            Placeholder="Search..."
+                            BackgroundColor="White"
+                            Grid.Column="0"
+                            x:Name="searchBar"
+                            SearchCommand="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PackageViewModel}}, Path=PerformSearchCommand}"
+                            SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}">
+                            <SearchBar.Behaviors>
+                                <behaviors:UserStoppedTypingBehavior
+                                    StoppedTypingTimeThreshold="1000"
+                                    MinimumLengthThreshold="3"
+                                    ShouldDismissKeyboardAutomatically="True"/>
+                            </SearchBar.Behaviors>
+                        </SearchBar>
+                    </Grid>
+                </CollectionView.Header>
+           
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Package">
+
+                        <SwipeView> 
+
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem
+                                        Text="Delete"
+                                        BackgroundColor="LightPink"
+                                        CommandParameter="{Binding .}"
+                                        Invoked="DeleteSwipeItem_Invoked" >
+                                    </SwipeItem>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                    
+                            <VerticalStackLayout>
+               
+                                <Frame
+                                    BackgroundColor="Transparent"
+                                    Padding="0">
+
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Tapped="TapGestureRecognizer_Tapped"
+                                            CommandParameter="{Binding .}"/>
+                                    </Frame.GestureRecognizers>
+
+                                    <Grid ColumnDefinitions="80,*">
+                     
+                                        <!-- Alternate to Button with image because in iOs the image was resizing
+                                            when the screen was doing a refresh.
+                                        -->
+                                        <Frame
+                                            HeightRequest="60"
+                                            WidthRequest="60"
+                                            BorderColor="Lavender"
+                                            Margin="10" >   
+                                            <Image
+                                                Source="{Binding QRImage}"
+                                                WidthRequest="50"
+                                                HeightRequest="50"/>
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    Tapped="QRCodeTapGestureRecognizer_Tapped"
+                                                    CommandParameter="{Binding .}"/>
+                                            </Frame.GestureRecognizers>
+                                        </Frame>
+
+                                        <Grid
+                                            Grid.Column="1"
+                                            ColumnDefinitions=".9*,.3*,.2*"
+                                            Margin="0,0,20,0">
+
+                                            <Label
+                                                Grid.Column="0"
+                                                VerticalOptions="Center"
+                                                FontSize="Large"
+                                                Text="{Binding Name}"/>
+                                            <Label
+                                                Grid.Column="1"
+                                                VerticalOptions="Center"
+                                                FontSize="Medium"
+                                                HorizontalOptions="End"
+                                                Text="{Binding Items.Count, StringFormat='{0} item(s)'}"/>
+
+                                            <Image
+                                                Grid.Column="2"
+                                                HorizontalOptions="End"
+                                                VerticalOptions="Center">
+                                            
+                                                <Image.Source>
+                                                    <FontImageSource
+                                                        FontFamily="Arrow"
+                                                        Glyph="&#xF006;"
+                                                        Size="12"
+                                                        Color="Grey"/>
+                                                </Image.Source>
+                                            </Image>
+                                
+                                        </Grid>
+                                    </Grid>
+                                </Frame>
+                            
+                            </VerticalStackLayout>
+
+                        </SwipeView>
+
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+            
+            </CollectionView>
+
+            <Button
+                Grid.Row="2"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Text="Add Package"
+                Clicked="AddPackageButton_Clicked"/>
+
+        </Grid>
 
     </Grid>
 

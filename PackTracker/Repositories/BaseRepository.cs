@@ -104,7 +104,7 @@ namespace PackTracker.Repositories
         /// <summary>
         /// Delete Item
         /// </summary>
-        /// <param name="item">Generic Data Item</param>
+        /// <param name="record">Generic Data Item</param>
         public void Delete(T record)
         {
             try

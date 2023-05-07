@@ -4,13 +4,12 @@ namespace PackTracker.MVVM.Views;
 
 public partial class ScanPage : ContentPage
 {
-	public ScanPage()
-	{
-		InitializeComponent();
+    public ScanPage()
+    {
+        InitializeComponent();
 
         if (cameraBarcodeReaderView != null)
         {
-
             cameraBarcodeReaderView.Options = new BarcodeReaderOptions
             {
                 Formats = BarcodeFormats.All,

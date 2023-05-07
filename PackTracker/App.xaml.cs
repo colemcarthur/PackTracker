@@ -36,11 +36,7 @@ public partial class App : Application
 		FileSaver = fileSaver;
 
 		// Create the Navigation Stack
-		MainPage = new NavigationPage(new MainPageView()
-		{
-			Title = "PackTracker"
-			
-		});
+		MainPage = new AppContainer();
 
 	}
 }

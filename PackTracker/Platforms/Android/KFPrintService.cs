@@ -10,7 +10,7 @@ namespace PackTracker.Platforms
 		{
 		}
 
-        public async void Print(Stream stream)
+        public void Print(Stream stream)
         {
            Log.Debug("PackTracker", "Not Implemented");
         }
