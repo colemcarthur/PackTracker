@@ -5,6 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <Shadow
+        x:Key="SmallShadow"
+        Brush="{StaticResource Gray600Brush}"
+        Opacity=".6"
+        Radius="5"/>
+
+    <Shadow
         x:Key="Shadow"
         Brush="{StaticResource Gray600Brush}"
         Opacity=".8"

@@ -39,14 +39,14 @@
                 FontSize="Medium"
                 HorizontalTextAlignment="Center"/>
 
-            <Label
-                Grid.Row="1"
-                Text="{Binding Count}"
-                FontSize="30"
-                FontAutoScalingEnabled="True"
-                HorizontalTextAlignment="Center"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"/>
+                <Label
+                    Grid.Row="1"
+                    Text="{Binding Count}"
+                    FontSize="30"
+                    FontAutoScalingEnabled="True"
+                    HorizontalTextAlignment="Center"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"/>
 
             <Rectangle
                 Grid.RowSpan="2"
@@ -99,28 +99,25 @@
             Grid.Row="1"
             Grid.RowSpan="2"
             RowDefinitions=".9*,.1*"
-            Padding="12,0,12,0"
             ZIndex="-1">
             <CollectionView
                 x:Name="packageCollectionView"
                 EmptyView="No Data"
                 ItemsSource="{Binding Packages}"
-                SelectionMode="Single"
+                SelectionMode="None"
                 SelectionChanged="CollectionView_SelectionChanged"
                 Grid.Row="0"
                 Grid.RowSpan="2">
 
-                <CollectionView.ItemsLayout>
+                <!--<CollectionView.ItemsLayout>
                     <LinearItemsLayout
                         ItemSpacing="10"
                         Orientation="Vertical" />
-                </CollectionView.ItemsLayout>
+                </CollectionView.ItemsLayout>-->
            
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Package">
-
-                        <SwipeView> 
-
+                        <SwipeView>
                             <SwipeView.RightItems>
                                 <SwipeItems>
                                     <SwipeItem
@@ -131,84 +128,78 @@
                                     </SwipeItem>
                                 </SwipeItems>
                             </SwipeView.RightItems>
-                    
-                            <VerticalStackLayout>
-               
-                                <Frame
-                                    BackgroundColor="{StaticResource DarkBrown}"
-                                    Padding="0"
-                                    BorderColor="Transparent">
+                            <Frame
+                                BackgroundColor="{StaticResource DarkBrown}"
+                                Padding="0"
+                                Margin="12,6,12,6"
+                                BorderColor="Transparent"
+                                HasShadow="True"
+                                Shadow="{StaticResource SmallShadow}">
 
-                                    <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                            Tapped="TapGestureRecognizer_Tapped"
-                                            CommandParameter="{Binding .}"/>
-                                    </Frame.GestureRecognizers>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Tapped="TapGestureRecognizer_Tapped"
+                                        CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
 
-                                    <Grid ColumnDefinitions="80,*">
+                                <Grid ColumnDefinitions="80,*">
                      
-                                        <!-- Alternate to Button with image because in iOs the image was resizing
-                                            when the screen was doing a refresh.
-                                        -->
-                                        <Frame
-                                            HeightRequest="60"
-                                            WidthRequest="60"
-                                            BorderColor="{StaticResource Green}"
-                                            Margin="10"
-                                            HasShadow="True"
-                                            Shadow="{StaticResource Shadow}">   
-                                            <Image
-                                                Source="{Binding QRImage}"
-                                                WidthRequest="50"
-                                                HeightRequest="50"/>
-                                            <Frame.GestureRecognizers>
-                                                <TapGestureRecognizer
-                                                    Tapped="QRCodeTapGestureRecognizer_Tapped"
-                                                    CommandParameter="{Binding .}"/>
-                                            </Frame.GestureRecognizers>
-                                        </Frame>
+                                    <!-- Alternate to Button with image because in iOs the image was resizing
+                                        when the screen was doing a refresh.
+                                    -->
+                                    <Frame
+                                        HeightRequest="60"
+                                        WidthRequest="60"
+                                        BorderColor="{StaticResource Green}"
+                                        Margin="10"
+                                        HasShadow="True"
+                                        Shadow="{StaticResource SmallShadow}">   
+                                        <Image
+                                            Source="{Binding QRImage}"
+                                            WidthRequest="50"
+                                            HeightRequest="50"/>
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Tapped="QRCodeTapGestureRecognizer_Tapped"
+                                                CommandParameter="{Binding .}"/>
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
 
-                                        <Grid
+                                    <Grid
+                                        Grid.Column="1"
+                                        ColumnDefinitions=".9*,.3*,.2*"
+                                        Margin="0,0,20,0">
+
+                                        <Label
+                                            StyleClass="BrownLabel"
+                                            Grid.Column="0"
+                                            FontSize="Medium"
+                                            Text="{Binding Name}"/>
+                                        <Label
+                                            StyleClass="BrownLabel"
                                             Grid.Column="1"
-                                            ColumnDefinitions=".9*,.3*,.2*"
-                                            Margin="0,0,20,0">
+                                            FontSize="Small"
+                                            HorizontalOptions="End"
+                                            Text="{Binding Items.Count, StringFormat='{0} item(s)'}"/>
 
-                                            <Label
-                                                StyleClass="BrownLabel"
-                                                Grid.Column="0"
-                                                FontSize="Medium"
-                                                Text="{Binding Name}"/>
-                                            <Label
-                                                StyleClass="BrownLabel"
-                                                Grid.Column="1"
-                                                FontSize="Small"
-                                                HorizontalOptions="End"
-                                                Text="{Binding Items.Count, StringFormat='{0} item(s)'}"/>
-
-                                            <Image
-                                                Grid.Column="2"
-                                                HorizontalOptions="End"
-                                                VerticalOptions="Center">
+                                        <Image
+                                            Grid.Column="2"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center">
                                             
-                                                <Image.Source>
-                                                    <FontImageSource
-                                                        FontFamily="Arrow"
-                                                        Glyph="&#xF006;"
-                                                        Size="12"
-                                                        Color="{StaticResource LightBrown}"/>
-                                                </Image.Source>
-                                            </Image>
-                                
-                                        </Grid>
+                                            <Image.Source>
+                                                <FontImageSource
+                                                    FontFamily="Arrow"
+                                                    Glyph="&#xF006;"
+                                                    Size="12"
+                                                    Color="{StaticResource LightBrown}"/>
+                                            </Image.Source>
+                                        </Image>
                                     </Grid>
-                                </Frame>
-                            
-                            </VerticalStackLayout>
-
+                                </Grid>
+                            </Frame>
                         </SwipeView>
-
                     </DataTemplate>
-
                 </CollectionView.ItemTemplate>
                 <CollectionView.Header>
                         <Grid HeightRequest="160"/>
@@ -216,7 +207,6 @@
                 <CollectionView.Footer>
                         <Grid HeightRequest="70"/>
                 </CollectionView.Footer>
-            
             </CollectionView>
 
             <HorizontalStackLayout
@@ -229,13 +219,8 @@
                     Clicked="AddPackageButton_Clicked"/>
                 <Button
                     Grid.Row="2"
-                    Text="Add Package"/>
+                    Text="Search Settings"/>
             </HorizontalStackLayout>
-            
-
         </Grid>
-
     </Grid>
-
 </ContentPage>
-
