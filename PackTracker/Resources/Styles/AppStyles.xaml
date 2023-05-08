@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Shadow
+        x:Key="Shadow"
+        Brush="{StaticResource Gray600Brush}"
+        Opacity=".8"
+        Radius="12"
+        Offset="4,4"/>
+
+    <Style TargetType="Button">
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource Orange}"/>
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource LightBrown}"/>
+        <Setter
+            Property="Padding"
+            Value="12"/>
+        <Setter
+            Property="CornerRadius"
+            Value="6"/>
+        <Setter
+            Property="Shadow"
+            Value="{StaticResource Shadow}"/>
+    </Style>
+
+    <Style TargetType="Label">
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource LightGreen}"/>
+    </Style>
+
+    <Style
+        Class="BrownLabel"
+        TargetType="Label">
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource LightBrown}"/>
+        <Setter
+            Property="VerticalOptions"
+            Value="Center"/>
+    </Style>
+
+</ResourceDictionary>

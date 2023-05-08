@@ -151,7 +151,6 @@ public partial class MainPageView : ContentPage
         Navigation.PushAsync(qrCodePage);
     }
 
-
     //void CollectionView_Scrolled(System.Object sender, Microsoft.Maui.Controls.ItemsViewScrolledEventArgs e)
     //{
 

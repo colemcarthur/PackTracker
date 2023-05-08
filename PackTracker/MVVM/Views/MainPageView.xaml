@@ -2,6 +2,7 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     xmlns:model="clr-namespace:PackTracker.MVVM.Models"
     xmlns:viewmodel="clr-namespace:PackTracker.MVVM.ViewModels"
     xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
@@ -10,116 +11,96 @@
     x:Class="PackTracker.MVVM.Views.MainPageView">
 
     <Grid
-        RowDefinitions=".20*,.75*"
-        BackgroundColor="White"
+        RowDefinitions=".1*,.2*,.7*"
+        BackgroundColor="{StaticResource LightGreen}"
         RowSpacing="12"
-        Padding="12">
+        Margin="0"
+        Padding="0">
+        <RoundRectangle
+            Grid.RowSpan="2"
+            Margin="-250,-1000,-250,0"
+            Fill="{StaticResource DarkGreen}"
+            Opacity=".5"
+            CornerRadius="0,0,400,400"
+            Shadow="{StaticResource Shadow}"/>
+        <RoundRectangle
+            Grid.RowSpan="2"
+            Margin="-250,-1020,-250,20"
+            Fill="{StaticResource DarkGreen}"
+            CornerRadius="0,0,400,400"/>
         <!--#region Summary-->
-        <Frame
-            BackgroundColor="LightGrey"
-            CornerRadius="12">
-            <Grid
-                ColumnDefinitions="*,.3*,*"
-                RowDefinitions=".15*,.1*,.75*">
+        <Grid
+            Grid.RowSpan="2"
+            ColumnDefinitions="*,.3*,*"
+            RowDefinitions=".2*,.3*,.2*,.3*">
 
-                <Label
-                    Text="Package Collection Summary"
-                    Grid.ColumnSpan="3"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center"
-                    FontSize="20"/>
+            <Label
+                Text="Packages"
+                FontSize="Medium"
+                HorizontalTextAlignment="Center"/>
 
-                <Label
-                    Grid.Row="2"
-                    Text="Packages"
-                    FontSize="Medium"
-                    HorizontalTextAlignment="Center"/>
-
-                <Label
-                    Grid.Row="3"
-                    Text="{Binding Count}"
-                    FontSize="30"
-                    FontAutoScalingEnabled="True"
-                    HorizontalTextAlignment="Center"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center"/>
-
-                <Rectangle
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    WidthRequest="2"
-                    VerticalOptions="FillAndExpand"
-                    HorizontalOptions="FillAndExpand"
-                    BackgroundColor="Black"
-                    Margin="0,18,0,12"/>
-
-                <Label
-                    Grid.Column="3"
-                    Grid.Row="2"
-                    Text="Value"
-                    FontSize="Medium"
-                    HorizontalTextAlignment="Center"/>
-
-                <Label
-                    Grid.Column="3"
-                    Grid.Row="3"
-                    Text="{Binding TotalValue, StringFormat='{0:C}'}"
-                    FontSize="30"
-                    FontAutoScalingEnabled="True"
-                    HorizontalTextAlignment="Center"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center"/>
-
-
-            </Grid>
-        </Frame>
-        <!--#endregion-->
-        <!--<Grid
-            RowDefinitions="*,*"
-            RowSpacing="12">
-            <Button
-                Text="Scan A Package"
-                TextTransform="Uppercase"
-                BorderColor="Gray"
-                BorderWidth="2"
-                BackgroundColor="Transparent"
-                TextColor="Gray"
-                Clicked="ScanButton_Clicked"/>
-            <Button
-                Text="Manage Packages"
-                TextTransform="Uppercase"
-                BorderColor="Gray"
-                BorderWidth="2"
-                BackgroundColor="Transparent"
-                TextColor="Gray"
+            <Label
                 Grid.Row="1"
-                Clicked="ManagePackagesButton_Clicked"/>
+                Text="{Binding Count}"
+                FontSize="30"
+                FontAutoScalingEnabled="True"
+                HorizontalTextAlignment="Center"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"/>
 
-            </Grid>-->
+            <Rectangle
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                WidthRequest="2"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                BackgroundColor="Black"
+                Margin="0,18,0,18"/>
+
+            <Label
+                Grid.Column="3"
+                Text="Value"
+                FontSize="Medium"
+                HorizontalTextAlignment="Center"/>
+
+            <Label
+                Grid.Column="3"
+                Grid.Row="1"
+                Text="{Binding TotalValue, StringFormat='{0:C}'}"
+                FontSize="30"
+                FontAutoScalingEnabled="True"
+                HorizontalTextAlignment="Center"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"/>
+
+            <SearchBar
+                ios:SearchBar.SearchBarStyle="Minimal"
+                Grid.Row="2"
+                Grid.ColumnSpan="3"
+                Placeholder="Search..."
+                PlaceholderColor="{StaticResource LightGreen}"
+                CancelButtonColor="{StaticResource LightGreen}"
+                TextColor="{StaticResource LightGreen}"
+                x:Name="searchBar"
+                SearchCommand="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PackageViewModel}}, Path=PerformSearchCommand}"
+                SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}">
+                <SearchBar.Behaviors>
+                    <behaviors:UserStoppedTypingBehavior
+                        StoppedTypingTimeThreshold="1000"
+                        MinimumLengthThreshold="3"
+                        ShouldDismissKeyboardAutomatically="True"/>
+                </SearchBar.Behaviors>
+            </SearchBar>
+
+        </Grid>
+        <!--#endregion-->
 
         <Grid
-            Grid.Row="2"
-            RowDefinitions=".9*,.1*">
-        
-            <!--<StackLayout ZIndex="1">
-                <Frame BackgroundColor="{StaticResource Secondary}">
-                    <FlexLayout
-                        HeightRequest="0"
-                        Direction="Row"
-                        JustifyContent="SpaceBetween"
-                        AlignItems="Center"
-                        BackgroundColor="{StaticResource Secondary}">
-                        <Label
-                            Text="Name"
-                            TextColor="MediumPurple"
-                            FontAttributes="Bold"/>
-                        <Label
-                            Text="# of Items"
-                            TextColor="MediumPurple"/>
-                    </FlexLayout>
-                </Frame>
-            </StackLayout>-->
-
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            RowDefinitions=".9*,.1*"
+            Padding="12,0,12,0"
+            ZIndex="-1">
             <CollectionView
                 x:Name="packageCollectionView"
                 EmptyView="No Data"
@@ -134,26 +115,6 @@
                         ItemSpacing="10"
                         Orientation="Vertical" />
                 </CollectionView.ItemsLayout>
-
-
-                <CollectionView.Header>
-                    <Grid ColumnDefinitions=".95*">
-                        <SearchBar
-                            Placeholder="Search..."
-                            BackgroundColor="White"
-                            Grid.Column="0"
-                            x:Name="searchBar"
-                            SearchCommand="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PackageViewModel}}, Path=PerformSearchCommand}"
-                            SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}">
-                            <SearchBar.Behaviors>
-                                <behaviors:UserStoppedTypingBehavior
-                                    StoppedTypingTimeThreshold="1000"
-                                    MinimumLengthThreshold="3"
-                                    ShouldDismissKeyboardAutomatically="True"/>
-                            </SearchBar.Behaviors>
-                        </SearchBar>
-                    </Grid>
-                </CollectionView.Header>
            
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Package">
@@ -174,8 +135,9 @@
                             <VerticalStackLayout>
                
                                 <Frame
-                                    BackgroundColor="Transparent"
-                                    Padding="0">
+                                    BackgroundColor="{StaticResource DarkBrown}"
+                                    Padding="0"
+                                    BorderColor="Transparent">
 
                                     <Frame.GestureRecognizers>
                                         <TapGestureRecognizer
@@ -191,8 +153,10 @@
                                         <Frame
                                             HeightRequest="60"
                                             WidthRequest="60"
-                                            BorderColor="Lavender"
-                                            Margin="10" >   
+                                            BorderColor="{StaticResource Green}"
+                                            Margin="10"
+                                            HasShadow="True"
+                                            Shadow="{StaticResource Shadow}">   
                                             <Image
                                                 Source="{Binding QRImage}"
                                                 WidthRequest="50"
@@ -210,14 +174,14 @@
                                             Margin="0,0,20,0">
 
                                             <Label
+                                                StyleClass="BrownLabel"
                                                 Grid.Column="0"
-                                                VerticalOptions="Center"
-                                                FontSize="Large"
+                                                FontSize="Medium"
                                                 Text="{Binding Name}"/>
                                             <Label
+                                                StyleClass="BrownLabel"
                                                 Grid.Column="1"
-                                                VerticalOptions="Center"
-                                                FontSize="Medium"
+                                                FontSize="Small"
                                                 HorizontalOptions="End"
                                                 Text="{Binding Items.Count, StringFormat='{0} item(s)'}"/>
 
@@ -231,7 +195,7 @@
                                                         FontFamily="Arrow"
                                                         Glyph="&#xF006;"
                                                         Size="12"
-                                                        Color="Grey"/>
+                                                        Color="{StaticResource LightBrown}"/>
                                                 </Image.Source>
                                             </Image>
                                 
@@ -246,15 +210,28 @@
                     </DataTemplate>
 
                 </CollectionView.ItemTemplate>
+                <CollectionView.Header>
+                        <Grid HeightRequest="160"/>
+                </CollectionView.Header>
+                <CollectionView.Footer>
+                        <Grid HeightRequest="70"/>
+                </CollectionView.Footer>
             
             </CollectionView>
 
-            <Button
+            <HorizontalStackLayout
                 Grid.Row="2"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
-                Text="Add Package"
-                Clicked="AddPackageButton_Clicked"/>
+                Spacing="12">
+                <Button
+                    Text="Add Package"
+                    Clicked="AddPackageButton_Clicked"/>
+                <Button
+                    Grid.Row="2"
+                    Text="Add Package"/>
+            </HorizontalStackLayout>
+            
 
         </Grid>
 
