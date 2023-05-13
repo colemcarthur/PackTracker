@@ -1,20 +1,34 @@
 ﻿
+using PackTracker.MVVM.Models;
+
 namespace PackTracker.MVVM.Views;
 
 public partial class AppContainer : TabbedPage
 {
+  
     public AppContainer()
 	{
 		InitializeComponent();
-
-        Task<bool> haveCamera = IsCameraAvailableAsync();
-
-        if (haveCamera.Result == true)
-            Children.Add(new ScanPage());
-        else
-            Children.Add(new CameraNotPresentPage());
 	}
 
+    protected override void OnCurrentPageChanged()
+    {
+        base.OnCurrentPageChanged();
+
+        /*
+        if (CurrentPage is ScannerHostPage)
+        {
+            Task<bool> haveCamera = IsCameraAvailableAsync();
+
+            scannerPage = (ScannerHostPage)CurrentPage;
+
+            if (CurrentPage == scannerHostPageView && haveCamera.Result == true)
+            {
+                scannerPage.PushScanner();
+            }
+        }
+        */
+    }
 
     private static async Task<bool> IsCameraAvailableAsync()
     {

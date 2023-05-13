@@ -1,24 +1,51 @@
 ﻿using ZXing.Net.Maui;
+using PackTracker.MVVM.Models;
+using System.ComponentModel;
 
 namespace PackTracker.MVVM.Views;
 
 public partial class ScanPage : ContentPage
 {
-    public ScanPage()
+    
+    public delegate void PackageScannedEventHandler(object sender, PackageEventArgs e);
+
+    public event PackageScannedEventHandler PackageIDScanned;
+
+    public ScanPage() 
     {
         InitializeComponent();
 
+        if (cameraBarcodeReaderView != null)
+        {
+            cameraBarcodeReaderView.Options = new BarcodeReaderOptions
+            {
+                Formats = BarcodeFormats.All,
+                AutoRotate = true,
+                Multiple = true
+            };
+        }
+    }
+
+    protected virtual void OnPackageIDScanned(PackageEventArgs e)
+    {
+        PackageScannedEventHandler handler = PackageIDScanned;
+        handler?.Invoke(this, e);
     }
 
     protected void BarcodesDetected(object sender, BarcodeDetectionEventArgs e)
     {
+        cameraBarcodeReaderView.IsDetecting = false;
         
-        MainThread.BeginInvokeOnMainThread(() => {
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
             lblData.Text = $"{e.Results[0].Format}->{e.Results[0].Value}";
             lblMessage.Text = "";
-            cameraBarcodeReaderView.IsDetecting = false;
+            string id = e.Results[0].Value.Split("-")[0].ToString();
+            Navigation.PopModalAsync();
+
+            OnPackageIDScanned(new PackageEventArgs() { ID = Convert.ToInt32(id) });
+
         });
-        
     }
 
     void Button_Clicked(System.Object sender, System.EventArgs e)
@@ -42,26 +69,22 @@ public partial class ScanPage : ContentPage
     {
         base.OnAppearing();
 
-        
-        if (cameraBarcodeReaderView != null)
-        {
-            cameraBarcodeReaderView.Options = new BarcodeReaderOptions
-            {
-                Formats = BarcodeFormats.All,
-                AutoRotate = true,
-                Multiple = true
-            };
-        }
         cameraBarcodeReaderView.IsDetecting = true;
-        
     }
+
     protected override void OnDisappearing()
     {
 
         base.OnDisappearing();
-        cameraBarcodeReaderView.IsDetecting = false;
 
+        if (Navigation.NavigationStack.LastOrDefault() == this)
+        {
+            cameraBarcodeReaderView.IsDetecting = false;
+        }
     }
+}
 
-
+public class PackageEventArgs : EventArgs
+{
+    public Int32 ID { get; set; }
 }

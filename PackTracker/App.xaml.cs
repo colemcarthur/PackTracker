@@ -26,6 +26,7 @@ public partial class App : Application
 			   BaseRepository<Package> packages,
 			   BaseRepository<Item> items)
 	{
+
 		InitializeComponent();
 
 		// Set the local static member properties

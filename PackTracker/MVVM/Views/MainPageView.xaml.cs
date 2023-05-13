@@ -18,47 +18,8 @@ public partial class MainPageView : ContentPage
 
         viewModel = new PackageViewModel();
         BindingContext = viewModel;
+
 	}
-
-    async void ScanButton_Clicked(System.Object sender, System.EventArgs e)
-    {
-        try
-        {
-            // Check to see if we are working with a physical device
-            // If we are not then we need to display a message that the scan
-            // feature is unavailable
-            bool isVirtual = DeviceInfo.Current.DeviceType switch
-            {
-                DeviceType.Physical => false,
-                DeviceType.Virtual => true,
-                _ => false
-            };
-
-            // We also need to check to see if the user is going to allow
-            // the camera to be used for this application
-            PermissionStatus status = await Permissions.RequestAsync<Permissions.Camera>();
-
-            if (isVirtual || status == PermissionStatus.Denied || status == PermissionStatus.Disabled)
-            {
-                await DisplayAlert("Camera not Available", "Feature not available without a Camera. Please allow or enable your camera in settings.", "OK");
-            }
-            else
-            {
-                await Navigation.PushAsync(new ScanPage());
-            }
-        }
-        catch (PermissionException pex)
-        {
-
-            Console.WriteLine($"{pex.Message}");
-
-            await DisplayAlert("Camera", "Feature not available without permission to use the camera", "OK");
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("PackTracker Error", $"{ex.Message}", "OK");
-        }
-    }
 
     async void AddPackageButton_Clicked(System.Object sender, System.EventArgs e)
     {
@@ -82,14 +43,17 @@ public partial class MainPageView : ContentPage
 
     void CollectionView_SelectionChanged(System.Object sender, Microsoft.Maui.Controls.SelectionChangedEventArgs e)
     {
-
         viewModel.SelectedPackage = (e.CurrentSelection.FirstOrDefault() as Package);
     }
 
     void TapGestureRecognizer_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
     {
+        LoadItemsPage((Package)e.Parameter);
+    }
 
-        viewModel.SelectedPackage = (Package)e.Parameter;
+    public void LoadItemsPage(Package package)
+    {
+        viewModel.SelectedPackage = package ;
 
         ItemsPage itemsPage = new(viewModel.SelectedPackage)
         {
@@ -111,7 +75,7 @@ public partial class MainPageView : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-
+        
         if (searchBar.Text != null)
         {
             if (searchBar.Text.Length > 0)
@@ -123,7 +87,6 @@ public partial class MainPageView : ContentPage
         {
             viewModel.Refresh();
         }
-
     }
 
     private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
@@ -151,18 +114,18 @@ public partial class MainPageView : ContentPage
         Navigation.PushAsync(qrCodePage);
     }
 
+    void ScanButton_Clicked(System.Object sender, System.EventArgs e)
+    {
+        ScanPage scanPage = new ScanPage();
 
-    //void CollectionView_Scrolled(System.Object sender, Microsoft.Maui.Controls.ItemsViewScrolledEventArgs e)
-    //{
+        scanPage.PackageIDScanned += ScanPage_PackageIDScanned1;
+        Navigation.PushModalAsync(scanPage);
+    }
 
-    //    if (e.VerticalDelta < 0)
-    //    {
-    //        var parentGrid = packageCollectionView.Parent as Grid;
-    //        // set the row span of the collection view
-    //        // This will create a sticky feature for the search bar
-    //        Grid.SetRow(packageCollectionView, 1);
-    //        Grid.SetRowSpan(packageCollectionView, 1);
-    //    }
+    private void ScanPage_PackageIDScanned1(object sender, PackageEventArgs e)
+    {
+        Package package = App.PackagesRepo.GetItemsWithChildren(e.ID);
+        LoadItemsPage(package);
+    }
 
-    //}
 }

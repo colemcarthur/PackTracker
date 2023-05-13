@@ -7,8 +7,8 @@
     Title="AppContainer">
     <NavigationPage Title="Pack Tracker">
         <x:Arguments>
-            <views:MainPageView/>
+            <views:MainPageView x:Name="mainPageView"/>
         </x:Arguments>
     </NavigationPage>
-
+    <!--<views:ScannerHostPage x:Name="scannerHostPageView" />-->
 </TabbedPage>

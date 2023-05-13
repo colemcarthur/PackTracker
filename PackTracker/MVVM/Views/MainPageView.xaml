@@ -249,12 +249,20 @@
             
             </CollectionView>
 
-            <Button
-                Grid.Row="2"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                Text="Add Package"
-                Clicked="AddPackageButton_Clicked"/>
+            <HorizontalStackLayout Grid.Row="2">
+                <Button
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Text="Add Package"
+                    Clicked="AddPackageButton_Clicked"/>
+
+                <Button
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Text="Scan"
+                    Clicked="ScanButton_Clicked"/>
+
+            </HorizontalStackLayout>
 
         </Grid>
 

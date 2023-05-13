@@ -6,13 +6,14 @@
              Title="Scan">
 
     <Grid RowDefinitions="*,*,*">
-
+        
         <zxing:CameraBarcodeReaderView
+            IsDetecting="False"
 			Grid.Row="0"
             Grid.RowSpan="3"
 			x:Name="cameraBarcodeReaderView"
-			BarcodesDetected="BarcodesDetected" />
-
+			BarcodesDetected="BarcodesDetected"/>
+       
         <Label Grid.Row="2"
                x:Name="lblMessage"
                Text="Scan Barcode..."
