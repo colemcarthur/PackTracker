@@ -44,7 +44,9 @@ public partial class MainPageView : ContentPage
             }
             else
             {
-                await Navigation.PushAsync(new ScanPage());
+                ScanPage scanPage = new ScanPage();
+                scanPage.PackageIDScanned += ScanPage_PackageIDScanned;
+                await Navigation.PushModalAsync(scanPage);
             }
         }
         catch (PermissionException pex)
@@ -88,15 +90,7 @@ public partial class MainPageView : ContentPage
 
     void TapGestureRecognizer_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
     {
-
-        viewModel.SelectedPackage = (Package)e.Parameter;
-
-        ItemsPage itemsPage = new(viewModel.SelectedPackage)
-        {
-            Title = viewModel.SelectedPackage.Name
-        };
-
-        Navigation.PushAsync(itemsPage);
+        LoadItemsPage((Package)e.Parameter);
     }
 
     void DeleteSwipeItem_Invoked(System.Object sender, System.EventArgs e)
@@ -151,17 +145,21 @@ public partial class MainPageView : ContentPage
         Navigation.PushAsync(qrCodePage);
     }
 
-    //void CollectionView_Scrolled(System.Object sender, Microsoft.Maui.Controls.ItemsViewScrolledEventArgs e)
-    //{
+    private void ScanPage_PackageIDScanned(object sender, PackageEventArgs e)
+    {
+        Package package = App.PackagesRepo.GetItemsWithChildren(e.ID);
+        LoadItemsPage(package);
+    }
 
-    //    if (e.VerticalDelta < 0)
-    //    {
-    //        var parentGrid = packageCollectionView.Parent as Grid;
-    //        // set the row span of the collection view
-    //        // This will create a sticky feature for the search bar
-    //        Grid.SetRow(packageCollectionView, 1);
-    //        Grid.SetRowSpan(packageCollectionView, 1);
-    //    }
+    public void LoadItemsPage(Package package)
+    {
+        viewModel.SelectedPackage = package;
 
-    //}
+        ItemsPage itemsPage = new(viewModel.SelectedPackage)
+        {
+            Title = viewModel.SelectedPackage.Name
+        };
+
+        Navigation.PushAsync(itemsPage);
+    }
 }

@@ -218,8 +218,10 @@
                     Text="Add Package"
                     Clicked="AddPackageButton_Clicked"/>
                 <Button
-                    Grid.Row="2"
                     Text="Search Settings"/>
+                <Button
+                    Text="Scan"
+                    Clicked="ScanButton_Clicked" />
             </HorizontalStackLayout>
         </Grid>
     </Grid>
