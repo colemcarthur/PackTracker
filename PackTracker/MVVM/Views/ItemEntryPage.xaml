@@ -6,7 +6,7 @@
              x:DataType="viewmodel:ItemViewModel"
              x:Class="PackTracker.MVVM.Views.ItemEntryPage"
              Title="ItemEntryPage"
-             BackgroundColor="{StaticResource Secondary}">
+             BackgroundColor="{StaticResource DarkGreen}">
 
      <ContentPage.Resources>
         <converters:ImageSourceConverter x:Key="ImageSourceConverter" />
@@ -16,17 +16,20 @@
 
         <VerticalStackLayout Spacing="10" Padding="10">
 
-            <Label Text="Description" />
+            <Label Text="Description"
+                   TextColor="Black"/>
 
             <Entry x:Name="txtDescription"
                 Text="{Binding Item.Description}"
                 TextChanged="Description_TextChanged"
-                BackgroundColor="White"/>
+                BackgroundColor="{StaticResource LightGreen}"/>
         
              <Grid ColumnDefinitions=".7*, .3*"
                    ColumnSpacing="10">
-                 <Label Text="Purchase Location"/>
-                 <Label Text="Value" Grid.Column="1"/>
+                 <Label Text="Purchase Location"
+                        TextColor="Black"/>
+                 <Label Text="Value" Grid.Column="1"
+                        TextColor="Black"/>
              </Grid>
 
              <Grid ColumnDefinitions=".7*, .3*"
@@ -35,28 +38,28 @@
                 <Entry x:Name="txtPurchaseLocation"
                        Grid.Row="1"
                     Text="{Binding Item.PurchaseLocation}"
-                    BackgroundColor="White"/>
-
+                    BackgroundColor="{StaticResource LightGreen}"/>
                 <Entry x:Name="txtPurchasePrice"
                        Grid.Row="1"
                        Grid.Column="2"
                     Text="{Binding Item.PurchasePrice}"
                     TextChanged="Description_TextChanged"
                     Keyboard="Numeric"
-                    BackgroundColor="White"/>
+                    BackgroundColor="{StaticResource LightGreen}"/>
 
              </Grid>
 
             <StackLayout Spacing="10"
                          Padding="0, 20, 0, 0">
                     
-                <Border HeightRequest="450"
-                        BackgroundColor="White">
+                <Border BackgroundColor="{StaticResource LightGreen}">
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="20,20,20,20" />
                     </Border.StrokeShape>
                     <Image Source="{Binding Item.Image, Converter={StaticResource ImageSourceConverter}}"
-                           x:Name="imgItem"/>
+                           x:Name="imgItem"
+                           Aspect="AspectFill"
+                           Margin="10"/>
                 </Border>
 
                 <Button Text="Take Photo"
@@ -69,7 +72,7 @@
         <HorizontalStackLayout Spacing="10"
                                 Grid.Row="1"
                                 HorizontalOptions="Center"
-                                VerticalOptions="End">
+                                VerticalOptions="Center">
             <Button Text="Cancel"
                     Clicked="CancelButton_Clicked"/>
             <Button Text="Add"

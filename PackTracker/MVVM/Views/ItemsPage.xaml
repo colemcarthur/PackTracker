@@ -4,11 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:model="clr-namespace:PackTracker.MVVM.Models"
     xmlns:viewmodel="clr-namespace:PackTracker.MVVM.ViewModels"
-    xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
     xmlns:converters="clr-namespace:PackTracker.Converters"
     x:DataType="viewmodel:ItemViewModel"
     x:Class="PackTracker.MVVM.Views.ItemsPage"
-    Title="Package Items">
+    Title="Package Items"
+    BackgroundColor="{StaticResource Green}">
 
     <ContentPage.Resources>
         <converters:ImageSourceConverter x:Key="ImageSourceConverter" />
@@ -40,7 +40,8 @@
                                 </SwipeItem>
                             </SwipeItems>
                         </SwipeView.RightItems>
-                        <Frame Padding="5">
+                        <Frame Padding="5"
+                               BackgroundColor="{StaticResource DarkBrown}">
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer
                                     Tapped="TapGestureRecognizer_Tapped"
@@ -52,8 +53,7 @@
                                 <Frame
                                     CornerRadius="12"
                                     Padding="0"
-                                    IsClippedToBounds="True"
-                                    BackgroundColor="Grey">
+                                    IsClippedToBounds="True">
                                     <Image
                                         Source="{Binding Image, Converter={StaticResource ImageSourceConverter}}"
                                         WidthRequest="130"
