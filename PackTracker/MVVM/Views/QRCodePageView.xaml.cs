@@ -27,14 +27,21 @@ public partial class QRCodePageView : ContentPage
     {
         InitializeComponent();
 
-        BarcodeText = barcodeText;
-        DisplayText = displayText;
+        try
+        {
+            BarcodeText = barcodeText;
+            DisplayText = displayText;
 
-        Stream sr = App.BarcodeService.ConvertImageStream(BarcodeText, DisplayText, 200, 200);
+            Stream sr = App.BarcodeService.ConvertImageStream(BarcodeText, DisplayText, 200, 200);
 
-        ImageQR = ImageSource.FromStream(() => sr);
+            ImageQR = ImageSource.FromStream(() => sr);
 
-        BindingContext = this;
+            BindingContext = this;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
 
     }
 

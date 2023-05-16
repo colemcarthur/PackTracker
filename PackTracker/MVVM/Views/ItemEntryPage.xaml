@@ -22,6 +22,7 @@
             <Entry x:Name="txtDescription"
                 Text="{Binding Item.Description}"
                 TextChanged="Description_TextChanged"
+                TextColor="Black"
                 BackgroundColor="{StaticResource LightGreen}"/>
         
              <Grid ColumnDefinitions=".7*, .3*"
@@ -37,12 +38,14 @@
 
                 <Entry x:Name="txtPurchaseLocation"
                        Grid.Row="1"
+                       TextColor="Black"
                     Text="{Binding Item.PurchaseLocation}"
                     BackgroundColor="{StaticResource LightGreen}"/>
                 <Entry x:Name="txtPurchasePrice"
                        Grid.Row="1"
                        Grid.Column="2"
                     Text="{Binding Item.PurchasePrice}"
+                    TextColor="Black"
                     TextChanged="Description_TextChanged"
                     Keyboard="Numeric"
                     BackgroundColor="{StaticResource LightGreen}"/>
@@ -52,14 +55,18 @@
             <StackLayout Spacing="10"
                          Padding="0, 20, 0, 0">
                     
-                <Border BackgroundColor="{StaticResource LightGreen}">
+                <Border BackgroundColor="{StaticResource LightGreen}"
+                        MinimumWidthRequest="390"
+                        HeightRequest="300">
                     <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="20,20,20,20" />
+                        <RoundRectangle CornerRadius="20,20,20,20"/>
                     </Border.StrokeShape>
                     <Image Source="{Binding Item.Image, Converter={StaticResource ImageSourceConverter}}"
                            x:Name="imgItem"
-                           Aspect="AspectFill"
-                           Margin="10"/>
+                           MinimumWidthRequest="90"
+                           HeightRequest="300"
+                           Aspect="AspectFit"
+                           Margin="5"/>
                 </Border>
 
                 <Button Text="Take Photo"

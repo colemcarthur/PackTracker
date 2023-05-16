@@ -2,7 +2,6 @@
 using System.Drawing;
 using CoreGraphics;
 using Foundation;
-//using Microsoft.Maui.Platform;
 using UIKit;
 
 namespace PackTracker.Platforms

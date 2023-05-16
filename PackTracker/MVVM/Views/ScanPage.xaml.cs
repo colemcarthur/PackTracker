@@ -15,37 +15,61 @@ public partial class ScanPage : ContentPage
     {
         InitializeComponent();
 
-        if (cameraBarcodeReaderView != null)
+        try
         {
-            cameraBarcodeReaderView.Options = new BarcodeReaderOptions
+            if (cameraBarcodeReaderView != null)
             {
-                Formats = BarcodeFormats.All,
-                AutoRotate = true,
-                Multiple = true
-            };
+                cameraBarcodeReaderView.Options = new BarcodeReaderOptions
+                {
+                    Formats = BarcodeFormats.All,
+                    AutoRotate = true,
+                    Multiple = true
+                };
+            }
         }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
     }
 
     protected virtual void OnPackageIDScanned(PackageEventArgs e)
     {
-        PackageScannedEventHandler handler = PackageIDScanned;
-        handler?.Invoke(this, e);
+        try
+        {
+            PackageScannedEventHandler handler = PackageIDScanned;
+            handler?.Invoke(this, e);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
     }
 
     protected void BarcodesDetected(object sender, BarcodeDetectionEventArgs e)
     {
-        cameraBarcodeReaderView.IsDetecting = false;
-        
-        MainThread.BeginInvokeOnMainThread(() =>
+        try
         {
-            lblData.Text = $"{e.Results[0].Format}->{e.Results[0].Value}";
-            lblMessage.Text = "";
-            string id = e.Results[0].Value.Split("-")[0].ToString();
-            Navigation.PopModalAsync();
+            cameraBarcodeReaderView.IsDetecting = false;
 
-            OnPackageIDScanned(new PackageEventArgs() { ID = Convert.ToInt32(id) });
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                lblData.Text = $"{e.Results[0].Format}->{e.Results[0].Value}";
+                lblMessage.Text = "";
+                string id = e.Results[0].Value.Split("-")[0].ToString();
+                Navigation.PopModalAsync();
 
-        });
+                OnPackageIDScanned(new PackageEventArgs() { ID = Convert.ToInt32(id) });
+
+            });
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
     }
 
     void Button_Clicked(System.Object sender, System.EventArgs e)
@@ -60,16 +84,20 @@ public partial class ScanPage : ContentPage
         cameraBarcodeReaderView.IsDetecting = true;
     }
 
-    void Button_Clicked_2(System.Object sender, System.EventArgs e)
-    {
-        cameraBarcodeReaderView.CameraLocation = cameraBarcodeReaderView.CameraLocation == CameraLocation.Rear ? CameraLocation.Front : CameraLocation.Rear;
-    }
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
 
-        cameraBarcodeReaderView.IsDetecting = true;
+        try
+        {
+            cameraBarcodeReaderView.IsDetecting = true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        
     }
 
     protected override void OnDisappearing()
@@ -77,10 +105,18 @@ public partial class ScanPage : ContentPage
 
         base.OnDisappearing();
 
-        if (Navigation.NavigationStack.LastOrDefault() == this)
+        try
         {
-            cameraBarcodeReaderView.IsDetecting = false;
+            if (Navigation.NavigationStack.LastOrDefault() == this)
+            {
+                cameraBarcodeReaderView.IsDetecting = false;
+            }
         }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
     }
 }
 

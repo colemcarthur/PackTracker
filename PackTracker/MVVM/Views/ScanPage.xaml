@@ -43,8 +43,6 @@
                         Clicked="Button_Clicked"/>
                 <Button Text="Scan"
                         Clicked="Button_Clicked_1" />
-                <Button Text="Camera"
-                        Clicked="Button_Clicked_2" />
             </HorizontalStackLayout>
 
         </VerticalStackLayout>

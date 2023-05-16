@@ -13,9 +13,11 @@
             <Entry x:Name="PackageDescription"
                     Grid.Row="0"
                     Placeholder="Description of Package"
+                    Margin="10"
                     BackgroundColor="White"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="Center"
+                    TextColor="Black"
                     MaxLength="100"/>
 
             <HorizontalStackLayout Grid.Row="1"

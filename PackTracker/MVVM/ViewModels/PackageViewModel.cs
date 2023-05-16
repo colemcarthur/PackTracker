@@ -20,32 +20,40 @@ namespace PackTracker.MVVM.ViewModels
         [RelayCommand]
         public void PerformSearch(String query)
         {
-            // Get the list of pacakges held in the database
-            List<Package> currentPackages = App.PackagesRepo.GetItemsWithChildren();
-
-            // Find out what items have the same name
-            List<Item> filterItems = currentPackages.SelectMany(p => p.Items)
-                .Where(i => i.Description.ToLower().Contains(query.ToLower())).ToList();
-
-            // Build the list of packages from the found items
-            List<Package> filteredPackages = new List<Package>();
-
-            Package foundPackage;
-
-            foreach (Item item in filterItems)
+            try
             {
-                // Find the package to add to the filtered list
-                foundPackage = currentPackages.Find(p => p.Id == item.PackageID);
+                // Get the list of pacakges held in the database
+                List<Package> currentPackages = App.PackagesRepo.GetItemsWithChildren();
 
-                if (foundPackage != null)
+                // Find out what items have the same name
+                List<Item> filterItems = currentPackages.SelectMany(p => p.Items)
+                    .Where(i => i.Description.ToLower().Contains(query.ToLower())).ToList();
+
+                // Build the list of packages from the found items
+                List<Package> filteredPackages = new List<Package>();
+
+                Package foundPackage;
+
+                foreach (Item item in filterItems)
                 {
-                    // Double check if package hasn't already been added
-                    if (filteredPackages.Find(p => p.Id == foundPackage.Id) == null)
-                        filteredPackages.Add(foundPackage);
-                }
-            }
+                    // Find the package to add to the filtered list
+                    foundPackage = currentPackages.Find(p => p.Id == item.PackageID);
 
-            Packages = filteredPackages;
+                    if (foundPackage != null)
+                    {
+                        // Double check if package hasn't already been added
+                        if (filteredPackages.Find(p => p.Id == foundPackage.Id) == null)
+                            filteredPackages.Add(foundPackage);
+                    }
+                }
+
+                Packages = filteredPackages;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+           
 
         }
 
@@ -77,39 +85,79 @@ namespace PackTracker.MVVM.ViewModels
 
 		public PackageViewModel()
 		{
-            Refresh();
+            try
+            {
+                Refresh();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
         }
 
         public void AddOrUpdatePackage(Package package)
         {
-            App.PackagesRepo.Save(package);
 
-            Refresh();
+            try
+            {
+                App.PackagesRepo.Save(package);
+
+                Refresh();
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
 
         public void AddOrUpdateItem(Item item)
         {
-            SelectedPackage.Items.Add(item);
-            App.ItemsRepo.Save(item);
+            try
+            {
+                SelectedPackage.Items.Add(item);
+                App.ItemsRepo.Save(item);
 
-            Refresh();
+                Refresh();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
 
         public void DeletePackage(Package package)
         {
-            if (package is null)
-                return;
+            try
+            {
+                if (package is null)
+                    return;
 
-            App.PackagesRepo.Delete(package);
+                App.PackagesRepo.Delete(package);
 
-            Refresh();
+                Refresh();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
   
         public void Refresh()
         {
-            Packages = App.PackagesRepo.GetItemsWithChildren();
+            try
+            {
+                Packages = App.PackagesRepo.GetItemsWithChildren();
 
-            TotalValue = App.PackagesRepo.TotalValue();
+                TotalValue = App.PackagesRepo.TotalValue();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
 
     }

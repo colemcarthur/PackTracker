@@ -14,44 +14,74 @@ namespace PackTracker.MVVM.ViewModels
 
 		public ItemViewModel(Package package, Item item = null)
 		{
-			Package = package;
+			try
+			{
+                Package = package;
 
-			if (item == null)
+                if (item == null)
+                {
+                    Item = new Item()
+                    {
+                        PackageID = package.Id,
+                        Description = "",
+                        PurchasePrice = 0,
+                        PurchaseLocation = ""
+                    };
+                }
+                else
+                {
+                    Item = item;
+                }
+            }
+			catch (Exception ex)
 			{
-				Item = new Item()
-				{
-					PackageID = package.Id,
-					Description = "",
-					PurchasePrice = 0,
-					PurchaseLocation = ""
-				};
-			}
-			else
-			{
-				Item = item;
+                Console.WriteLine(ex.Message);
 			}
 
 		}
 
         public void DeleteItem(Item item)
         {
-            if (item is null)
-                return;
+            try
+            {
+                if (item is null)
+                    return;
 
-            App.ItemsRepo.Delete(item);
+                App.ItemsRepo.Delete(item);
 
-            Refresh();
+                Refresh();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
 
         public void Save(Item newItem)
 		{
-            Package.Items.Add(newItem);
-			App.ItemsRepo.Save(newItem);
+            try
+            {
+                Package.Items.Add(newItem);
+                App.ItemsRepo.Save(newItem);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
 		}
 
 		public void Refresh()
 		{
-			Package = App.PackagesRepo.GetItemsWithChildren(Package.Id);
+            try
+            {
+                Package = App.PackagesRepo.GetItemsWithChildren(Package.Id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 	}
 }

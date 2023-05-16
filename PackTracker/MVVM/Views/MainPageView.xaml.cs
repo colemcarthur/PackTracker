@@ -16,8 +16,16 @@ public partial class MainPageView : ContentPage
 	{
 		InitializeComponent();
 
-        viewModel = new PackageViewModel();
-        BindingContext = viewModel;
+        try
+        {
+            viewModel = new PackageViewModel();
+            BindingContext = viewModel;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        
 	}
 
     async void ScanButton_Clicked(System.Object sender, System.EventArgs e)
@@ -64,102 +72,174 @@ public partial class MainPageView : ContentPage
 
     async void AddPackageButton_Clicked(System.Object sender, System.EventArgs e)
     {
-        var popup = new PackageEntryPopup();
 
-        var result = await this.ShowPopupAsync(popup);
-
-        if (result != null)
+        try
         {
 
-            viewModel.AddOrUpdatePackage(new Package()
+            var popup = new PackageEntryPopup();
+
+            var result = await this.ShowPopupAsync(popup);
+
+            if (result != null)
             {
-                Name = result.ToString(),
-                CreationDate = DateTime.Now
-            });
 
-            packageCollectionView.ScrollTo(viewModel.Count - 1, position: ScrollToPosition.MakeVisible, animate: false);
+                viewModel.AddOrUpdatePackage(new Package()
+                {
+                    Name = result.ToString(),
+                    CreationDate = DateTime.Now
+                });
 
+                packageCollectionView.ScrollTo(viewModel.Count - 1, position: ScrollToPosition.MakeVisible, animate: false);
+
+            }
         }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
     }
 
     void CollectionView_SelectionChanged(System.Object sender, Microsoft.Maui.Controls.SelectionChangedEventArgs e)
     {
-
-        viewModel.SelectedPackage = (e.CurrentSelection.FirstOrDefault() as Package);
+        try
+        {
+            viewModel.SelectedPackage = (e.CurrentSelection.FirstOrDefault() as Package);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+       
     }
 
     void TapGestureRecognizer_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
     {
-        LoadItemsPage((Package)e.Parameter);
+        try
+        {
+            LoadItemsPage((Package)e.Parameter);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
 
     void DeleteSwipeItem_Invoked(System.Object sender, System.EventArgs e)
     {
-        SwipeItem swipeItem = (SwipeItem)sender;
+        try
+        {
+            SwipeItem swipeItem = (SwipeItem)sender;
 
-        viewModel.SelectedPackage = (Package)swipeItem.CommandParameter;
+            viewModel.SelectedPackage = (Package)swipeItem.CommandParameter;
 
-        viewModel.DeletePackage(viewModel.SelectedPackage);
+            viewModel.DeletePackage(viewModel.SelectedPackage);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
     }
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
 
-        if (searchBar.Text != null)
+        try
         {
-            if (searchBar.Text.Length > 0)
-                viewModel.PerformSearch(searchBar.Text);
+            if (searchBar.Text != null)
+            {
+                if (searchBar.Text.Length > 0)
+                    viewModel.PerformSearch(searchBar.Text);
+                else
+                    viewModel.Refresh();
+            }
             else
+            {
                 viewModel.Refresh();
+            }
         }
-        else
+        catch (Exception ex)
         {
-            viewModel.Refresh();
+            Console.WriteLine(ex.Message);
         }
+
 
     }
 
     private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
     {
-        if (e.NewTextValue.Trim().Length == 0)
+        try
         {
-            var parentGrid = packageCollectionView.Parent as Grid;
-            // set the row span of the collection view
-            // This will create a sticky feature for the search bar
-            Grid.SetRow(packageCollectionView, 0);
-            Grid.SetRowSpan(packageCollectionView, 2);
-            viewModel.Refresh();
+            if (e.NewTextValue.Trim().Length == 0)
+            {
+                var parentGrid = packageCollectionView.Parent as Grid;
+                // set the row span of the collection view
+                // This will create a sticky feature for the search bar
+                Grid.SetRow(packageCollectionView, 0);
+                Grid.SetRowSpan(packageCollectionView, 2);
+                viewModel.Refresh();
+            }
         }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
     }
 
     void QRCodeTapGestureRecognizer_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
     {
-        viewModel.SelectedPackage = (Package)e.Parameter;
+        try
+        {
+            viewModel.SelectedPackage = (Package)e.Parameter;
 
-        string barcodeText = viewModel.SelectedPackage.Id + " - " + viewModel.SelectedPackage.Name;
-        string displayText = viewModel.SelectedPackage.Name;
+            string barcodeText = viewModel.SelectedPackage.Id + " - " + viewModel.SelectedPackage.Name;
+            string displayText = viewModel.SelectedPackage.Name;
 
-        QRCodePageView qrCodePage = new QRCodePageView(barcodeText, displayText);
+            QRCodePageView qrCodePage = new QRCodePageView(barcodeText, displayText);
 
-        Navigation.PushAsync(qrCodePage);
+            Navigation.PushAsync(qrCodePage);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
     }
 
     private void ScanPage_PackageIDScanned(object sender, PackageEventArgs e)
     {
-        Package package = App.PackagesRepo.GetItemsWithChildren(e.ID);
-        LoadItemsPage(package);
+        try
+        {
+            Package package = App.PackagesRepo.GetItemsWithChildren(e.ID);
+            LoadItemsPage(package);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
     }
 
     public void LoadItemsPage(Package package)
     {
-        viewModel.SelectedPackage = package;
-
-        ItemsPage itemsPage = new(viewModel.SelectedPackage)
+        try
         {
-            Title = viewModel.SelectedPackage.Name
-        };
+            viewModel.SelectedPackage = package;
 
-        Navigation.PushAsync(itemsPage);
+            ItemsPage itemsPage = new(viewModel.SelectedPackage)
+            {
+                Title = viewModel.SelectedPackage.Name
+            };
+
+            Navigation.PushAsync(itemsPage);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
     }
 }

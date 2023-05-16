@@ -15,61 +15,102 @@ public partial class ItemsPage : ContentPage
 	public ItemsPage(Package package)
 	{
 		InitializeComponent();
-		this.package = package;
 
-		viewModel = new ItemViewModel(package);
+        try
+        {
+            this.package = package;
 
-        BindingContext = viewModel;
+            viewModel = new ItemViewModel(package);
+
+            BindingContext = viewModel;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
 	}
 
     async void AddItemButton_Clicked(System.Object sender, System.EventArgs e)
     {
-		
-		ItemEntryPage page = new ItemEntryPage(package);
 
-		await Navigation.PushModalAsync(page);
+        try
+        {
+            ItemEntryPage page = new ItemEntryPage(package);
 
-		Item item = await page.GetFormDataAsync();
+            await Navigation.PushModalAsync(page);
 
-		if (item != null)
-		{
-			
-			viewModel.Save(item);
-		}
+            Item item = await page.GetFormDataAsync();
+
+            if (item != null)
+            {
+
+                viewModel.Save(item);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
     }
 
     async void TapGestureRecognizer_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
     {
 
-        Item item = (Item)e.Parameter;
-
-		ItemEntryPage page = new ItemEntryPage(package, item);
-
-        await Navigation.PushModalAsync(page);
-
-		item = await page.GetFormDataAsync();
-
-        if (item != null)
+        try
         {
+            Item item = (Item)e.Parameter;
 
-            viewModel.Save(item);
+            ItemEntryPage page = new ItemEntryPage(package, item);
+
+            await Navigation.PushModalAsync(page);
+
+            item = await page.GetFormDataAsync();
+
+            if (item != null)
+            {
+
+                viewModel.Save(item);
+            }
         }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
     }
 
     void DeleteSwipeItem_Invoked(System.Object sender, System.EventArgs e)
     {
-        SwipeItem swipeItem = (SwipeItem)sender;
+        try
+        {
+            SwipeItem swipeItem = (SwipeItem)sender;
 
-        Item item = (Item)swipeItem.CommandParameter;
+            Item item = (Item)swipeItem.CommandParameter;
 
-        viewModel.DeleteItem(item);
+            viewModel.DeleteItem(item);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
     }
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
 
-		viewModel.Refresh();
+        try
+        {
+            viewModel.Refresh();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
     }
 
 }

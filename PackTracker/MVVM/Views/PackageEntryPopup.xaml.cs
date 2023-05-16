@@ -11,10 +11,25 @@ public partial class PackageEntryPopup : Popup
 
     void OkButton_Clicked(System.Object sender, System.EventArgs e)
     {
-        Close(PackageDescription.Text);
+        try
+        {
+            Close(PackageDescription.Text);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        
     }
     void CancelButton_Clicked(System.Object sender, System.EventArgs e)
     {
-        Close();
+        try
+        {
+            Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
 }
