@@ -1,18 +1,17 @@
 ﻿
 using PackTracker.MVVM.Models;
-using PackTracker.MVVM.Views;
-using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.ComponentModel;
-using SQLite;
-using System.Diagnostics;
 
 namespace PackTracker.MVVM.ViewModels
 {
 
     partial class PackageViewModel : ObservableObject, INotifyPropertyChanged
 	{
+
+        [ObservableProperty]
+        Int32 isSelect = 0;
 
         [ObservableProperty]
         List<Package> packages;
@@ -165,6 +164,7 @@ namespace PackTracker.MVVM.ViewModels
 
         }
 
+        
     }
 
 }

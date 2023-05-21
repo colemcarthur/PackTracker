@@ -80,6 +80,11 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="Converters\" />
+	  <None Remove="Resources\Images\scan.png" />
+	  <None Remove="Resources\Images\print.png" />
+	  <None Remove="Resources\Images\select.png" />
+	  <None Remove="Resources\Images\package.png" />
+	  <None Remove="Resources\Images\settings.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="MVVM\Views\ItemsPagexaml">
@@ -89,6 +94,11 @@
 	<ItemGroup>
 	  <BundleResource Include="Resources\Fonts\arrow.ttf" />
 	  <BundleResource Include="Resources\Images\range.png" />
+	  <BundleResource Include="Resources\Images\scan.png" />
+	  <BundleResource Include="Resources\Images\print.png" />
+	  <BundleResource Include="Resources\Images\select.png" />
+	  <BundleResource Include="Resources\Images\package.png" />
+	  <BundleResource Include="Resources\Images\settings.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiIcon Include="Resources\AppIcon\appicon.svg" />

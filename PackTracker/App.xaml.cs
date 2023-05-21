@@ -37,7 +37,7 @@ public partial class App : Application
 		FileSaver = fileSaver;
 
 		// Create the Navigation Stack
-		MainPage = new AppContainer();
+		MainPage = new NavigationPage(new MainPageView());
 
 		
 	}

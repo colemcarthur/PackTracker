@@ -42,7 +42,7 @@
                             </SwipeItems>
                         </SwipeView.RightItems>
                         <Frame Padding="5"
-                               BackgroundColor="{StaticResource DarkBrown}">
+                                BackgroundColor="{StaticResource DarkBrown}">
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer
                                     Tapped="TapGestureRecognizer_Tapped"
@@ -55,19 +55,18 @@
                                     CornerRadius="12"
                                     Padding="0"
                                     IsClippedToBounds="True">
-                           
+                                    
                                     <Image
                                         Source="{Binding Image, Converter={StaticResource ImageSourceConverter}}"
                                         WidthRequest="130"
                                         HeightRequest="100"
                                         VerticalOptions="FillAndExpand"
                                         Aspect="AspectFill">
-                                         <Image.Rotation>
+                                            <Image.Rotation>
                                             <OnPlatform x:TypeArguments="x:Double">
                                                 <On Platform="iOS">90</On>
                                             </OnPlatform>
                                         </Image.Rotation>
-                                         
                                     </Image>
                                 </Frame>
                                 <Grid
@@ -96,6 +95,7 @@
                             </Grid>
                         </Frame>
                     </SwipeView>
+ 
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

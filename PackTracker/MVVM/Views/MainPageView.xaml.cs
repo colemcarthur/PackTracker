@@ -1,10 +1,9 @@
 ﻿
 using CommunityToolkit.Maui.Views;
-using Microsoft.Maui.ApplicationModel;
+using Microsoft.Maui.Controls;
 using PackTracker.MVVM.Models;
 using PackTracker.MVVM.ViewModels;
-using System.Diagnostics;
-using System.Text;
+
 
 namespace PackTracker.MVVM.Views;
 
@@ -20,6 +19,7 @@ public partial class MainPageView : ContentPage
         {
             viewModel = new PackageViewModel();
             BindingContext = viewModel;
+
         }
         catch (Exception ex)
         {
@@ -240,5 +240,19 @@ public partial class MainPageView : ContentPage
             Console.WriteLine(ex.Message);
         }
 
+    }
+
+    void Selection_Clicked(System.Object sender, System.EventArgs e)
+    {
+        if (viewModel.IsSelect == 0)
+            viewModel.IsSelect = 1;
+        else
+            viewModel.IsSelect = 0;
+
+    }
+
+    void Settings_Clicked(System.Object sender, System.EventArgs e)
+    {
+        Navigation.PushModalAsync(new SettingsPage());
     }
 }
