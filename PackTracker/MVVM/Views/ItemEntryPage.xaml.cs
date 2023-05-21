@@ -1,7 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using PackTracker.MVVM.Models;
 using PackTracker.MVVM.ViewModels;
-
+using Microsoft.Maui.Graphics.Platform;
+using Microsoft.Maui.Graphics;
 
 namespace PackTracker.MVVM.Views;
 
@@ -32,6 +33,8 @@ public partial class ItemEntryPage : ContentPage
         }
         BindingContext = new ItemViewModel(package, item);
 
+        if (DeviceInfo.Current.Platform == DevicePlatform.iOS)
+            imgItem.RotateTo(90);
 	}
 
     public Task<Item> GetFormDataAsync()
@@ -112,14 +115,22 @@ public partial class ItemEntryPage : ContentPage
 
                     using Stream sourceStream = await photo.OpenReadAsync();
 
-                    item.Image = StreamToByteArray(sourceStream);
+                    Microsoft.Maui.Graphics.IImage image;
+                    image = PlatformImage.FromStream(sourceStream);
+                    //Microsoft.Maui.Graphics.IImage newImage = image.Downsize(100, true);
+                    Double width = image.Width * .30;
+                    Double height = image.Height * .30;
+                    Microsoft.Maui.Graphics.IImage newImage = image.Resize((float)width, (float)height, ResizeMode.Fit, true);
+    
+                    item.Image = newImage.ToPlatformImage().AsBytes();
 
+                    //item.Image = StreamToByteArray(sourceStream);
 
                     // Convert the byte array to an ImageSource object
                     ImageSource imageSource = ImageSource.FromStream(() => new MemoryStream(item.Image));
 
                     imgItem.Source = imageSource;
-
+                    
                     //using FileStream localFileStream = File.OpenWrite(localFilePath);
 
                     //await sourceStream.CopyToAsync(localFileStream);
@@ -149,5 +160,4 @@ public partial class ItemEntryPage : ContentPage
             return memoryStream.ToArray();
         }
     }
-
 }

@@ -38,11 +38,13 @@
     
         <VerticalStackLayout Grid.Row="2"
                              VerticalOptions="End">
-            <HorizontalStackLayout>
+            <HorizontalStackLayout HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   Spacing="10">
                 <Button Text="Torch"
-                        Clicked="Button_Clicked"/>
-                <Button Text="Scan"
-                        Clicked="Button_Clicked_1" />
+                        Clicked="CameraLight_Clicked"/>
+                <Button Text="Cancel"
+                        Clicked="Cancel_Clicked"/>
             </HorizontalStackLayout>
 
         </VerticalStackLayout>

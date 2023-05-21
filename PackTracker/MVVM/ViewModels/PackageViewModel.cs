@@ -54,21 +54,15 @@ namespace PackTracker.MVVM.ViewModels
                 Console.WriteLine(ex.Message);
             }
            
-
         }
 
-        public Int32 Count
-        {
-            get
-            {
-                // Your custom logic here
-                return Packages.Count;
+        [ObservableProperty]
+        Int32 count = 0;
 
-            }
-        }
-
+        [ObservableProperty]
         private Double totalValue = 0;
 
+        /*
         public Double TotalValue
         {
             get
@@ -80,7 +74,7 @@ namespace PackTracker.MVVM.ViewModels
                 totalValue = value;
             }
         }
-
+        */
         public Package SelectedPackage { get; set; }
 
 		public PackageViewModel()
@@ -134,6 +128,14 @@ namespace PackTracker.MVVM.ViewModels
                 if (package is null)
                     return;
 
+                // Delete all items in this package
+                List<Item> items = App.ItemsRepo.GetItems(x => x.PackageID == package.Id);
+
+                foreach( Item item in items)
+                {
+                    App.ItemsRepo.Delete(item);
+                }
+
                 App.PackagesRepo.Delete(package);
 
                 Refresh();
@@ -149,9 +151,12 @@ namespace PackTracker.MVVM.ViewModels
         {
             try
             {
-                Packages = App.PackagesRepo.GetItemsWithChildren();
+                Packages = App.PackagesRepo.GetItems();
 
                 TotalValue = App.PackagesRepo.TotalValue();
+
+                Count = Packages.Count;
+
             }
             catch (Exception ex)
             {

@@ -56,17 +56,15 @@
                          Padding="0, 20, 0, 0">
                     
                 <Border BackgroundColor="{StaticResource LightGreen}"
-                        MinimumWidthRequest="390"
-                        HeightRequest="300">
+                        HeightRequest="350">
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="20,20,20,20"/>
                     </Border.StrokeShape>
                     <Image Source="{Binding Item.Image, Converter={StaticResource ImageSourceConverter}}"
                            x:Name="imgItem"
-                           MinimumWidthRequest="90"
-                           HeightRequest="300"
-                           Aspect="AspectFit"
-                           Margin="5"/>
+                           HeightRequest="320"
+                           Aspect="AspectFill"
+                           Margin="10"/>
                 </Border>
 
                 <Button Text="Take Photo"

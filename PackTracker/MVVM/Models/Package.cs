@@ -31,6 +31,14 @@ namespace PackTracker.MVVM.Models
             }
         }
 
+        [Ignore]
+        public Int32 ItemCount
+        {
+            get
+            {
+                return App.PackagesRepo.ItemCount(this.Id);
+            }
+        }
         public Package()
 		{
 

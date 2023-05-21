@@ -39,6 +39,7 @@ public partial class App : Application
 		// Create the Navigation Stack
 		MainPage = new AppContainer();
 
+		
 	}
 }
 

@@ -4,7 +4,7 @@
                x:Class="PackTracker.MVVM.Views.PackageEntryPopup" >
 
     <VerticalStackLayout WidthRequest="350"
-                         HeightRequest="120"
+                         HeightRequest="140"
                          Padding="10">
 
         <Grid RowDefinitions=".5*, .5*"
@@ -13,7 +13,7 @@
             <Entry x:Name="PackageDescription"
                     Grid.Row="0"
                     Placeholder="Description of Package"
-                    Margin="10"
+                    Margin="5"
                     BackgroundColor="White"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="Center"
@@ -21,7 +21,8 @@
                     MaxLength="100"/>
 
             <HorizontalStackLayout Grid.Row="1"
-                                   Spacing="5"
+                                   Spacing="10"
+                                   Margin="5"
                                    HorizontalOptions="EndAndExpand">
 
                 <Button Text="Cancel"

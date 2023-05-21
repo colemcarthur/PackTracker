@@ -82,6 +82,7 @@
                 CancelButtonColor="{StaticResource LightGreen}"
                 TextColor="{StaticResource LightGreen}"
                 x:Name="searchBar"
+                TextChanged="SearchBar_TextChanged"
                 SearchCommand="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PackageViewModel}}, Path=PerformSearchCommand}"
                 SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}">
                 <SearchBar.Behaviors>
@@ -180,7 +181,7 @@
                                             Grid.Column="1"
                                             FontSize="Small"
                                             HorizontalOptions="End"
-                                            Text="{Binding Items.Count, StringFormat='{0} item(s)'}"/>
+                                            Text="{Binding ItemCount, StringFormat='{0} item(s)'}"/>
 
                                         <Image
                                             Grid.Column="2"

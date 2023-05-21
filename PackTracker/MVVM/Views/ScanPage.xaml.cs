@@ -72,18 +72,15 @@ public partial class ScanPage : ContentPage
 
     }
 
-    void Button_Clicked(System.Object sender, System.EventArgs e)
+    void CameraLight_Clicked(System.Object sender, System.EventArgs e)
     {
         cameraBarcodeReaderView.IsTorchOn = !cameraBarcodeReaderView.IsTorchOn;
     }
 
-    void Button_Clicked_1(System.Object sender, System.EventArgs e)
+    void Cancel_Clicked(System.Object sender, System.EventArgs e)
     {
-        lblMessage.Text = "Scan Barcode...";
-        lblData.Text = "";
-        cameraBarcodeReaderView.IsDetecting = true;
+        Navigation.PopModalAsync();
     }
-
 
     protected override void OnAppearing()
     {
@@ -118,6 +115,7 @@ public partial class ScanPage : ContentPage
         }
 
     }
+
 }
 
 public class PackageEventArgs : EventArgs

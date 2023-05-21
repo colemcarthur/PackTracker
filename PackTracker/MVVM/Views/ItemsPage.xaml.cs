@@ -18,11 +18,14 @@ public partial class ItemsPage : ContentPage
 
         try
         {
+
+
             this.package = package;
 
             viewModel = new ItemViewModel(package);
 
             BindingContext = viewModel;
+           
         }
         catch (Exception ex)
         {
@@ -112,5 +115,5 @@ public partial class ItemsPage : ContentPage
         }
 
     }
-
+ 
 }

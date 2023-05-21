@@ -165,7 +165,6 @@ public partial class MainPageView : ContentPage
             Console.WriteLine(ex.Message);
         }
 
-
     }
 
     private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)

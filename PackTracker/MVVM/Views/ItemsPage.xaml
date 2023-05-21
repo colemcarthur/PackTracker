@@ -8,7 +8,8 @@
     x:DataType="viewmodel:ItemViewModel"
     x:Class="PackTracker.MVVM.Views.ItemsPage"
     Title="Package Items"
-    BackgroundColor="{StaticResource Green}">
+    BackgroundColor="{StaticResource Green}"
+    NavigationPage.IconColor="{StaticResource LightGreen}">
 
     <ContentPage.Resources>
         <converters:ImageSourceConverter x:Key="ImageSourceConverter" />
@@ -54,12 +55,20 @@
                                     CornerRadius="12"
                                     Padding="0"
                                     IsClippedToBounds="True">
+                           
                                     <Image
                                         Source="{Binding Image, Converter={StaticResource ImageSourceConverter}}"
                                         WidthRequest="130"
                                         HeightRequest="100"
                                         VerticalOptions="FillAndExpand"
-                                        Aspect="AspectFit"/>
+                                        Aspect="AspectFill">
+                                         <Image.Rotation>
+                                            <OnPlatform x:TypeArguments="x:Double">
+                                                <On Platform="iOS">90</On>
+                                            </OnPlatform>
+                                        </Image.Rotation>
+                                         
+                                    </Image>
                                 </Frame>
                                 <Grid
                                     Grid.Column="1"

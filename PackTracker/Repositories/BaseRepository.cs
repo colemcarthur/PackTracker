@@ -111,6 +111,7 @@ namespace PackTracker.Repositories
             {
                 //connection.Delete(item);
                 connection.Delete(record, true);
+                
             }
             catch (Exception ex)
             {
@@ -212,6 +213,18 @@ namespace PackTracker.Repositories
             command.CommandText = query;
 
             return command.ExecuteScalar<Double>();
+
+        }
+
+        public Int32 ItemCount(Int32 PackageID)
+        {
+            var query = @"Select COUNT() as ItemCount
+                          FROM Item WHERE PackageID = " + PackageID.ToString();
+
+            SQLiteCommand command = new SQLiteCommand(connection);
+            command.CommandText = query;
+
+            return command.ExecuteScalar<Int32>();
 
         }
     }
