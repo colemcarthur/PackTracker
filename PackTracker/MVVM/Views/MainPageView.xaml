@@ -99,7 +99,7 @@
                                  Grid.ColumnSpan="3"
                                  VerticalOptions="Start"
                                  HorizontalOptions="Center">
-                <ImageButton Source="package.png"
+                <ImageButton Source="packageicon.png"
                             Clicked="AddPackageButton_Clicked"/>
                 <Label Text="Add Package"
                        FontSize="Large"
@@ -234,13 +234,13 @@
                                    HorizontalOptions="Center"
                                    Spacing="45">
 
-                <ImageButton Source="select.png"
+                <ImageButton Source="selecticon.png"
                              Clicked="Selection_Clicked" />
-                <ImageButton Source="print.png"
+                <ImageButton Source="printicon.png"
                              IsEnabled="False" />
-                <ImageButton Source="scan.png"
+                <ImageButton Source="scanicon.png"
                              Clicked="ScanButton_Clicked" />
-                <ImageButton Source="settings.png"
+                <ImageButton Source="settingsicon.png"
                              Clicked="Settings_Clicked" />
             </HorizontalStackLayout>
 

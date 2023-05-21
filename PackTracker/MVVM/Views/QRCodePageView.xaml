@@ -5,7 +5,8 @@
              xmlns:views="clr-namespace:PackTracker.MVVM.Views"
              x:DataType="views:QRCodePageView"
              x:Class="PackTracker.MVVM.Views.QRCodePageView"
-             Title="Print Package Code">
+             Title="Print Package Code"
+             NavigationPage.IconColor="{StaticResource LightGreen}">
 
    
         <Grid
