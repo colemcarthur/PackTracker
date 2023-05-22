@@ -80,7 +80,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="Converters\" />
-	  <None Remove="Resources\Images\select.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="MVVM\Views\ItemsPagexaml">
@@ -88,9 +87,11 @@
 	  </None>
 	</ItemGroup>
 	<ItemGroup>
+	  <BundleResource Remove="Resources\Styles\AppStyles.xaml" />
+	</ItemGroup>
+	<ItemGroup>
 	  <BundleResource Include="Resources\Fonts\arrow.ttf" />
 	  <BundleResource Include="Resources\Images\range.png" />
-	  <BundleResource Include="Resources\Images\select.png" />
 	  <BundleResource Include="Resources\Styles\Styles.xaml" Condition=" '$(EnableDefaultXamlItems)' == 'true' ">
 	    <SubType>Designer</SubType>
 	  </BundleResource>

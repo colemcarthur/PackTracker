@@ -8,46 +8,38 @@
     xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
     NavigationPage.HasNavigationBar="False"
     x:DataType="viewmodel:PackageViewModel"
-    x:Class="PackTracker.MVVM.Views.MainPageView">
+    x:Class="PackTracker.MVVM.Views.MainPageView"
+    ios:Page.UseSafeArea="False">
 
     <Grid
-        RowDefinitions=".1*,.2*,.7*"
-        BackgroundColor="{StaticResource LightGreen}"
-        RowSpacing="12"
-        Margin="0"
-        Padding="0">
-        <RoundRectangle
-            Grid.RowSpan="2"
-            Margin="-250,-1000,-250,0"
-            Fill="{StaticResource DarkGreen}"
-            Opacity=".5"
-            CornerRadius="0,0,400,400"
-            Shadow="{StaticResource Shadow}"/>
-        <RoundRectangle
-            Grid.RowSpan="2"
-            Margin="-250,-1020,-250,20"
-            Fill="{StaticResource DarkGreen}"
-            CornerRadius="0,0,400,400"/>
+        RowDefinitions=".1*,.9*"
+        BackgroundColor="{StaticResource LightGreen}">
 
         <!--#region Summary-->
         <Grid
-            Grid.RowSpan="2"
             ColumnDefinitions="*,.3*,*"
             RowDefinitions=".2*,.3*,.2*,.3*">
+
+            <RoundRectangle
+                HeightRequest="300"
+                Margin="-20,-60,-20,0"
+                Grid.ColumnSpan="3"
+                Grid.RowSpan="3"
+                Fill="{StaticResource DarkGreen}"/>
 
             <Label
                 Text="Packages"
                 FontSize="Medium"
                 HorizontalTextAlignment="Center"/>
 
-                <Label
-                    Grid.Row="1"
-                    Text="{Binding Count}"
-                    FontSize="30"
-                    FontAutoScalingEnabled="True"
-                    HorizontalTextAlignment="Center"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center"/>
+            <Label
+                Grid.Row="1"
+                Text="{Binding Count}"
+                FontSize="30"
+                FontAutoScalingEnabled="True"
+                HorizontalTextAlignment="Center"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"/>
 
             <Rectangle
                 Grid.RowSpan="2"
@@ -74,11 +66,27 @@
                 VerticalOptions="Center"
                 HorizontalOptions="Center"/>
 
-            <SearchBar
-                ios:SearchBar.SearchBarStyle="Minimal"
+            <HorizontalStackLayout
                 Grid.Row="2"
                 Grid.ColumnSpan="3"
+                VerticalOptions="Start"
+                HorizontalOptions="Center">
+                <ImageButton
+                    Source="packageicon.png"
+                    Clicked="AddPackageButton_Clicked"/>
+                <Label
+                    Text="Add Package"
+                    FontSize="Small"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+
+            <SearchBar
+                ios:SearchBar.SearchBarStyle="Prominent"
+                Grid.Row="3"
+                Grid.ColumnSpan="3"
                 Placeholder="Search..."
+                BackgroundColor="{StaticResource DarkGreen}"
                 PlaceholderColor="{StaticResource LightGreen}"
                 CancelButtonColor="{StaticResource LightGreen}"
                 TextColor="{StaticResource LightGreen}"
@@ -93,26 +101,11 @@
                         ShouldDismissKeyboardAutomatically="True"/>
                 </SearchBar.Behaviors>
             </SearchBar>
-            <HorizontalStackLayout Spacing="5"
-                                   Grid.Row="3"
-                                 Grid.Column="0"
-                                 Grid.ColumnSpan="3"
-                                 VerticalOptions="Start"
-                                 HorizontalOptions="Center">
-                <ImageButton Source="packageicon.png"
-                            Clicked="AddPackageButton_Clicked"/>
-                <Label Text="Add Package"
-                       FontSize="Large"
-                       TextColor="Black"
-                       VerticalOptions="Center"/>
-            </HorizontalStackLayout>
-
         </Grid>
         <!--#endregion-->
 
         <Grid
             Grid.Row="1"
-            Grid.RowSpan="2"
             RowDefinitions=".9*,.1*"
             ZIndex="-1">
 
@@ -129,8 +122,9 @@
                     <DataTemplate x:DataType="model:Package">
                         <Grid ColumnDefinitions=".1*, .9*">
                            <CheckBox Color="{StaticResource DarkGreen}"/>
-                            <SwipeView Grid.Column="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PackageViewModel}}, Path=IsSelect}"
-                                       Grid.ColumnSpan="2">
+                            <SwipeView
+                                Grid.Column="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PackageViewModel}}, Path=IsSelect}"
+                                Grid.ColumnSpan="2">
                                 <SwipeView.RightItems>
                                     <SwipeItems>
                                         <SwipeItem
@@ -216,32 +210,42 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
                 <CollectionView.Header>
-                        <Grid HeightRequest="160"/>
+                        <Grid HeightRequest="0"/>
                 </CollectionView.Header>
                 <CollectionView.Footer>
-                        <Grid HeightRequest="70"/>
+                        <Grid HeightRequest="80"/>
                 </CollectionView.Footer>
             </CollectionView>
 
         </Grid>
-        <Frame HeightRequest="90"
-               Grid.Row="2"
-                Margin="-40"
-                VerticalOptions="End"
-                BackgroundColor="{StaticResource DarkGreen}"
-                ZIndex="-1">
-            <HorizontalStackLayout VerticalOptions="Center"
-                                   HorizontalOptions="Center"
-                                   Spacing="45">
+        <Frame
+            HeightRequest="90"
+            Grid.Row="3"
+            VerticalOptions="End"
+            BackgroundColor="{StaticResource DarkGreen}"
+            Margin="0,0,0,20"
+            ZIndex="1">
+            <HorizontalStackLayout
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Spacing="45">
 
-                <ImageButton Source="selecticon.png"
-                             Clicked="Selection_Clicked" />
-                <ImageButton Source="printicon.png"
-                             IsEnabled="False" />
-                <ImageButton Source="scanicon.png"
-                             Clicked="ScanButton_Clicked" />
-                <ImageButton Source="settingsicon.png"
-                             Clicked="Settings_Clicked" />
+                <ImageButton
+                    HeightRequest="10"
+                    Source="selecticon.png"
+                    Clicked="Selection_Clicked" />
+                <ImageButton
+                    HeightRequest="10"
+                    Source="printicon.png"
+                    IsEnabled="False" />
+                <ImageButton
+                    HeightRequest="10"
+                    Source="scanicon.png"
+                    Clicked="ScanButton_Clicked" />
+                <ImageButton
+                    HeightRequest="10"
+                    Source="settingsicon.png"
+                    Clicked="Settings_Clicked" />
             </HorizontalStackLayout>
 
         </Frame>
