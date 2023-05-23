@@ -121,7 +121,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Package">
                         <Grid ColumnDefinitions=".1*, .9*">
-                           <CheckBox Color="{StaticResource DarkGreen}"/>
+                           <CheckBox Color="{StaticResource DarkGreen}" />
                             <SwipeView
                                 Grid.Column="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PackageViewModel}}, Path=IsSelect}"
                                 Grid.ColumnSpan="2">
@@ -138,7 +138,7 @@
                                 <Frame
                                     BackgroundColor="{StaticResource DarkBrown}"
                                     Padding="0"
-                                    Margin="12,6,12,6"
+                                    Margin="10,6,10,6"
                                     BorderColor="Transparent"
                                     HasShadow="True"
                                     Shadow="{StaticResource SmallShadow}">
@@ -219,33 +219,66 @@
 
         </Grid>
         <Frame
-            HeightRequest="90"
+            HeightRequest="100"
             Grid.Row="3"
             VerticalOptions="End"
+            Padding="5"
             BackgroundColor="{StaticResource DarkGreen}"
-            Margin="0,0,0,20"
             ZIndex="1">
-            <HorizontalStackLayout
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                Spacing="45">
 
-                <ImageButton
-                    HeightRequest="10"
-                    Source="selecticon.png"
-                    Clicked="Selection_Clicked" />
-                <ImageButton
-                    HeightRequest="10"
-                    Source="printicon.png"
-                    IsEnabled="False" />
-                <ImageButton
-                    HeightRequest="10"
-                    Source="scanicon.png"
-                    Clicked="ScanButton_Clicked" />
-                <ImageButton
-                    HeightRequest="10"
-                    Source="settingsicon.png"
-                    Clicked="Settings_Clicked" />
+            <HorizontalStackLayout
+                VerticalOptions="Start"
+                HorizontalOptions="Center"
+                Spacing="5">
+
+
+                <Button
+                    HeightRequest="70"
+                    WidthRequest="95"
+                    BackgroundColor="Transparent"
+                    Clicked="Selection_Clicked"
+                    ImageSource="selecticon.png"
+                    ContentLayout="Top,2"
+                    Text="Select"
+                    TextColor="Black"
+                    FontSize="Micro"/>
+
+                 <Button
+                    HeightRequest="70"
+                    WidthRequest="95"
+                    BackgroundColor="Transparent"
+                    Clicked="Selection_Clicked"
+                    ImageSource="printicon.png"
+                    ContentLayout="Top,4"
+                    Text="Print"
+                    TextColor="Black"
+                    FontSize="Micro"
+                    IsEnabled="False"/>
+
+                 <Button
+                    HeightRequest="70"
+                    WidthRequest="95"
+                    BackgroundColor="Transparent"
+                    Clicked="ScanButton_Clicked"
+                    ImageSource="scanicon.png"
+                    ContentLayout="Top, 5"
+                    Text="Scan"
+                    TextColor="Black"
+                    FontSize="Micro"
+                    IsEnabled="False"/>
+
+                 <Button
+                    HeightRequest="70"
+                    WidthRequest="95"
+                    BackgroundColor="Transparent"
+                    Clicked="Settings_Clicked"
+                    ImageSource="settingsicon.png"
+                    ContentLayout="Top,3"
+                    Text="Settings"
+                    TextColor="Black"
+                    FontSize="Micro"
+                    IsEnabled="False"/>
+
             </HorizontalStackLayout>
 
         </Frame>

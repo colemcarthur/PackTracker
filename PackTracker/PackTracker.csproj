@@ -34,10 +34,22 @@
 	  <CreatePackage>false</CreatePackage>
 	  <CodesignProvision>Automatic</CodesignProvision>
 	  <CodesignKey>iPhone Developer</CodesignKey>
+	  <MtouchLink>SdkOnly</MtouchLink>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
 	  <CreatePackage>false</CreatePackage>
 	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-maccatalyst|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	  <MtouchLink>SdkOnly</MtouchLink>
+	</PropertyGroup>
+	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\printicon.png" />
+	  <MauiImage Remove="Resources\Images\packageicon.png" />
+	  <MauiImage Remove="Resources\Images\scanicon.png" />
+	  <MauiImage Remove="Resources\Images\selecticon.png" />
+	  <MauiImage Remove="Resources\Images\settingsicon.png" />
+	</ItemGroup>
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
@@ -91,7 +103,8 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Fonts\arrow.ttf" />
-	  <BundleResource Include="Resources\Images\range.png" />
+	  <BundleResource Include="Resources\Images\range.png">
+	  </BundleResource>
 	  <BundleResource Include="Resources\Styles\Styles.xaml" Condition=" '$(EnableDefaultXamlItems)' == 'true' ">
 	    <SubType>Designer</SubType>
 	  </BundleResource>
@@ -101,6 +114,15 @@
 	  	  <BundleResource Include="Resources\Styles\Colors.xaml" Condition=" '$(EnableDefaultXamlItems)' == 'true' ">
 	    <SubType>Designer</SubType>
 	  </BundleResource>
+	  	  <BundleResource Include="Resources\Images\printicon.png" />
+	  	  <BundleResource Include="Resources\Images\packageicon.png">
+	  	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  	  </BundleResource>
+	  	  <BundleResource Include="Resources\Images\scanicon.png" />
+	  	  <BundleResource Include="Resources\Images\selecticon.png" />
+	  	  <BundleResource Include="Resources\Images\settingsicon.png">
+	  	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  	  </BundleResource>
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiIcon Include="Resources\AppIcon\appicon.svg" />
