@@ -5,6 +5,7 @@ using UIKit;
 using CoreGraphics;
 using ZXing.Net.Maui;
 using Foundation;
+using PackTracker.MVVM.Models;
 
 namespace PackTracker.Platforms
 {
@@ -99,6 +100,11 @@ namespace PackTracker.Platforms
             }
        
             return stream;
+        }
+
+        Stream IBarcodeService.ConvertImageStream(List<Package> packages, int width, int height)
+        {
+            throw new NotImplementedException();
         }
     }
 }

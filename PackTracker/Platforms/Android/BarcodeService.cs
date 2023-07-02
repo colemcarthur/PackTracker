@@ -4,6 +4,7 @@ using System.IO;
 using Android.Graphics;
 using Microsoft.Maui.Controls.Platform;
 using Newtonsoft.Json.Serialization;
+using PackTracker.MVVM.Models;
 using ZXing;
 using ZXing.Common;
 using ZXing.Net.Maui;
@@ -98,6 +99,10 @@ namespace PackTracker.Platforms
             
         }
 
+        Stream IBarcodeService.ConvertImageStream(List<Package> packages, int width, int height)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

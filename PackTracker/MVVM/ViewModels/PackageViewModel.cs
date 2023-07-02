@@ -11,7 +11,7 @@ namespace PackTracker.MVVM.ViewModels
 	{
 
         [ObservableProperty]
-        Int32 isSelect = 0;
+        Int32 selectionMode = 0;
 
         [ObservableProperty]
         List<Package> packages;

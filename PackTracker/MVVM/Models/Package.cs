@@ -39,6 +39,10 @@ namespace PackTracker.MVVM.Models
                 return App.PackagesRepo.ItemCount(this.Id);
             }
         }
+
+        [Ignore]
+        public bool isSelected { get; set; }
+
         public Package()
 		{
 

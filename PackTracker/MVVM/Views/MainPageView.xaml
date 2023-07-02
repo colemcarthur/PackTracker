@@ -121,9 +121,12 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Package">
                         <Grid ColumnDefinitions=".1*, .9*">
-                           <CheckBox Color="{StaticResource DarkGreen}" />
+                           <CheckBox Color="{StaticResource DarkGreen}"
+                                     x:Name="CheckPackage"
+                                     IsChecked="{Binding isSelected}"
+                                     CheckedChanged="CheckPackage_CheckedChanged"/>
                             <SwipeView
-                                Grid.Column="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PackageViewModel}}, Path=IsSelect}"
+                                Grid.Column="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PackageViewModel}}, Path=SelectionMode}"
                                 Grid.ColumnSpan="2">
                                 <SwipeView.RightItems>
                                     <SwipeItems>
@@ -244,16 +247,16 @@
                     FontSize="Micro"/>
 
                  <Button
+                    x:Name="btnPrint"
                     HeightRequest="70"
                     WidthRequest="95"
                     BackgroundColor="Transparent"
-                    Clicked="Selection_Clicked"
+                    Clicked="btnPrint_Clicked"
                     ImageSource="printicon.png"
                     ContentLayout="Top,4"
                     Text="Print"
                     TextColor="Black"
-                    FontSize="Micro"
-                    IsEnabled="False"/>
+                    FontSize="Micro"/>
 
                  <Button
                     HeightRequest="70"

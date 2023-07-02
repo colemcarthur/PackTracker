@@ -19,7 +19,7 @@ public partial class MainPageView : ContentPage
         {
             viewModel = new PackageViewModel();
             BindingContext = viewModel;
-
+            btnPrint.IsEnabled = false;
         }
         catch (Exception ex)
         {
@@ -244,15 +244,28 @@ public partial class MainPageView : ContentPage
 
     void Selection_Clicked(System.Object sender, System.EventArgs e)
     {
-        if (viewModel.IsSelect == 0)
-            viewModel.IsSelect = 1;
+        if (viewModel.SelectionMode == 0)
+            viewModel.SelectionMode = 1;
         else
-            viewModel.IsSelect = 0;
+            viewModel.SelectionMode = 0;
 
     }
 
     void Settings_Clicked(System.Object sender, System.EventArgs e)
     {
         Navigation.PushModalAsync(new SettingsPage());
+    }
+
+    void CheckPackage_CheckedChanged(System.Object sender, Microsoft.Maui.Controls.CheckedChangedEventArgs e)
+    {
+        List<Package> packages = viewModel.Packages.FindAll(x => x.isSelected == true);
+
+        btnPrint.IsEnabled = packages.Count > 0;
+    }
+
+    void btnPrint_Clicked(System.Object sender, System.EventArgs e)
+    {
+        List<Package> packages = viewModel.Packages.FindAll(x => x.isSelected == true);
+
     }
 }
